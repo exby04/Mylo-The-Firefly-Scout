@@ -5,8 +5,15 @@ public class PlayerController : MonoBehaviour
     public float horizontalMove;
     public float verticalMove;
     public CharacterController player;
+    private Vector3 playerInput;
 
     public float playerSpeed;
+    private Vector3 movePlayer;
+
+    public Camera mainCamera;
+    private Vector3 camForward;
+    private Vector3 camRight;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -19,10 +26,35 @@ public class PlayerController : MonoBehaviour
     {
         horizontalMove = Input.GetAxis("Horizontal");
         verticalMove = Input.GetAxis("Vertical");
+
+        playerInput = new Vector3(horizontalMove, 0, verticalMove);
+        playerInput = Vector3.ClampMagnitude(playerInput, 1);
+
+        camDirection();
+
+        //Mirar con respecto a la camara
+        movePlayer = playerInput.x * camRight + playerInput.z * camForward;
+        //Personaje gire hacia donde se esta moviendo
+        player.transform.LookAt(player.transform.position + movePlayer);
+
+        player.Move(movePlayer * playerSpeed * Time.deltaTime);
+
+
     }
 
-    private void FixedUpdate()
+    void camDirection()
     {
-        player.Move(new Vector3(horizontalMove,0,verticalMove) * playerSpeed * Time.deltaTime);
+        camForward = mainCamera.transform.forward;
+        camRight = mainCamera.transform.right;
+
+        camForward.y = 0;
+        camRight.y = 0;
+
+        camForward = camForward.normalized;
+        camRight = camRight.normalized;
     }
+
+
+
+    
 }
