@@ -150,5 +150,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb559a5ba6f74be49984c6dc9f4c2858, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  offset: {x: 0, y: 10, z: -10}
+  offset: {x: 0, y: 6.6, z: -5.7}
   lerpValue: 0.339
