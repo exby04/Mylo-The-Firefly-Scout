@@ -16,6 +16,5 @@ public class ThirdPersonCamera : MonoBehaviour
     void LateUpdate()
     {
         transform.position = Vector3.Lerp(transform.position, target.position + offset, lerpValue);
-        transform.LookAt(target);
     }
 }
