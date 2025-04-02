@@ -1,15 +1,23 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+
 public class Inventario : MonoBehaviour
 {
-    public static Inventario instance; // Singleton para fácil acceso
+    public static Inventario instance;
 
     private string powerUpActual = null;
     private bool tieneLlave = false;
 
-    public Text powerUpText; // Referencia al HUD
-    public Text llaveText; // Referencia al HUD
+    public Image keyImage;  // Imagen de la llave en el HUD
+    public Image powerUpImage;  // Imagen del Power-Up en el HUD
+    public GameObject mensajeUI;  // Objeto que contiene el mensaje
+    public Image mensajeImagen;  // Imagen dentro del mensaje
+    public TextMeshProUGUI mensajeTexto;  // Texto dentro del mensaje
+
+    public Sprite llaveSprite;  // Imagen cuando se obtiene la llave
+    public Sprite powerUpLuzSprite;  // Imagen de Power-Up Luz
+    public Sprite powerUpRapidezSprite;  // Imagen de Power-Up Rapidez
 
     private void Awake()
     {
@@ -19,39 +27,32 @@ public class Inventario : MonoBehaviour
     public void RecogerLlave()
     {
         tieneLlave = true;
-        llaveText.text = "LLAVE"; // Actualiza el HUD
+        keyImage.sprite = llaveSprite;  // Cambia la imagen de la llave en el HUD
+
+        // Mostrar mensaje de que encontró una llave
+        mensajeImagen.sprite = llaveSprite;
+        mensajeTexto.text = "¡Has obtenido una llave!";
+        mensajeUI.SetActive(true);
     }
 
     public void RecogerPowerUp(string powerUp)
     {
-        if (powerUpActual == null)
+        powerUpActual = powerUp;
+
+        // Cambia la imagen del Power-Up en el HUD
+        if (powerUp == "Velocidad")
         {
-            powerUpActual = powerUp;
+            powerUpImage.sprite = powerUpRapidezSprite;
+            mensajeImagen.sprite = powerUpRapidezSprite;
+            mensajeTexto.text = "¡Has obtenido un Power-Up de Velocidad!";
         }
-        else
+        else if (powerUp == "Vision")
         {
-            // Cambia el power-up si ya tenía uno
-            powerUpActual = powerUp;
+            powerUpImage.sprite = powerUpLuzSprite;
+            mensajeImagen.sprite = powerUpLuzSprite;
+            mensajeTexto.text = "¡Has obtenido un Power-Up de Visión!";
         }
 
-        powerUpText.text = powerUpActual; // Actualiza el HUD
-    }
-
-    public bool UsarPowerUp()
-    {
-        if (powerUpActual != null)
-        {
-            Debug.Log("Usando Power-Up: " + powerUpActual);
-            powerUpActual = null;
-            powerUpText.text = "Power-Up: Ninguno";
-            return true;
-        }
-        return false;
-    }
-
-    public bool TieneLlave()
-    {
-        return tieneLlave;
+        mensajeUI.SetActive(true); // Mostrar el mensaje
     }
 }
-
