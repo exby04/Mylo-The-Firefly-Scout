@@ -2,7 +2,8 @@ using UnityEngine;
 
 public class FireflyCollector : MonoBehaviour
 {
-    private bool canCollect = false; // Indica si el jugador está dentro del área
+    private bool canCollect = false;
+    private GameObject player;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -10,6 +11,7 @@ public class FireflyCollector : MonoBehaviour
         {
             Debug.Log("Presiona 'E' para recoger las luciérnagas.");
             canCollect = true;
+            player = other.gameObject;
         }
     }
 
@@ -17,7 +19,8 @@ public class FireflyCollector : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            canCollect = false; 
+            canCollect = false;
+            player = null;
         }
     }
 
@@ -26,8 +29,15 @@ public class FireflyCollector : MonoBehaviour
         if (canCollect && Input.GetKeyDown(KeyCode.E))
         {
             Debug.Log("Luciérnagas recolectadas!");
-            gameObject.SetActive(false); // Desaparece
-            // Aquí puedes agregar la lógica para guardarlas en el inventario
+            
+
+            AtenuacionLuz atenuacion = player.GetComponentInChildren<AtenuacionLuz>();
+            if (atenuacion != null)
+            {
+                atenuacion.ReiniciarLuz();
+            }
+
+            gameObject.SetActive(false);
         }
     }
 }
