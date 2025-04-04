@@ -47,7 +47,7 @@ MonoBehaviour:
   attackInterval: 40
   batPrefab: {fileID: 7323974680831082049, guid: 1f3cd31cb926ce7499c2674dff43a0c8, type: 3}
   batSpawnPoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  warningText: {fileID: 6791093472797946757, guid: ec43b8ed7dd895540815eeceddcdfb83, type: 3}
+  - {fileID: 2653768746340582512, guid: f55fc38ba6bc5e54693d716fdd8935cd, type: 3}
+  - {fileID: 1047924085010552600, guid: 705d183b9d06a59498166af7c6281887, type: 3}
+  - {fileID: 8494578263729064028, guid: 0ed8d21d25a1fd542b14d0090aec001c, type: 3}
+  warningText: {fileID: 0}
