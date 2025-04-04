@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class AbrirCofre : MonoBehaviour
 {
@@ -8,6 +9,15 @@ public class AbrirCofre : MonoBehaviour
     private bool abierto = false;
 
     private static bool llaveObtenida = false;
+
+    // Referencias al HUD
+    public GameObject mensajeUI;
+    public TextMeshProUGUI mensajeTexto;
+    public Image mensajeImagen;
+
+    public Sprite imagenLlave;
+    public Sprite imagenVelocidad;
+    public Sprite imagenVision;
 
     void Update()
     {
@@ -23,26 +33,35 @@ public class AbrirCofre : MonoBehaviour
         Instantiate(cofreAbiertoPrefab, transform.position, transform.rotation);
         Destroy(gameObject);
 
-        // Probabilidad de 1/7 de obtener la llave (si aún no se ha obtenido)
         if (!llaveObtenida && Random.Range(1, 8) == 1)
         {
             llaveObtenida = true;
             Inventario.instance.RecogerLlave();
-            Debug.Log("¡Has encontrado una llave!");
+
+            // Mostrar mensaje
+            mensajeTexto.text = "¡Has obtenido una llave!";
+            mensajeImagen.sprite = imagenLlave;
+            mensajeUI.SetActive(true);
         }
         else
         {
-            int random = Random.Range(0, 2); // 0 = Velocidad, 1 = Visión
+            int random = Random.Range(0, 2);
 
             if (random == 0)
             {
                 Inventario.instance.RecogerPowerUp("Velocidad");
-                Debug.Log("¡Has encontrado un Power-Up de Velocidad!");
+
+                mensajeTexto.text = "¡Has obtenido velocidad!";
+                mensajeImagen.sprite = imagenVelocidad;
+                mensajeUI.SetActive(true);
             }
             else
             {
                 Inventario.instance.RecogerPowerUp("Vision");
-                Debug.Log("¡Has encontrado un Power-Up de Visión!");
+
+                mensajeTexto.text = "¡Has obtenido visión!";
+                mensajeImagen.sprite = imagenVision;
+                mensajeUI.SetActive(true);
             }
         }
     }
