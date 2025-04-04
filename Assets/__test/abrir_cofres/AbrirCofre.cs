@@ -7,17 +7,13 @@ public class AbrirCofre : MonoBehaviour
     public GameObject cofreAbiertoPrefab;
     private bool jugadorCerca = false;
     private bool abierto = false;
-
     private static bool llaveObtenida = false;
 
-    // Referencias al HUD
+    // Referencias opcionales para actualizar otras partes del HUD
     public GameObject mensajeUI;
-    public TextMeshProUGUI mensajeTexto;
-    public Image mensajeImagen;
-
-    public Sprite imagenLlave;
-    public Sprite imagenVelocidad;
-    public Sprite imagenVision;
+    public Image powerUpImagen;
+    public Sprite powerUpLuz;       // Sprite para power-up "Vision" (opcional si se usa en Inventario)
+    public Sprite powerUpRapidez;   // Sprite para power-up "Velocidad" (opcional si se usa en Inventario)
 
     void Update()
     {
@@ -33,35 +29,30 @@ public class AbrirCofre : MonoBehaviour
         Instantiate(cofreAbiertoPrefab, transform.position, transform.rotation);
         Destroy(gameObject);
 
+        // Primero, probamos obtener la llave (con probabilidad 1/7)
         if (!llaveObtenida && Random.Range(1, 8) == 1)
         {
             llaveObtenida = true;
             Inventario.instance.RecogerLlave();
-
-            // Mostrar mensaje
-            mensajeTexto.text = "¡Has obtenido una llave!";
-            mensajeImagen.sprite = imagenLlave;
-            mensajeUI.SetActive(true);
+            Debug.Log("¡Has encontrado una llave!");
         }
         else
         {
+            // Determinar aleatoriamente el nuevo power-up: 0 = Velocidad, 1 = Vision
             int random = Random.Range(0, 2);
+            string nuevoPowerUp = (random == 0) ? "Velocidad" : "Vision";
 
-            if (random == 0)
+            // Si el jugador ya tiene un power-up, mostramos el panel de intercambio
+            if (Inventario.instance.ObtenerPowerUp() != null)
             {
-                Inventario.instance.RecogerPowerUp("Velocidad");
-
-                mensajeTexto.text = "¡Has obtenido velocidad!";
-                mensajeImagen.sprite = imagenVelocidad;
-                mensajeUI.SetActive(true);
+                PanelCambioPowerUpUI.instance.MostrarPanel(nuevoPowerUp);
+                Debug.Log("Mostrando panel de cambio para power-up.");
             }
             else
             {
-                Inventario.instance.RecogerPowerUp("Vision");
-
-                mensajeTexto.text = "¡Has obtenido visión!";
-                mensajeImagen.sprite = imagenVision;
-                mensajeUI.SetActive(true);
+                // Si no tiene un power-up, se recoge directamente y se muestra el mensaje
+                Inventario.instance.RecogerPowerUp(nuevoPowerUp);
+                Debug.Log("¡Has obtenido un Power-Up de " + nuevoPowerUp + "!");
             }
         }
     }
