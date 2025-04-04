@@ -23026,7 +23026,7 @@ Transform:
   m_GameObject: {fileID: 1719209346}
   serializedVersion: 2
   m_LocalRotation: {x: -0.00905141, y: 0.71789837, z: -0.6960265, w: 0.00933584}
-  m_LocalPosition: {x: 0.9, y: 3.26, z: 0.15}
+  m_LocalPosition: {x: -0.06, y: 3.26, z: 0.15}
   m_LocalScale: {x: 4, y: 4, z: 4}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -23137,7 +23137,7 @@ MonoBehaviour:
   rangoMaximo: 8
   rangoMinimo: 4.6
   intensidadMaxima: 6
-  intensidadMinima: 40
+  intensidadMinima: 20
 --- !u!1 &1728123784
 GameObject:
   m_ObjectHideFlags: 0
