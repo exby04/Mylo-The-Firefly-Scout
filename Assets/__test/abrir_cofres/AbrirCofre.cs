@@ -38,19 +38,35 @@ public class AbrirCofre : MonoBehaviour
         }
         else
         {
-            // Determinar aleatoriamente el nuevo power-up: 0 = Velocidad, 1 = Vision
-            int random = Random.Range(0, 2);
-            string nuevoPowerUp = (random == 0) ? "Velocidad" : "Vision";
+            // Obtener el power-up actual del jugador
+            string actual = Inventario.instance.ObtenerPowerUp();
+            string nuevoPowerUp;
 
-            // Si el jugador ya tiene un power-up, mostramos el panel de intercambio
-            if (Inventario.instance.ObtenerPowerUp() != null)
+            // Evitar repetir el mismo power-up
+            if (actual == "Velocidad")
+            {
+                nuevoPowerUp = "Vision";
+            }
+            else if (actual == "Vision")
+            {
+                nuevoPowerUp = "Velocidad";
+            }
+            else
+            {
+                // Si no tiene ningún power-up, elegir aleatoriamente
+                int random = Random.Range(0, 2);
+                nuevoPowerUp = (random == 0) ? "Velocidad" : "Vision";
+            }
+
+            // Si ya tiene un power-up, mostrar el panel de cambio
+            if (actual != null)
             {
                 PanelCambioPowerUpUI.instance.MostrarPanel(nuevoPowerUp);
                 Debug.Log("Mostrando panel de cambio para power-up.");
             }
             else
             {
-                // Si no tiene un power-up, se recoge directamente y se muestra el mensaje
+                // Si no tiene ninguno, recoger directamente
                 Inventario.instance.RecogerPowerUp(nuevoPowerUp);
                 Debug.Log("¡Has obtenido un Power-Up de " + nuevoPowerUp + "!");
             }
