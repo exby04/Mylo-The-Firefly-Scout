@@ -51,6 +51,16 @@ public class BatAttackTimer : MonoBehaviour
         hasShownWarning = true;
     }
 
+  public void ForceBatAttack()
+{
+    StopAllCoroutines();
+    StartCoroutine(TriggerBatAttack());
+    timer = 0f;
+    hasShownWarning = false;
+}
+
+
+
     IEnumerator TriggerBatAttack()
     {
         if (warningText != null)

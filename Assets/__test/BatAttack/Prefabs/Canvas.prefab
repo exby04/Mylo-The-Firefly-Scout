@@ -18,7 +18,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8507003077946124437
 RectTransform:
   m_ObjectHideFlags: 0
@@ -113,6 +113,10 @@ PrefabInstance:
     - target: {fileID: 3030753074124685537, guid: 697ac1ff8b971a14d9ae651f0482158d, type: 3}
       propertyPath: m_Name
       value: BatWarningText
+      objectReference: {fileID: 0}
+    - target: {fileID: 3030753074124685537, guid: 697ac1ff8b971a14d9ae651f0482158d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3242704944508118336, guid: 697ac1ff8b971a14d9ae651f0482158d, type: 3}
       propertyPath: m_Pivot.x
