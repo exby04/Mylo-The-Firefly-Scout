@@ -27,31 +27,34 @@ public class BatMovement : MonoBehaviour
     }
 
     void Update()
-    {
-        if (!isAttacking || player == null || playerObj == null) return;
+{
+    if (!isAttacking || player == null || playerObj == null) return;
 
-        // Cancel attack if player is hidden
+    float distance = Vector3.Distance(transform.position, player.position);
+
+    if (distance > attackDistance)
+    {
+        transform.position = Vector3.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
+    }
+    else
+    {
+        isAttacking = false;
+
         if (!playerObj.activeInHierarchy)
         {
-            isAttacking = false;
-            Debug.Log("🙈 Bat arrived, but player is hidden inside an Escondite. No attack!");
-            StartCoroutine(FlyAway());
-            return;
-        }
-
-        float distance = Vector3.Distance(transform.position, player.position);
-
-        if (distance > attackDistance)
-        {
-            transform.position = Vector3.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
+            Debug.Log("🙈 Bat arrived, but player is hidden inside an Escondite. No damage taken!");
+            // No damage applied
         }
         else
         {
-            isAttacking = false;
             Debug.Log("🦇 Bat attacked the player! (Apply 0.5 damage here)");
-            StartCoroutine(FlyAway());
+            // Apply damage here
         }
+
+        StartCoroutine(FlyAway());
     }
+}
+
 
     IEnumerator FlyAway()
     {
