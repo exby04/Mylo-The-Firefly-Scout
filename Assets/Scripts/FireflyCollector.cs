@@ -37,7 +37,7 @@ public class FireflyCollector : MonoBehaviour
                 atenuacion.ReiniciarLuz();
             }
 
-            gameObject.SetActive(false);
+            //gameObject.SetActive(false);
         }
     }
 }
