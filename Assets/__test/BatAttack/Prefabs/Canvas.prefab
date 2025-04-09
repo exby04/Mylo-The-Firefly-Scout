@@ -18,7 +18,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &8507003077946124437
 RectTransform:
   m_ObjectHideFlags: 0
@@ -184,7 +184,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3242704944508118336, guid: 697ac1ff8b971a14d9ae651f0482158d, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 191.5
+      value: 154
       objectReference: {fileID: 0}
     - target: {fileID: 3242704944508118336, guid: 697ac1ff8b971a14d9ae651f0482158d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -197,6 +197,22 @@ PrefabInstance:
     - target: {fileID: 3242704944508118336, guid: 697ac1ff8b971a14d9ae651f0482158d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5158978408859078728, guid: 697ac1ff8b971a14d9ae651f0482158d, type: 3}
+      propertyPath: m_fontColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5158978408859078728, guid: 697ac1ff8b971a14d9ae651f0482158d, type: 3}
+      propertyPath: m_fontColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5158978408859078728, guid: 697ac1ff8b971a14d9ae651f0482158d, type: 3}
+      propertyPath: m_fontColor.r
+      value: 0.78867924
+      objectReference: {fileID: 0}
+    - target: {fileID: 5158978408859078728, guid: 697ac1ff8b971a14d9ae651f0482158d, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4278190281
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

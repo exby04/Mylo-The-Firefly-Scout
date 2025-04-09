@@ -3586,6 +3586,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 992044317}
     - target: {fileID: 7567477955875748546, guid: 082c8cc7d0c6626439ac023a4090262a, type: 3}
+      propertyPath: attackInterval
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 7567477955875748546, guid: 082c8cc7d0c6626439ac023a4090262a, type: 3}
       propertyPath: 'batSpawnPoints.Array.data[0]'
       value: 
       objectReference: {fileID: 457124543}

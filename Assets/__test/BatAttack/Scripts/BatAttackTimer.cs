@@ -41,15 +41,16 @@ public class BatAttackTimer : MonoBehaviour
     }
 
     void ShowWarning()
+{
+    if (warningText != null)
     {
-        if (warningText != null)
-        {
-            warningText.SetActive(true);
-            Debug.Log("⚠️ ¡Murciélagos en camino!");
-        }
-
-        hasShownWarning = true;
+        warningText.SetActive(true);
+        Debug.Log("⚠️ ¡Murciélagos en camino! -> " + warningText.name);
     }
+
+    hasShownWarning = true;
+}
+
 
   public void ForceBatAttack()
 {
