@@ -1,10 +1,14 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
     [Header("UI References")]
     public GameObject pauseMenuUI;      // The pause menu panel (with all buttons)
     public GameObject exitWarningUI;    // The exit confirmation popup
+
+    [Header("Scene Settings")]
+    public string menuSceneName = "MainMenu"; // Editable in Inspector
 
     private bool isPaused = false;
 
@@ -44,8 +48,17 @@ public class PauseMenu : MonoBehaviour
 
     public void ExitToMenu()
     {
-        Debug.Log("Salir al Inicio clicked — waiting for main menu to be implemented.");
-        // Later: SceneManager.LoadScene("MainMenu");
+        Debug.Log("Salir al Inicio clicked");
+        Time.timeScale = 1f; // Reset time scale before switching scenes
+
+        if (!string.IsNullOrEmpty(menuSceneName))
+        {
+            SceneManager.LoadScene(menuSceneName);
+        }
+        else
+        {
+            Debug.LogWarning("⚠️ Menu scene name not assigned in Inspector!");
+        }
     }
 
     public void ExitGamePrompt()
@@ -66,3 +79,4 @@ public class PauseMenu : MonoBehaviour
         Application.Quit();
     }
 }
+
