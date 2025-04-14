@@ -8,6 +8,7 @@ public class HideSpot : MonoBehaviour
     private bool playerInZone = false;
     private GameObject player;
     private PlayerController playerController;
+    private PlayerHealth playerHealth; // Referencia al componente de salud del jugador
 
     // Prefab del asset que representa el estado "usado"
     public GameObject usedAssetPrefab;
@@ -24,18 +25,27 @@ public class HideSpot : MonoBehaviour
     {
         isUsed = true;
 
+        // Desactivar el controlador del jugador
         if (playerController != null)
             playerController.enabled = false;
 
-        // Oculta al jugador
+        // Marcar al jugador como escondido para evitar la pérdida de vidas
+        if (playerHealth != null)
+            playerHealth.SetHidden(true);
+
+        // Ocultar al jugador
         player.SetActive(false);
 
         yield return new WaitForSeconds(hideDuration);
 
-        // Reaparece al jugador y reactiva su controlador
+        // Mostrar al jugador y reactivar su controlador
         player.SetActive(true);
         if (playerController != null)
             playerController.enabled = true;
+
+        // Actualizar el estado del jugador a no escondido
+        if (playerHealth != null)
+            playerHealth.SetHidden(false);
 
         // Instanciar el prefab del asset "usado" en la posición y rotación actuales
         if (usedAssetPrefab != null)
@@ -52,6 +62,7 @@ public class HideSpot : MonoBehaviour
             playerInZone = true;
             player = other.gameObject;
             playerController = other.GetComponent<PlayerController>();
+            playerHealth = other.GetComponent<PlayerHealth>(); // Obtener la referencia al script de salud
         }
     }
 
@@ -62,6 +73,7 @@ public class HideSpot : MonoBehaviour
             playerInZone = false;
             player = null;
             playerController = null;
+            playerHealth = null;
         }
     }
 }
