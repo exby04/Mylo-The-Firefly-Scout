@@ -7083,6 +7083,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2636254198257936581, guid: f89fb801e14764a45b6f3d51e858cee6, type: 3}
   m_PrefabInstance: {fileID: 1868235916}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &905869945 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6122557152683583767, guid: 08da61c990a1c3d46a183c21678dd545, type: 3}
+  m_PrefabInstance: {fileID: 1949907058}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &920432799
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7784,6 +7789,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f89fb801e14764a45b6f3d51e858cee6, type: 3}
+--- !u!1 &1162396000 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8475181843501986042, guid: 08da61c990a1c3d46a183c21678dd545, type: 3}
+  m_PrefabInstance: {fileID: 1949907058}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1170547970
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10272,7 +10282,7 @@ PrefabInstance:
     - target: {fileID: 1276066083298476378, guid: 836bc5e147f1b1d4ab655a515c7a70d0, type: 3}
       propertyPath: mensajeUI
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1162396000}
     - target: {fileID: 1276066083298476378, guid: 836bc5e147f1b1d4ab655a515c7a70d0, type: 3}
       propertyPath: mainCamera
       value: 
@@ -10359,7 +10369,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mensajeUI: {fileID: 2081773680}
-  jugador: {fileID: 0}
+  jugador: {fileID: 379063110}
   distanciaDeteccion: 2
 --- !u!1001 &1949907058
 PrefabInstance:
@@ -10449,21 +10459,65 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6122557152683583767, guid: 08da61c990a1c3d46a183c21678dd545, type: 3}
-      propertyPath: m_IsActive
+    - target: {fileID: 3847181129014830537, guid: 08da61c990a1c3d46a183c21678dd545, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -35
+      objectReference: {fileID: 0}
+    - target: {fileID: 3847181129014830537, guid: 08da61c990a1c3d46a183c21678dd545, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 154
+      objectReference: {fileID: 0}
+    - target: {fileID: 4011140191952398417, guid: 08da61c990a1c3d46a183c21678dd545, type: 3}
+      propertyPath: m_text
+      value: "\xA1Murci\xE9lagos en camino!"
+      objectReference: {fileID: 0}
+    - target: {fileID: 4011140191952398417, guid: 08da61c990a1c3d46a183c21678dd545, type: 3}
+      propertyPath: m_margin.z
+      value: -139.78424
+      objectReference: {fileID: 0}
+    - target: {fileID: 4011140191952398417, guid: 08da61c990a1c3d46a183c21678dd545, type: 3}
+      propertyPath: m_fontStyle
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4011140191952398417, guid: 08da61c990a1c3d46a183c21678dd545, type: 3}
+      propertyPath: m_fontColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4011140191952398417, guid: 08da61c990a1c3d46a183c21678dd545, type: 3}
+      propertyPath: m_fontColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4011140191952398417, guid: 08da61c990a1c3d46a183c21678dd545, type: 3}
+      propertyPath: m_fontColor.r
+      value: 0.7882353
+      objectReference: {fileID: 0}
+    - target: {fileID: 4011140191952398417, guid: 08da61c990a1c3d46a183c21678dd545, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4278190281
+      objectReference: {fileID: 0}
+    - target: {fileID: 6122557152683583767, guid: 08da61c990a1c3d46a183c21678dd545, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8227422650335448546, guid: 08da61c990a1c3d46a183c21678dd545, type: 3}
+      propertyPath: warningText
+      value: 
+      objectReference: {fileID: 905869945}
     - target: {fileID: 8227422650335448546, guid: 08da61c990a1c3d46a183c21678dd545, type: 3}
       propertyPath: batAttackTimer
       value: 
       objectReference: {fileID: 864328089}
     - target: {fileID: 8227422650335448546, guid: 08da61c990a1c3d46a183c21678dd545, type: 3}
       propertyPath: delayBeforeAttack
-      value: 10
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8475181843501986042, guid: 08da61c990a1c3d46a183c21678dd545, type: 3}
       propertyPath: m_Name
       value: BatTrapWarningText
+      objectReference: {fileID: 0}
+    - target: {fileID: 8475181843501986042, guid: 08da61c990a1c3d46a183c21678dd545, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -11212,9 +11266,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3928449162895011328, guid: ec43b8ed7dd895540815eeceddcdfb83, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6791093472797946757, guid: ec43b8ed7dd895540815eeceddcdfb83, type: 3}
       propertyPath: m_Name
       value: Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 6791093472797946757, guid: ec43b8ed7dd895540815eeceddcdfb83, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8507003077946124437, guid: ec43b8ed7dd895540815eeceddcdfb83, type: 3}
       propertyPath: m_Pivot.x
