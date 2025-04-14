@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class MostrarMensajeInteraccion : MonoBehaviour
 {
-    public GameObject mensajeUI;         // Panel con el texto
-    public Transform jugador;            // Objeto del jugador
-    public float distanciaDeteccion = 3f;
+    public GameObject mensajeUI;        
+    public Transform jugador;           
+    public float distanciaDeteccion = 4f;
 
     void Update()
     {
