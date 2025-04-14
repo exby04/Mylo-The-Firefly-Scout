@@ -1,12 +1,19 @@
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class AbrirCofre : MonoBehaviour
 {
     public GameObject cofreAbiertoPrefab;
     private bool jugadorCerca = false;
     private bool abierto = false;
+    private static bool llaveObtenida = false;
 
+    // Referencias opcionales para actualizar otras partes del HUD
     public GameObject mensajeUI;
+    public Image powerUpImagen;
+    public Sprite powerUpLuz;       // Sprite para power-up "Vision" (opcional si se usa en Inventario)
+    public Sprite powerUpRapidez;   // Sprite para power-up "Velocidad" (opcional si se usa en Inventario)
 
     void Update()
     {
@@ -21,7 +28,49 @@ public class AbrirCofre : MonoBehaviour
         abierto = true;
         Instantiate(cofreAbiertoPrefab, transform.position, transform.rotation);
         Destroy(gameObject);
-        mensajeUI.SetActive(true);
+
+        // Primero, probamos obtener la llave (con probabilidad 1/7)
+        if (!llaveObtenida && Random.Range(1, 8) == 1)
+        {
+            llaveObtenida = true;
+            Inventario.instance.RecogerLlave();
+            Debug.Log("¡Has encontrado una llave!");
+        }
+        else
+        {
+            // Obtener el power-up actual del jugador
+            string actual = Inventario.instance.ObtenerPowerUp();
+            string nuevoPowerUp;
+
+            // Evitar repetir el mismo power-up
+            if (actual == "Velocidad")
+            {
+                nuevoPowerUp = "Vision";
+            }
+            else if (actual == "Vision")
+            {
+                nuevoPowerUp = "Velocidad";
+            }
+            else
+            {
+                // Si no tiene ningún power-up, elegir aleatoriamente
+                int random = Random.Range(0, 2);
+                nuevoPowerUp = (random == 0) ? "Velocidad" : "Vision";
+            }
+
+            // Si ya tiene un power-up, mostrar el panel de cambio
+            if (actual != null)
+            {
+                PanelCambioPowerUpUI.instance.MostrarPanel(nuevoPowerUp);
+                Debug.Log("Mostrando panel de cambio para power-up.");
+            }
+            else
+            {
+                // Si no tiene ninguno, recoger directamente
+                Inventario.instance.RecogerPowerUp(nuevoPowerUp);
+                Debug.Log("¡Has obtenido un Power-Up de " + nuevoPowerUp + "!");
+            }
+        }
     }
 
     void OnTriggerEnter(Collider other)
