@@ -191,7 +191,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4536321327154552408, guid: e92f0652ff8099e4a9bdd8b1a6cbc34c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1639620232}
   m_SourcePrefab: {fileID: 100100000, guid: e92f0652ff8099e4a9bdd8b1a6cbc34c, type: 3}
 --- !u!1001 &327500296
 PrefabInstance:
@@ -1591,6 +1594,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8161410447312961153, guid: e92f0652ff8099e4a9bdd8b1a6cbc34c, type: 3}
   m_PrefabInstance: {fileID: 156754252}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1639620232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 66787266}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 066b03110726c7a4f9847deadc7d66fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerController: {fileID: 1639620233}
+  speedMultiplier: 2
+  powerUpDuration: 10
+--- !u!114 &1639620233 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1200606067685255289, guid: e92f0652ff8099e4a9bdd8b1a6cbc34c, type: 3}
+  m_PrefabInstance: {fileID: 156754252}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 66787266}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f0e907fdc422744fb4d33fb93dcf5d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!20 &1640786253 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 8586208808242034882, guid: 2947dd694339a464f9e717405ee6c6d2, type: 3}
