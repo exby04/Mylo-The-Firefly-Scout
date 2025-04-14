@@ -9,11 +9,14 @@ public class AbrirCofre : MonoBehaviour
     private bool abierto = false;
     private static bool llaveObtenida = false;
 
+    // Nuevo contador estático para los cofres abiertos
+    private static int cofresAbiertos = 0;
+
     // Referencias opcionales para actualizar otras partes del HUD
     public GameObject mensajeUI;
     public Image powerUpImagen;
-    public Sprite powerUpLuz;       // Sprite para power-up "Vision" (opcional si se usa en Inventario)
-    public Sprite powerUpRapidez;   // Sprite para power-up "Velocidad" (opcional si se usa en Inventario)
+    public Sprite powerUpLuz;       
+    public Sprite powerUpRapidez;   
 
     void Update()
     {
@@ -30,9 +33,16 @@ public class AbrirCofre : MonoBehaviour
         Destroy(gameObject);
         mensajeUI.SetActive(true);
 
+        cofresAbiertos++;  // Aumenta el contador de cofres abiertos
 
-        // Primero, probamos obtener la llave (con probabilidad 1/7)
-        if (!llaveObtenida && Random.Range(1, 8) == 1)
+        // Si ya has abierto 7 cofres y no has obtenido la llave, forzar la aparición de la llave
+        if (cofresAbiertos == 7 && !llaveObtenida)
+        {
+            llaveObtenida = true;
+            Inventario.instance.RecogerLlave();
+            Debug.Log("¡Has encontrado la llave por obligación!");
+        }
+        else if (!llaveObtenida && Random.Range(1, 8) == 1)  // Si no es el 7mo cofre, 1/7 de probabilidad
         {
             llaveObtenida = true;
             Inventario.instance.RecogerLlave();
