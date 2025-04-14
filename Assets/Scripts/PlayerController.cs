@@ -14,14 +14,14 @@ public class PlayerController : MonoBehaviour
     private Vector3 camForward;
     private Vector3 camRight;
 
+    public Animator animator; // <- Nuevo
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         player = GetComponent<CharacterController>();
+        animator = GetComponentInChildren<Animator>(); // <- Asegura que se agarre del hijo si está en el modelo
     }
 
-    // Update is called once per frame
     void Update()
     {
         horizontalMove = Input.GetAxis("Horizontal");
@@ -32,14 +32,19 @@ public class PlayerController : MonoBehaviour
 
         camDirection();
 
-        //Mirar con respecto a la camara
         movePlayer = playerInput.x * camRight + playerInput.z * camForward;
-        //Personaje gire hacia donde se esta moviendo
-        player.transform.LookAt(player.transform.position + movePlayer);
+
+        if (movePlayer != Vector3.zero)
+            transform.LookAt(transform.position + movePlayer);
 
         player.Move(movePlayer * playerSpeed * Time.deltaTime);
 
-
+        // Animación
+        float speedPercent = playerInput.magnitude;
+        if (animator != null)
+            animator.SetFloat("Speed", speedPercent);
+        else
+            Debug.LogWarning("Animator no asignado.");
     }
 
     void camDirection()
@@ -53,8 +58,4 @@ public class PlayerController : MonoBehaviour
         camForward = camForward.normalized;
         camRight = camRight.normalized;
     }
-
-
-
-    
 }
