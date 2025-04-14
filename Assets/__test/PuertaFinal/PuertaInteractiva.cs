@@ -1,50 +1,62 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class PuertaInteractiva : MonoBehaviour
+public class AbrirPuertasFinal : MonoBehaviour
 {
-    public Animator animator;
-    public Collider colisionPuerta;
-    private bool enRango = false;
-    private bool yaSeAbrio = false;
+    public Animator puertaIzquierda;
+    public Animator puertaDerecha;
+    public string nombreAnimacionIzquierda = "AbrirPuertaIzquierda";
+    public string nombreAnimacionDerecha = "AbrirPuertaDerecha";
 
-    void Update()
+    public Collider colliderIzquierda;  // Asigna el collider de la puerta izquierda
+    public Collider colliderDerecha;    // Asigna el collider de la puerta derecha
+
+    private bool jugadorDentro = false;
+
+    private void Update()
     {
-        if (enRango && Input.GetKeyDown(KeyCode.E) && !yaSeAbrio)
+        if (jugadorDentro && Input.GetKeyDown(KeyCode.E))
         {
             if (Inventario.instance.TieneLlave())
             {
-                animator.SetTrigger("Abrir");
-                yaSeAbrio = true;
-                Invoke(nameof(ActivarTrigger), 1.0f);
+                // Ejecutar animaciones
+                puertaIzquierda.Play(nombreAnimacionIzquierda);
+                puertaDerecha.Play(nombreAnimacionDerecha);
+
+                // Desactivar colliders para permitir el paso
+                if (colliderIzquierda != null) colliderIzquierda.enabled = false;
+                if (colliderDerecha != null) colliderDerecha.enabled = false;
+
+                // Fin del juego o siguiente escena (opcional)
+                Invoke("FinalizarJuego", 2f);
             }
             else
             {
-                Debug.Log("Necesitas una llave para abrir esta puerta.");
+                Debug.Log("Necesitas una llave para abrir las puertas.");
             }
         }
     }
 
-    void ActivarTrigger()
+    private void FinalizarJuego()
     {
-        if (colisionPuerta != null)
+        Debug.Log("¡Juego finalizado!");
+        // SceneManager.LoadScene("PantallaFinal"); // si tienes otra escena
+        // Application.Quit(); // si es build
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.GetComponent<PlayerController>())
         {
-            colisionPuerta.isTrigger = true;
+            jugadorDentro = true;
         }
     }
 
-    void OnTriggerEnter(Collider other)
+    private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.GetComponent<PlayerController>())
         {
-            enRango = true;
-        }
-    }
-
-    void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            enRango = false;
+            jugadorDentro = false;
         }
     }
 }
