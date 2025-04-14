@@ -7,11 +7,12 @@ public class BatAttackTimer : MonoBehaviour
     public float attackInterval = 40f;
     private float timer = 0f;
     private bool hasShownWarning = false;
+    private bool isAttacking = false; // ✅ Flag para prevenir ataques dobles
 
     [Header("Referencias")]
     public GameObject batPrefab;         // Prefab del murciélago
-    public Transform[] batSpawnPoints;     // Puntos de aparición de murciélagos
-    public GameObject warningText;         // Objeto UI de advertencia (activar/desactivar)
+    public Transform[] batSpawnPoints;   // Puntos de aparición de murciélagos
+    public GameObject warningText;       // Objeto UI de advertencia (activar/desactivar)
 
     private GameObject cachedPlayer;
 
@@ -24,6 +25,9 @@ public class BatAttackTimer : MonoBehaviour
 
     void Update()
     {
+        // ⛔ Bloquear ataque si ya hay uno en curso
+        if (isAttacking) return;
+
         timer += Time.deltaTime;
 
         if (!hasShownWarning && timer >= attackInterval - 5f)
@@ -44,13 +48,28 @@ public class BatAttackTimer : MonoBehaviour
         if (warningText != null)
         {
             warningText.SetActive(true);
-            Debug.Log("⚠️ ¡Advertencia! Los murciélagos se aproximan.");
+            Debug.Log("⚠️ ¡Murciélagos en camino! → " + warningText.name);
+            StartCoroutine(HideWarningAfterDelay(2f));
         }
+
         hasShownWarning = true;
+    }
+
+    IEnumerator HideWarningAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        if (warningText != null)
+        {
+            warningText.SetActive(false);
+            Debug.Log("🔕 Aviso de murciélagos ocultado automáticamente");
+        }
     }
 
     IEnumerator TriggerBatAttack()
     {
+        isAttacking = true;
+
         if (warningText != null)
             warningText.SetActive(false);
 
@@ -58,7 +77,6 @@ public class BatAttackTimer : MonoBehaviour
 
         if (batSpawnPoints.Length > 0 && batPrefab != null && cachedPlayer != null)
         {
-            // Ejemplo: usamos el primer punto de aparición
             GameObject bat = Instantiate(batPrefab, batSpawnPoints[0].position, Quaternion.identity);
             BatMovement batScript = bat.GetComponent<BatMovement>();
             if (batScript != null)
@@ -74,7 +92,11 @@ public class BatAttackTimer : MonoBehaviour
         {
             Debug.LogWarning("Faltan datos: puntos de aparición, prefab de murciélago o referencia al jugador.");
         }
-        yield return null;
+
+        // ⏳ Esperar un poco antes de permitir nuevos ataques
+        yield return new WaitForSeconds(2f);
+
+        isAttacking = false;
     }
 
     // Permite forzar el ataque desde otros scripts (por ejemplo, trampas)
@@ -84,5 +106,13 @@ public class BatAttackTimer : MonoBehaviour
         StartCoroutine(TriggerBatAttack());
         timer = 0f;
         hasShownWarning = false;
+    }
+
+    // ✅ Método para reiniciar el temporizador sin atacar
+    public void ResetTimer()
+    {
+        timer = 0f;
+        hasShownWarning = false;
+        Debug.Log("🔄 Temporizador reiniciado manualmente desde otra fuente (ej. cofre trampa).");
     }
 }

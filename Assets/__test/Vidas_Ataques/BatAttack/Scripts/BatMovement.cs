@@ -4,9 +4,12 @@ using System.Collections;
 public class BatMovement : MonoBehaviour
 {
     [Header("Ajustes de Movimiento")]
-    public float speed = 5f;
+    public float baseSpeed = 5f;
+    public float maxSpeed = 12f;
+    public float acceleration = 1f; // Aumento de velocidad por segundo
     public float attackDistance = 1f;
 
+    private float currentSpeed;
     private bool isAttacking = false;
     private Transform player;
     private GameObject playerObj;
@@ -19,6 +22,7 @@ public class BatMovement : MonoBehaviour
             playerObj = targetPlayer;
             player = targetPlayer.transform;
             isAttacking = true;
+            currentSpeed = baseSpeed;
         }
         else
         {
@@ -32,9 +36,13 @@ public class BatMovement : MonoBehaviour
             return;
 
         float distance = Vector3.Distance(transform.position, player.position);
+
         if (distance > attackDistance)
         {
-            transform.position = Vector3.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
+            // Aumentar velocidad gradualmente hasta maxSpeed
+            currentSpeed = Mathf.Min(currentSpeed + acceleration * Time.deltaTime, maxSpeed);
+
+            transform.position = Vector3.MoveTowards(transform.position, player.position, currentSpeed * Time.deltaTime);
         }
         else
         {
@@ -48,7 +56,6 @@ public class BatMovement : MonoBehaviour
             else
             {
                 Debug.Log("🦇 El murciélago ataca al jugador. Aplicando daño.");
-                // Obtén y llama al componente PlayerHealth para aplicar daño
                 PlayerHealth ph = playerObj.GetComponent<PlayerHealth>();
                 if (ph != null)
                 {
@@ -59,6 +66,7 @@ public class BatMovement : MonoBehaviour
                     Debug.LogWarning("No se encontró el componente PlayerHealth en el jugador.");
                 }
             }
+
             StartCoroutine(FlyAway());
         }
     }
@@ -69,7 +77,7 @@ public class BatMovement : MonoBehaviour
         Vector3 exitPoint = transform.position + new Vector3(0f, 10f, 0f);
         while (Vector3.Distance(transform.position, exitPoint) > 0.1f)
         {
-            transform.position = Vector3.MoveTowards(transform.position, exitPoint, speed * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, exitPoint, baseSpeed * Time.deltaTime);
             yield return null;
         }
         Destroy(gameObject);

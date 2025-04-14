@@ -1445,6 +1445,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6122557152683583767, guid: 08da61c990a1c3d46a183c21678dd545, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8227422650335448546, guid: 08da61c990a1c3d46a183c21678dd545, type: 3}
       propertyPath: batAttackTimer
       value: 
@@ -1456,6 +1460,10 @@ PrefabInstance:
     - target: {fileID: 8475181843501986042, guid: 08da61c990a1c3d46a183c21678dd545, type: 3}
       propertyPath: m_Name
       value: BatTrapWarningText
+      objectReference: {fileID: 0}
+    - target: {fileID: 8475181843501986042, guid: 08da61c990a1c3d46a183c21678dd545, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
