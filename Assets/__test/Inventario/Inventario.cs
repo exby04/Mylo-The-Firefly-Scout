@@ -20,6 +20,7 @@ public class Inventario : MonoBehaviour
     public Sprite llaveSprite;
     public Sprite powerUpLuzSprite;
     public Sprite powerUpRapidezSprite;
+    public Sprite powerUpVacioSprite; // ✅ Nuevo sprite para slot vacío
 
     [Header("Referencias de scripts")]
     public PowerUpLuz powerUpLuz;
@@ -114,9 +115,9 @@ public class Inventario : MonoBehaviour
                 return;
         }
 
-        // Eliminar del inventario tras usarlo
+        // ✅ Reemplazar el ícono con el sprite vacío en lugar de ocultarlo
         powerUpActual = null;
-        powerUpImage.sprite = null;
-        powerUpImage.color = new Color(1, 1, 1, 0);
+        powerUpImage.sprite = powerUpVacioSprite;
+        powerUpImage.color = Color.white;
     }
 }
