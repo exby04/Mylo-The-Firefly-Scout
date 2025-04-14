@@ -1,16 +1,31 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
+
 public class PauseMenu : MonoBehaviour
 {
     [Header("UI References")]
-    public GameObject pauseMenuUI;      // The pause menu panel (with all buttons)
-    public GameObject exitWarningUI;    // The exit confirmation popup
+    public GameObject pauseMenuUI;
+    public GameObject exitWarningUI;
 
     [Header("Scene Settings")]
-    public string menuSceneName = "MainMenu"; // Editable in Inspector
+#if UNITY_EDITOR
+    public SceneAsset menuSceneAsset; // 👈 Drop scene here in Inspector (Editor only)
+#endif
+    private string menuSceneName;
 
     private bool isPaused = false;
+
+    void Awake()
+    {
+#if UNITY_EDITOR
+        if (menuSceneAsset != null)
+            menuSceneName = menuSceneAsset.name;
+#endif
+    }
 
     void Update()
     {
@@ -28,7 +43,7 @@ public class PauseMenu : MonoBehaviour
     {
         Debug.Log("Resume() called");
         pauseMenuUI.SetActive(false);
-        exitWarningUI.SetActive(false); // In case it was open
+        exitWarningUI.SetActive(false);
         Time.timeScale = 1f;
         isPaused = false;
     }
@@ -49,7 +64,7 @@ public class PauseMenu : MonoBehaviour
     public void ExitToMenu()
     {
         Debug.Log("Salir al Inicio clicked");
-        Time.timeScale = 1f; // Reset time scale before switching scenes
+        Time.timeScale = 1f;
 
         if (!string.IsNullOrEmpty(menuSceneName))
         {
@@ -57,7 +72,7 @@ public class PauseMenu : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("⚠️ Menu scene name not assigned in Inspector!");
+            Debug.LogWarning("⚠️ No se ha asignado la escena del menú en el Inspector.");
         }
     }
 
@@ -75,8 +90,11 @@ public class PauseMenu : MonoBehaviour
 
     public void ConfirmExitGame()
     {
-        Debug.Log("Game closed.");
+#if UNITY_EDITOR
+        EditorApplication.isPlaying = false;
+#else
         Application.Quit();
+#endif
+        Debug.Log("Saliendo del juego...");
     }
 }
-
