@@ -28,6 +28,8 @@ public class AbrirCofre : MonoBehaviour
         abierto = true;
         Instantiate(cofreAbiertoPrefab, transform.position, transform.rotation);
         Destroy(gameObject);
+        mensajeUI.SetActive(true);
+
 
         // Primero, probamos obtener la llave (con probabilidad 1/7)
         if (!llaveObtenida && Random.Range(1, 8) == 1)
