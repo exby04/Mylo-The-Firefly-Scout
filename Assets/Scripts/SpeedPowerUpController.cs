@@ -26,7 +26,7 @@ public class SpeedPowerUpController : MonoBehaviour
         // Activar si tiene el powerUp y pulsa espacio
         if (hasPowerUp && !isActive && Input.GetKeyDown(KeyCode.Space))
         {
-            ActivatePowerUp();
+            
         }
 
         // Temporizador activo
@@ -44,6 +44,7 @@ public class SpeedPowerUpController : MonoBehaviour
     public void GiveSpeedPowerUp()
     {
         hasPowerUp = true;
+        ActivatePowerUp();
         Debug.Log("PowerUp de velocidad recibido.");
     }
 

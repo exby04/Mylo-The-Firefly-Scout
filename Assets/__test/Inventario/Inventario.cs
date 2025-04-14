@@ -9,15 +9,21 @@ public class Inventario : MonoBehaviour
     private string powerUpActual = null;
     private bool tieneLlave = false;
 
-    public Image keyImage;         // Imagen de la llave en el HUD
-    public Image powerUpImage;     // Imagen del Power-Up en el HUD
-    public GameObject mensajeUI;   // GameObject del mensaje (dentro del HUD)
-    public Image mensajeImagen;    // Imagen que se muestra en el mensaje
-    public TextMeshProUGUI mensajeTexto; // Texto del mensaje
+    [Header("HUD")]
+    public Image keyImage;
+    public Image powerUpImage;
+    public GameObject mensajeUI;
+    public Image mensajeImagen;
+    public TextMeshProUGUI mensajeTexto;
 
-    public Sprite llaveSprite;          // Sprite de la llave obtenida
-    public Sprite powerUpLuzSprite;     // Sprite para Power-Up de Visión
-    public Sprite powerUpRapidezSprite; // Sprite para Power-Up de Velocidad
+    [Header("Sprites")]
+    public Sprite llaveSprite;
+    public Sprite powerUpLuzSprite;
+    public Sprite powerUpRapidezSprite;
+
+    [Header("Referencias de scripts")]
+    public PowerUpLuz powerUpLuz;
+    public SpeedPowerUpController speedPowerUpController;
 
     private void Awake()
     {
@@ -25,19 +31,25 @@ public class Inventario : MonoBehaviour
             instance = this;
     }
 
-    // Método para recoger la llave (siempre se muestra el mensaje)
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            ActivarPowerUp();
+        }
+    }
+
     public void RecogerLlave()
     {
         tieneLlave = true;
-        keyImage.sprite = llaveSprite;  // Actualiza la imagen de la llave en el HUD
+        keyImage.sprite = llaveSprite;
+        keyImage.color = Color.white;
 
-        // Mostrar mensaje de llave
         mensajeImagen.sprite = llaveSprite;
         mensajeTexto.text = "¡Has obtenido una llave!";
         mensajeUI.SetActive(true);
     }
 
-    // Método para recoger un power-up (se muestra el mensaje solo si se asigna directamente)
     public void RecogerPowerUp(string powerUp)
     {
         powerUpActual = powerUp;
@@ -55,26 +67,56 @@ public class Inventario : MonoBehaviour
             mensajeTexto.text = "¡Has obtenido un Power-Up de Visión!";
         }
 
+        powerUpImage.color = Color.white;
         mensajeUI.SetActive(true);
     }
 
-    // Método para obtener el power-up actual (devuelve "Velocidad", "Vision" o null)
     public string ObtenerPowerUp()
     {
         return powerUpActual;
     }
 
-    // Método para intercambiar el power-up actual por uno nuevo
     public void IntercambiarPowerUp(string nuevoPowerUp)
     {
-        // Simplemente se reemplaza el actual por el nuevo
         RecogerPowerUp(nuevoPowerUp);
         Debug.Log("Power-up intercambiado por: " + nuevoPowerUp);
     }
 
-    // Retorna si el jugador tiene la llave
     public bool TieneLlave()
     {
         return tieneLlave;
+    }
+
+    public void ActivarPowerUp()
+    {
+        if (powerUpActual == null) return;
+
+        switch (powerUpActual)
+        {
+            case "Vision":
+                if (powerUpLuz != null)
+                {
+                    powerUpLuz.Activar();
+                    Debug.Log("PowerUp de Visión activado");
+                }
+                break;
+
+            case "Velocidad":
+                if (speedPowerUpController != null)
+                {
+                    speedPowerUpController.GiveSpeedPowerUp();
+                    Debug.Log("PowerUp de Velocidad activado");
+                }
+                break;
+
+            default:
+                Debug.LogWarning("Power-up desconocido: " + powerUpActual);
+                return;
+        }
+
+        // Eliminar del inventario tras usarlo
+        powerUpActual = null;
+        powerUpImage.sprite = null;
+        powerUpImage.color = new Color(1, 1, 1, 0);
     }
 }
