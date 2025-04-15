@@ -5,22 +5,29 @@ public class FireflyCollector : MonoBehaviour
     private bool canCollect = false;
     private GameObject player;
 
+    private void Start()
+    {
+        PlayerController playerController = FindFirstObjectByType<PlayerController>();
+        if (playerController != null)
+        {
+            player = playerController.gameObject;
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.gameObject == player)
         {
             Debug.Log("Presiona 'E' para recoger las luciérnagas.");
             canCollect = true;
-            player = other.gameObject;
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.gameObject == player)
         {
             canCollect = false;
-            player = null;
         }
     }
 
@@ -29,7 +36,6 @@ public class FireflyCollector : MonoBehaviour
         if (canCollect && Input.GetKeyDown(KeyCode.E))
         {
             Debug.Log("Luciérnagas recolectadas!");
-            
 
             AtenuacionLuz atenuacion = player.GetComponentInChildren<AtenuacionLuz>();
             if (atenuacion != null)
@@ -37,7 +43,7 @@ public class FireflyCollector : MonoBehaviour
                 atenuacion.ReiniciarLuz();
             }
 
-            //gameObject.SetActive(false);
+            // gameObject.SetActive(false);
         }
     }
 }

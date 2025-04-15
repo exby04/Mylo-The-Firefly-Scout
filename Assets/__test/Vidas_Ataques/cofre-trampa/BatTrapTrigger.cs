@@ -12,7 +12,7 @@ public class BatTrapTrigger : MonoBehaviour
 
     void OnEnable()
     {
-        Debug.Log("⚠️ ¡Murciélagos han sido atraídos por una trampa!");
+        Debug.Log("¡Murciélagos han sido atraídos por una trampa!");
 
         if (warningText != null)
         {
@@ -28,7 +28,7 @@ public class BatTrapTrigger : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("🛑 Referencia a BatAttackTimer ausente.");
+            Debug.LogWarning("Referencia a BatAttackTimer ausente.");
         }
     }
 
@@ -39,7 +39,7 @@ public class BatTrapTrigger : MonoBehaviour
             // Activa si estuviera inactivo
             batAttackTimer.gameObject.SetActive(true);
 
-            Debug.Log("🟡 Forzando ataque de murciélagos desde BatTrapTrigger.");
+            Debug.Log("Forzando ataque de murciélagos desde BatTrapTrigger.");
             batAttackTimer.ForceBatAttack(); // El propio método controla si ya hay un ataque
         }
 
@@ -54,7 +54,7 @@ public class BatTrapTrigger : MonoBehaviour
         if (warningText != null)
         {
             warningText.SetActive(false);
-            Debug.Log("🔕 Texto de advertencia de trampa ocultado automáticamente.");
+            Debug.Log("Texto de advertencia de trampa ocultado automáticamente.");
         }
     }
 }

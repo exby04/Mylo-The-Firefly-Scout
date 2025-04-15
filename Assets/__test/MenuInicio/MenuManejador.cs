@@ -27,7 +27,7 @@ public class MenuManejador : MonoBehaviour
     {
         UnityEngine.Debug.Log("Abriendo menú de configuración...");
     }
-
+    //Si se hara en webgl habra que ver como cerrarlo 
     public void Salir()
     {
 #if UNITY_EDITOR

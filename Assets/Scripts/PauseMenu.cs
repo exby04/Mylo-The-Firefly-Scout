@@ -13,7 +13,7 @@ public class PauseMenu : MonoBehaviour
 
     [Header("Scene Settings")]
 #if UNITY_EDITOR
-    public SceneAsset menuSceneAsset; // 👈 Drop scene here in Inspector (Editor only)
+    public SceneAsset menuSceneAsset; 
 #endif
     private string menuSceneName;
 
@@ -72,7 +72,7 @@ public class PauseMenu : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("⚠️ No se ha asignado la escena del menú en el Inspector.");
+            Debug.LogWarning("No se ha asignado la escena del menú en el Inspector.");
         }
     }
 

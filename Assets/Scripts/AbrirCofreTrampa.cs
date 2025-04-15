@@ -8,6 +8,13 @@ public class AbrirCofreTrampa : MonoBehaviour
 
     public GameObject mensajeUI;
 
+    private Transform playerTransform;
+
+    private void Start()
+    {
+        playerTransform = FindFirstObjectByType<PlayerController>().transform;
+    }
+
     void Update()
     {
         if (jugadorCerca && !abierto && Input.GetKeyDown(KeyCode.E))
@@ -26,7 +33,7 @@ public class AbrirCofreTrampa : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.transform == playerTransform)
         {
             jugadorCerca = true;
         }
@@ -34,7 +41,7 @@ public class AbrirCofreTrampa : MonoBehaviour
 
     void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.transform == playerTransform)
         {
             jugadorCerca = false;
         }

@@ -51,11 +51,11 @@ public class BatMovement : MonoBehaviour
             // Verifica si el jugador está activo (por ejemplo, si se está escondiendo podría estar inactivo)
             if (!playerObj.activeInHierarchy)
             {
-                Debug.Log("🙈 El murciélago llegó, pero el jugador está escondido. No se aplica daño.");
+                Debug.Log("El murciélago llegó, pero el jugador está escondido. No se aplica daño.");
             }
             else
             {
-                Debug.Log("🦇 El murciélago ataca al jugador. Aplicando daño.");
+                Debug.Log("El murciélago ataca al jugador. Aplicando daño.");
                 PlayerHealth ph = playerObj.GetComponent<PlayerHealth>();
                 if (ph != null)
                 {

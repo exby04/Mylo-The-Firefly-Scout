@@ -7,12 +7,12 @@ public class BatAttackTimer : MonoBehaviour
     public float attackInterval = 40f;
     private float timer = 0f;
     private bool hasShownWarning = false;
-    private bool isAttacking = false; // ✅ Flag para prevenir ataques dobles
+    private bool isAttacking = false; 
 
     [Header("Referencias")]
-    public GameObject batPrefab;         // Prefab del murciélago
-    public Transform[] batSpawnPoints;   // Puntos de aparición de murciélagos
-    public GameObject warningText;       // Objeto UI de advertencia (activar/desactivar)
+    public GameObject batPrefab;         
+    public Transform[] batSpawnPoints;   
+    public GameObject warningText;       
 
     private GameObject cachedPlayer;
 
@@ -48,7 +48,7 @@ public class BatAttackTimer : MonoBehaviour
         if (warningText != null)
         {
             warningText.SetActive(true);
-            Debug.Log("¡Murciélagos en camino! → " + warningText.name);
+            Debug.Log("¡Murciélagos en camino!  " + warningText.name);
             StartCoroutine(HideWarningAfterDelay(2f));
         }
 

@@ -9,8 +9,8 @@ public class VictoryScreen : MonoBehaviour
 {
     [Header("Scene Settings")]
 #if UNITY_EDITOR
-    public SceneAsset levelSceneAsset;   // Drop your Level0 scene here
-    public SceneAsset menuSceneAsset;    // Drop your MainMenu scene here
+    public SceneAsset levelSceneAsset;  
+    public SceneAsset menuSceneAsset;    
 #endif
 
     private string levelSceneName;

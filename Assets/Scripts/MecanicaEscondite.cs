@@ -3,15 +3,24 @@ using System.Collections;
 
 public class HideSpot : MonoBehaviour
 {
-    public float hideDuration = 5f; // Tiempo que el jugador permanece escondido
+    public float hideDuration = 5f;
     private bool isUsed = false;
     private bool playerInZone = false;
     private GameObject player;
     private PlayerController playerController;
-    private PlayerHealth playerHealth; // Referencia al componente de salud del jugador
+    private PlayerHealth playerHealth;
 
-    // Prefab del asset que representa el estado "usado"
     public GameObject usedAssetPrefab;
+
+    private void Start()
+    {
+        playerController = FindFirstObjectByType<PlayerController>();
+        if (playerController != null)
+        {
+            player = playerController.gameObject;
+            playerHealth = player.GetComponent<PlayerHealth>();
+        }
+    }
 
     void Update()
     {
@@ -25,29 +34,23 @@ public class HideSpot : MonoBehaviour
     {
         isUsed = true;
 
-        // Desactivar el controlador del jugador
         if (playerController != null)
             playerController.enabled = false;
 
-        // Marcar al jugador como escondido para evitar la pérdida de vidas
         if (playerHealth != null)
             playerHealth.SetHidden(true);
 
-        // Ocultar al jugador
         player.SetActive(false);
 
         yield return new WaitForSeconds(hideDuration);
 
-        // Mostrar al jugador y reactivar su controlador
         player.SetActive(true);
         if (playerController != null)
             playerController.enabled = true;
 
-        // Actualizar el estado del jugador a no escondido
         if (playerHealth != null)
             playerHealth.SetHidden(false);
 
-        // Instanciar el prefab del asset "usado" en la posición y rotación actuales
         if (usedAssetPrefab != null)
         {
             Instantiate(usedAssetPrefab, transform.position, transform.rotation);
@@ -57,24 +60,17 @@ public class HideSpot : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.gameObject == player)
         {
             playerInZone = true;
-            player = other.gameObject;
-            playerController = other.GetComponent<PlayerController>();
-            playerHealth = other.GetComponent<PlayerHealth>(); // Obtener la referencia al script de salud
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.gameObject == player)
         {
             playerInZone = false;
-            player = null;
-            playerController = null;
-            playerHealth = null;
         }
     }
 }
-

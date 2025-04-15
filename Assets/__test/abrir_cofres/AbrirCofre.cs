@@ -13,8 +13,15 @@ public class AbrirCofre : MonoBehaviour
 
     public GameObject mensajeUI;
     public Image powerUpImagen;
-    public Sprite powerUpLuz;       // Sprite para power-up "Vision"
-    public Sprite powerUpRapidez;   // Sprite para power-up "Velocidad"
+    public Sprite powerUpLuz;
+    public Sprite powerUpRapidez;
+
+    private Transform playerTransform;
+
+    private void Start()
+    {
+        playerTransform = FindFirstObjectByType<PlayerController>().transform;
+    }
 
     void Update()
     {
@@ -32,9 +39,8 @@ public class AbrirCofre : MonoBehaviour
         Destroy(gameObject);
         mensajeUI.SetActive(true);
 
-        cofresAbiertos++;  // Aumenta el contador de cofres abiertos
+        cofresAbiertos++;
 
-        // Si ya has abierto 6 cofres y no has obtenido la llave, forzar la aparición de la llave
         if (!llaveObtenida && cofresAbiertos == 6)
         {
             llaveObtenida = true;
@@ -80,7 +86,7 @@ public class AbrirCofre : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.transform == playerTransform)
         {
             jugadorCerca = true;
         }
@@ -88,7 +94,7 @@ public class AbrirCofre : MonoBehaviour
 
     void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.transform == playerTransform)
         {
             jugadorCerca = false;
         }
