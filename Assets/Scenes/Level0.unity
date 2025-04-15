@@ -22378,6 +22378,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1037195728}
     - target: {fileID: 358287512635264912, guid: cb8b43f90bf009442beda1d1ef4dce9b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 358287512635264912, guid: cb8b43f90bf009442beda1d1ef4dce9b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: ExitToMenu
       objectReference: {fileID: 0}

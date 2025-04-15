@@ -13,9 +13,9 @@ public class PauseMenu : MonoBehaviour
 
     [Header("Scene Settings")]
 #if UNITY_EDITOR
-    public SceneAsset menuSceneAsset; // Escena en el editor
+    public SceneAsset menuSceneAsset; // Solo visible en el editor
 #endif
-    private string menuSceneName;
+    public string menuSceneName; // Visible en build y editor (asegúrate de que coincida con el nombre de la escena en Build Settings)
 
     private bool isPaused = false;
 
@@ -23,7 +23,10 @@ public class PauseMenu : MonoBehaviour
     {
 #if UNITY_EDITOR
         if (menuSceneAsset != null)
-            menuSceneName = menuSceneAsset.name; // Asignamos el nombre de la escena desde el SceneAsset
+        {
+            menuSceneName = menuSceneAsset.name; // Solo lo hace en el editor
+            Debug.Log("Asignado automáticamente el nombre de la escena: " + menuSceneName);
+        }
 #endif
     }
 
@@ -66,7 +69,8 @@ public class PauseMenu : MonoBehaviour
         Debug.Log("Salir al Inicio clicked");
         Time.timeScale = 1f;
 
-        // Cargar la escena desde el nombre
+        Debug.Log("Intentando cargar escena: " + menuSceneName);
+
         if (!string.IsNullOrEmpty(menuSceneName))
         {
             SceneManager.LoadScene(menuSceneName);
