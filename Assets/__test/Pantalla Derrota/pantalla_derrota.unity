@@ -178,8 +178,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Salir al inicio
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 52521e525a139c44487a1c3a8c221759, type: 2}
-  m_sharedMaterial: {fileID: -6028645335357946639, guid: 52521e525a139c44487a1c3a8c221759, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -389,8 +389,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Volver a jugar '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 52521e525a139c44487a1c3a8c221759, type: 2}
-  m_sharedMaterial: {fileID: -6028645335357946639, guid: 52521e525a139c44487a1c3a8c221759, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -888,6 +888,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58f89b2b28e641c4da56de7b75afa012, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  escenaNivel: {fileID: 102900000, guid: 99c9720ab356a0642a771bea13969a05, type: 3}
+  escenaInicio: {fileID: 102900000, guid: 33e0feb8815ff9a4dbd9b4931c1d086a, type: 3}
+  nombreEscenaNivel: Level0
+  nombreEscenaInicio: MenuInicio
 --- !u!1 &1656408626
 GameObject:
   m_ObjectHideFlags: 0
@@ -1155,6 +1159,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58f89b2b28e641c4da56de7b75afa012, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  escenaNivel: {fileID: 102900000, guid: 99c9720ab356a0642a771bea13969a05, type: 3}
+  escenaInicio: {fileID: 102900000, guid: 33e0feb8815ff9a4dbd9b4931c1d086a, type: 3}
+  nombreEscenaNivel: Level0
+  nombreEscenaInicio: MenuInicio
 --- !u!1 &1753118426
 GameObject:
   m_ObjectHideFlags: 0
@@ -1214,8 +1222,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Tus pasos ya no suenan en el bosque...
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 671a8174ca5583f479e49a533c57e7cf, type: 2}
-  m_sharedMaterial: {fileID: -593841887243339738, guid: 671a8174ca5583f479e49a533c57e7cf, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

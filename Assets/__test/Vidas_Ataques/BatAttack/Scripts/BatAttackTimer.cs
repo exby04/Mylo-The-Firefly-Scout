@@ -25,7 +25,7 @@ public class BatAttackTimer : MonoBehaviour
 
     void Update()
     {
-        // ⛔ Bloquear ataque si ya hay uno en curso
+        // Bloquear ataque si ya hay uno en curso
         if (isAttacking) return;
 
         timer += Time.deltaTime;
@@ -48,7 +48,7 @@ public class BatAttackTimer : MonoBehaviour
         if (warningText != null)
         {
             warningText.SetActive(true);
-            Debug.Log("⚠️ ¡Murciélagos en camino! → " + warningText.name);
+            Debug.Log("¡Murciélagos en camino! → " + warningText.name);
             StartCoroutine(HideWarningAfterDelay(2f));
         }
 
@@ -62,7 +62,7 @@ public class BatAttackTimer : MonoBehaviour
         if (warningText != null)
         {
             warningText.SetActive(false);
-            Debug.Log("🔕 Aviso de murciélagos ocultado automáticamente");
+            Debug.Log("Aviso de murciélagos ocultado automáticamente");
         }
     }
 
@@ -73,7 +73,7 @@ public class BatAttackTimer : MonoBehaviour
         if (warningText != null)
             warningText.SetActive(false);
 
-        Debug.Log("🦇 ¡Ataque de murciélagos iniciado!");
+        Debug.Log("¡Ataque de murciélagos iniciado!");
 
         if (batSpawnPoints.Length > 0 && batPrefab != null && cachedPlayer != null)
         {
@@ -93,7 +93,7 @@ public class BatAttackTimer : MonoBehaviour
             Debug.LogWarning("Faltan datos: puntos de aparición, prefab de murciélago o referencia al jugador.");
         }
 
-        // ⏳ Esperar un poco antes de permitir nuevos ataques
+        // Esperar un poco antes de permitir nuevos ataques
         yield return new WaitForSeconds(2f);
 
         isAttacking = false;
@@ -108,11 +108,11 @@ public class BatAttackTimer : MonoBehaviour
         hasShownWarning = false;
     }
 
-    // ✅ Método para reiniciar el temporizador sin atacar
+    // Método para reiniciar el temporizador sin atacar
     public void ResetTimer()
     {
         timer = 0f;
         hasShownWarning = false;
-        Debug.Log("🔄 Temporizador reiniciado manualmente desde otra fuente (ej. cofre trampa).");
+        Debug.Log("Temporizador reiniciado manualmente desde otra fuente (ej. cofre trampa).");
     }
 }

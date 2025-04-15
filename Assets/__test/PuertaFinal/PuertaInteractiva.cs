@@ -1,17 +1,36 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
+
 public class AbrirPuertasFinal : MonoBehaviour
 {
+    [Header("Puertas")]
     public Animator puertaIzquierda;
     public Animator puertaDerecha;
     public string nombreAnimacionIzquierda = "AbrirPuertaIzquierda";
     public string nombreAnimacionDerecha = "AbrirPuertaDerecha";
 
-    public Collider colliderIzquierda;  // Asigna el collider de la puerta izquierda
-    public Collider colliderDerecha;    // Asigna el collider de la puerta derecha
+    public Collider colliderIzquierda;
+    public Collider colliderDerecha;
+
+    [Header("Escena Final")]
+#if UNITY_EDITOR
+    public SceneAsset escenaVictoria;  // arrastra aquí la escena final
+#endif
+    [SerializeField] private string nombreEscenaVictoria;
 
     private bool jugadorDentro = false;
+
+    void OnValidate()
+    {
+#if UNITY_EDITOR
+        if (escenaVictoria != null)
+            nombreEscenaVictoria = escenaVictoria.name;
+#endif
+    }
 
     private void Update()
     {
@@ -19,15 +38,15 @@ public class AbrirPuertasFinal : MonoBehaviour
         {
             if (Inventario.instance.TieneLlave())
             {
-                // Ejecutar animaciones
+                // Animaciones
                 puertaIzquierda.Play(nombreAnimacionIzquierda);
                 puertaDerecha.Play(nombreAnimacionDerecha);
 
-                // Desactivar colliders para permitir el paso
+                // Abrir puertas (colliders off)
                 if (colliderIzquierda != null) colliderIzquierda.enabled = false;
                 if (colliderDerecha != null) colliderDerecha.enabled = false;
 
-                // Fin del juego o siguiente escena (opcional)
+                // Esperar 2 segundos y luego ir a la escena final
                 Invoke("FinalizarJuego", 2f);
             }
             else
@@ -40,8 +59,15 @@ public class AbrirPuertasFinal : MonoBehaviour
     private void FinalizarJuego()
     {
         Debug.Log("¡Juego finalizado!");
-        // SceneManager.LoadScene("PantallaFinal"); // si tienes otra escena
-        // Application.Quit(); // si es build
+
+        if (!string.IsNullOrEmpty(nombreEscenaVictoria))
+        {
+            SceneManager.LoadScene(nombreEscenaVictoria);
+        }
+        else
+        {
+            Debug.LogWarning("No se asignó la escena de victoria.");
+        }
     }
 
     private void OnTriggerEnter(Collider other)

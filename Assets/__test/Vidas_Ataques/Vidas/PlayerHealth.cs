@@ -2,14 +2,34 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
+
 public class PlayerHealth : MonoBehaviour
 {
     [Header("Salud del Jugador")]
     public int maxLives = 3;
     private int currentLives;
-    public Image[] heartImages;   // Asigna las imágenes de los corazones desde el Inspector.
-    public GameObject gameOverMenu;   // Asigna el Panel del Game Over (desactivado al inicio).
-    private bool isHidden = false;      // Actualizado desde otros scripts, por ejemplo, de escondites.
+
+    public Image[] heartImages;       // Asigna los corazones en el inspector.
+    public GameObject gameOverMenu;   // Ya no se usará si vas a otra escena, pero lo dejamos por si acaso.
+
+    private bool isHidden = false;    // El jugador puede estar protegido (por ejemplo, escondido).
+
+    [Header("Escena de Derrota")]
+#if UNITY_EDITOR
+    public SceneAsset derrotaScene;   // Asigna aquí tu escena de "Game Over"
+#endif
+    [SerializeField] private string derrotaSceneName; // Se llena automáticamente con el nombre
+
+    void OnValidate()
+    {
+#if UNITY_EDITOR
+        if (derrotaScene != null)
+            derrotaSceneName = derrotaScene.name;
+#endif
+    }
 
     void Start()
     {
@@ -23,12 +43,9 @@ public class PlayerHealth : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("GameOverMenu no asignado en el Inspector.");
+            Debug.Log("GameOverMenu no asignado (lo cual está bien si usas escena de derrota).");
         }
     }
-
-    // Eliminamos el código de Update que simulaba daño con la tecla T.
-    // Ahora, TakeDamage solo se llama desde otros scripts (como el ataque de murciélagos).
 
     public void TakeDamage(int damage)
     {
@@ -62,25 +79,32 @@ public class PlayerHealth : MonoBehaviour
     void GameOver()
     {
         Debug.Log("¡Game Over! El jugador ha perdido todas sus vidas.");
-        if (gameOverMenu != null)
-            gameOverMenu.SetActive(true);
 
-        // Congela el juego
-        Time.timeScale = 0f;
+        Time.timeScale = 1f; // Por si el juego está pausado
+
+        if (!string.IsNullOrEmpty(derrotaSceneName))
+        {
+            SceneManager.LoadScene(derrotaSceneName);
+        }
+        else
+        {
+            Debug.LogWarning("No se ha asignado ninguna escena de derrota.");
+            if (gameOverMenu != null)
+            {
+                gameOverMenu.SetActive(true);
+                Time.timeScale = 0f;
+            }
+        }
     }
-
 
     public void RestartGame()
     {
-        Time.timeScale = 1f; // Reinicia el valor del timeScale
+        Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
-
-    // Permite que otros scripts actualicen si el jugador está protegido (por ejemplo, en escondites)
     public void SetHidden(bool hidden)
     {
         isHidden = hidden;
     }
 }
-
