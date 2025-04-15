@@ -9,6 +9,7 @@ public class AbrirCofre : MonoBehaviour
     private bool abierto = false;
     private static bool llaveObtenida = false;
 
+    // Variable estática para contar cofres abiertos
     private static int cofresAbiertos = 0;
 
     public GameObject mensajeUI;
@@ -39,8 +40,9 @@ public class AbrirCofre : MonoBehaviour
         Destroy(gameObject);
         mensajeUI.SetActive(true);
 
-        cofresAbiertos++;
+        cofresAbiertos++; // Incrementar la cantidad de cofres abiertos
 
+        // Comprobar si la llave ha sido obtenida por obligación
         if (!llaveObtenida && cofresAbiertos == 6)
         {
             llaveObtenida = true;
@@ -55,6 +57,7 @@ public class AbrirCofre : MonoBehaviour
         }
         else
         {
+            // Obtener un power-up
             string actual = Inventario.instance.ObtenerPowerUp();
             string nuevoPowerUp;
 
