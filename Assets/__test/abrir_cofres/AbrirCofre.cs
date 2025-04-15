@@ -34,8 +34,8 @@ public class AbrirCofre : MonoBehaviour
 
         cofresAbiertos++;  // Aumenta el contador de cofres abiertos
 
-        // Si ya has abierto 7 cofres y no has obtenido la llave, forzar la aparición de la llave
-        if (!llaveObtenida && cofresAbiertos == 7)
+        // Si ya has abierto 6 cofres y no has obtenido la llave, forzar la aparición de la llave
+        if (!llaveObtenida && cofresAbiertos == 6)
         {
             llaveObtenida = true;
             Inventario.instance.RecogerLlave();

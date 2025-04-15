@@ -15,12 +15,13 @@ public class Inventario : MonoBehaviour
     public GameObject mensajeUI;
     public Image mensajeImagen;
     public TextMeshProUGUI mensajeTexto;
+    public GameObject textoSpacebar; // 👈 Referencia al texto "Pulsa Spacebar"
 
     [Header("Sprites")]
     public Sprite llaveSprite;
     public Sprite powerUpLuzSprite;
     public Sprite powerUpRapidezSprite;
-    public Sprite powerUpVacioSprite; // ✅ Nuevo sprite para slot vacío
+    public Sprite powerUpVacioSprite;
 
     [Header("Referencias de scripts")]
     public PowerUpLuz powerUpLuz;
@@ -70,6 +71,9 @@ public class Inventario : MonoBehaviour
 
         powerUpImage.color = Color.white;
         mensajeUI.SetActive(true);
+        //Mostrar el spacebar
+        if (textoSpacebar != null)
+            textoSpacebar.SetActive(true);
     }
 
     public string ObtenerPowerUp()
@@ -115,9 +119,11 @@ public class Inventario : MonoBehaviour
                 return;
         }
 
-        // ✅ Reemplazar el ícono con el sprite vacío en lugar de ocultarlo
         powerUpActual = null;
         powerUpImage.sprite = powerUpVacioSprite;
         powerUpImage.color = Color.white;
+
+        if (textoSpacebar != null)
+            textoSpacebar.SetActive(false); // 👈 Ocultar el texto "Pulsa Spacebar"
     }
 }
