@@ -13,7 +13,7 @@ public class PauseMenu : MonoBehaviour
 
     [Header("Scene Settings")]
 #if UNITY_EDITOR
-    public SceneAsset menuSceneAsset; 
+    public SceneAsset menuSceneAsset; // Escena en el editor
 #endif
     private string menuSceneName;
 
@@ -23,7 +23,7 @@ public class PauseMenu : MonoBehaviour
     {
 #if UNITY_EDITOR
         if (menuSceneAsset != null)
-            menuSceneName = menuSceneAsset.name;
+            menuSceneName = menuSceneAsset.name; // Asignamos el nombre de la escena desde el SceneAsset
 #endif
     }
 
@@ -66,6 +66,7 @@ public class PauseMenu : MonoBehaviour
         Debug.Log("Salir al Inicio clicked");
         Time.timeScale = 1f;
 
+        // Cargar la escena desde el nombre
         if (!string.IsNullOrEmpty(menuSceneName))
         {
             SceneManager.LoadScene(menuSceneName);

@@ -38015,6 +38015,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 258096556}
     - target: {fileID: 8525162493928207119, guid: 465a93e96dc9dd648bb422d61010922d, type: 3}
+      propertyPath: menuSceneName
+      value: MenuInicio
+      objectReference: {fileID: 0}
+    - target: {fileID: 8525162493928207119, guid: 465a93e96dc9dd648bb422d61010922d, type: 3}
       propertyPath: menuSceneAsset
       value: 
       objectReference: {fileID: 102900000, guid: 33e0feb8815ff9a4dbd9b4931c1d086a, type: 3}
@@ -38197,7 +38201,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mensajeUI: {fileID: 1178846927}
   jugador: {fileID: 0}
-  distanciaDeteccion: 4
+  distanciaDeteccion: 2.01
 --- !u!4 &1814268110 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8000596275064670522, guid: c7153361141b29042af45efa5a7026d0, type: 3}
@@ -39926,6 +39930,46 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 273071684628318402, guid: c7153361141b29042af45efa5a7026d0, type: 3}
+      propertyPath: m_Size.x
+      value: 0.01996262
+      objectReference: {fileID: 0}
+    - target: {fileID: 273071684628318402, guid: c7153361141b29042af45efa5a7026d0, type: 3}
+      propertyPath: m_Size.z
+      value: 0.041113794
+      objectReference: {fileID: 0}
+    - target: {fileID: 273071684628318402, guid: c7153361141b29042af45efa5a7026d0, type: 3}
+      propertyPath: m_Center.x
+      value: -0.0012134335
+      objectReference: {fileID: 0}
+    - target: {fileID: 273071684628318402, guid: c7153361141b29042af45efa5a7026d0, type: 3}
+      propertyPath: m_Center.y
+      value: 0.0015716549
+      objectReference: {fileID: 0}
+    - target: {fileID: 273071684628318402, guid: c7153361141b29042af45efa5a7026d0, type: 3}
+      propertyPath: m_Center.z
+      value: -0.020509822
+      objectReference: {fileID: 0}
+    - target: {fileID: 1787095335423634083, guid: c7153361141b29042af45efa5a7026d0, type: 3}
+      propertyPath: m_Size.x
+      value: 0.059724897
+      objectReference: {fileID: 0}
+    - target: {fileID: 1787095335423634083, guid: c7153361141b29042af45efa5a7026d0, type: 3}
+      propertyPath: m_Size.z
+      value: 0.068450175
+      objectReference: {fileID: 0}
+    - target: {fileID: 1787095335423634083, guid: c7153361141b29042af45efa5a7026d0, type: 3}
+      propertyPath: m_Center.x
+      value: -0.001026884
+      objectReference: {fileID: 0}
+    - target: {fileID: 1787095335423634083, guid: c7153361141b29042af45efa5a7026d0, type: 3}
+      propertyPath: m_Center.y
+      value: 0.0015716548
+      objectReference: {fileID: 0}
+    - target: {fileID: 1787095335423634083, guid: c7153361141b29042af45efa5a7026d0, type: 3}
+      propertyPath: m_Center.z
+      value: -0.02247879
+      objectReference: {fileID: 0}
     - target: {fileID: 7227155078862033792, guid: c7153361141b29042af45efa5a7026d0, type: 3}
       propertyPath: m_Name
       value: Tronco2
