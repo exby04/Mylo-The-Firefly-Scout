@@ -8,26 +8,32 @@ using UnityEditor;
 public class BotonesDerrota : MonoBehaviour
 {
 #if UNITY_EDITOR
-    [Header("Escenas")]
+    [Header("Escenas (solo en Editor)")]
     public SceneAsset escenaNivel;
     public SceneAsset escenaInicio;
 #endif
 
+    [Header("Nombres de escena (se usan en la build)")]
     [SerializeField] private string nombreEscenaNivel;
     [SerializeField] private string nombreEscenaInicio;
 
-    void OnValidate()
-    {
 #if UNITY_EDITOR
+    private void OnValidate()
+    {
         if (escenaNivel != null)
+        {
             nombreEscenaNivel = escenaNivel.name;
+            Debug.Log($"[BotonesDerrota] Nombre escena nivel seteado: {nombreEscenaNivel}");
+        }
 
         if (escenaInicio != null)
+        {
             nombreEscenaInicio = escenaInicio.name;
-#endif
+            Debug.Log($"[BotonesDerrota] Nombre escena inicio seteado: {nombreEscenaInicio}");
+        }
     }
+#endif
 
-    // Vuelve a cargar la escena del nivel
     public void VolverAJugar()
     {
         if (!string.IsNullOrEmpty(nombreEscenaNivel))
@@ -36,11 +42,10 @@ public class BotonesDerrota : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("No se ha asignado la escena del nivel.");
+            Debug.LogWarning("[BotonesDerrota] No se ha asignado la escena del nivel.");
         }
     }
 
-    // Carga la escena de inicio
     public void SalirAlInicio()
     {
         if (!string.IsNullOrEmpty(nombreEscenaInicio))
@@ -49,7 +54,7 @@ public class BotonesDerrota : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("No se ha asignado la escena de inicio.");
+            Debug.LogWarning("[BotonesDerrota] No se ha asignado la escena de inicio.");
         }
     }
 }

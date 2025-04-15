@@ -9,23 +9,23 @@ public class VictoryScreen : MonoBehaviour
 {
     [Header("Scene Settings")]
 #if UNITY_EDITOR
-    public SceneAsset levelSceneAsset;  
-    public SceneAsset menuSceneAsset;    
+    public SceneAsset levelSceneAsset;
+    public SceneAsset menuSceneAsset;
 #endif
 
-    private string levelSceneName;
-    private string menuSceneName;
+    [SerializeField] private string levelSceneName;
+    [SerializeField] private string menuSceneName;
 
-    void Awake()
-    {
 #if UNITY_EDITOR
+    private void OnValidate()
+    {
         if (levelSceneAsset != null)
             levelSceneName = levelSceneAsset.name;
 
         if (menuSceneAsset != null)
             menuSceneName = menuSceneAsset.name;
-#endif
     }
+#endif
 
     public void RestartGame()
     {
@@ -53,4 +53,3 @@ public class VictoryScreen : MonoBehaviour
         }
     }
 }
-
