@@ -4,7 +4,7 @@ public class MensajeTemporal : MonoBehaviour
 {
     void OnEnable()
     {
-        Invoke("Ocultar", 2f);  // Ocultar mensaje en 2 segundos
+        Invoke("Ocultar", 2f);  
     }
 
     void Ocultar()
