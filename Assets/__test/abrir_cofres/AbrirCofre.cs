@@ -40,7 +40,7 @@ public class AbrirCofre : MonoBehaviour
         Destroy(gameObject);
         mensajeUI.SetActive(true);
 
-        cofresAbiertos++; // Incrementar la cantidad de cofres abiertos
+        cofresAbiertos++;
 
         // Comprobar si la llave ha sido obtenida por obligación
         if (!llaveObtenida && cofresAbiertos == 6)
