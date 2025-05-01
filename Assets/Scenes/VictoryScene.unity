@@ -500,7 +500,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 7f505df22b1491b40ba6cbb7621cc22f, type: 2}
     - target: {fileID: 2514701422425816277, guid: 5987e2b995d5e7f47a067397ca288373, type: 3}
       propertyPath: m_fontStyle
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2514701422425816277, guid: 5987e2b995d5e7f47a067397ca288373, type: 3}
       propertyPath: m_fontColor.b
@@ -628,7 +628,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 7f505df22b1491b40ba6cbb7621cc22f, type: 2}
     - target: {fileID: 3646416049449699910, guid: 5987e2b995d5e7f47a067397ca288373, type: 3}
       propertyPath: m_fontStyle
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3646416049449699910, guid: 5987e2b995d5e7f47a067397ca288373, type: 3}
       propertyPath: m_fontColor.b
