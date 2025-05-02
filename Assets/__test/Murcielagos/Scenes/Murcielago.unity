@@ -23,7 +23,7 @@ RenderSettings:
   m_AmbientSkyColor: {r: 0, g: 0, b: 0, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
-  m_AmbientIntensity: 0.49
+  m_AmbientIntensity: 1
   m_AmbientMode: 3
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
   m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
@@ -16317,12 +16317,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7567477955875748546, guid: 082c8cc7d0c6626439ac023a4090262a, type: 3}
+      propertyPath: batPrefab
+      value: 
+      objectReference: {fileID: 2001665582310299782, guid: 6afe3fefe2f8db44c893c12499e67fc1, type: 3}
+    - target: {fileID: 7567477955875748546, guid: 082c8cc7d0c6626439ac023a4090262a, type: 3}
       propertyPath: warningText
       value: 
       objectReference: {fileID: 799468365}
     - target: {fileID: 7567477955875748546, guid: 082c8cc7d0c6626439ac023a4090262a, type: 3}
       propertyPath: attackInterval
-      value: 40
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 7567477955875748546, guid: 082c8cc7d0c6626439ac023a4090262a, type: 3}
       propertyPath: 'batSpawnPoints.Array.data[0]'
