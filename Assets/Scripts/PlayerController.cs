@@ -15,15 +15,22 @@ public class PlayerController : MonoBehaviour
     private Vector3 camRight;
 
 
+    [HideInInspector] public bool puedeMover = true; // Se puede activar/desactivar desde fuera
+
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         player = GetComponent<CharacterController>();
+        puedeMover = true;
     }
 
     // Update is called once per frame
     void Update()
     {
+        //Bloquear movimiento si no se permite
+        if (!puedeMover) return;
+
         horizontalMove = Input.GetAxis("Horizontal");
         verticalMove = Input.GetAxis("Vertical");
 

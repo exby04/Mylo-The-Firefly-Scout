@@ -13,6 +13,11 @@ public class AtenuacionLuz : MonoBehaviour
 
     private float tiempoActual = 0f;
 
+    public bool luzApagada { get; private set; } = false;
+
+    [SerializeField] private GameObject luzDelantera;
+    [SerializeField] private GameObject luzTrasera;
+
     void Start()
     {
         if (luz == null)
@@ -33,6 +38,15 @@ public class AtenuacionLuz : MonoBehaviour
 
             luz.range = Mathf.Lerp(rangoMaximo, rangoMinimo, t);
             luz.intensity = Mathf.Lerp(intensidadMaxima, intensidadMinima, t);
+        } 
+        else if (!luzApagada && luz.range <= rangoMinimo)
+        {
+            luzApagada = true;
+            luz.range = 0f;
+
+            if (luzDelantera != null) luzDelantera.SetActive(false);
+            if (luzTrasera != null) luzTrasera.SetActive(false);
+
         }
     }
 
@@ -41,5 +55,7 @@ public class AtenuacionLuz : MonoBehaviour
         tiempoActual = 0f;
         luz.range = rangoMaximo;
         luz.intensity = intensidadMaxima;
+
+        Debug.Log("La luz se ha apagado completamente.");
     }
 }
