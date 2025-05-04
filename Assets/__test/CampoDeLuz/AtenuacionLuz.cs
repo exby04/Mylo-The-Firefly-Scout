@@ -6,7 +6,7 @@ public class AtenuacionLuz : MonoBehaviour
     public float tiempo = 5f;
 
     public float rangoMaximo = 8f;
-    public float rangoMinimo = 4.6f;
+    public float rangoMinimo = 4.4f;
 
     public float intensidadMaxima = 10f;
     public float intensidadMinima = 40f;
@@ -42,10 +42,10 @@ public class AtenuacionLuz : MonoBehaviour
         else if (!luzApagada && luz.range <= rangoMinimo)
         {
             luzApagada = true;
-            luz.range = 0f;
+            luz.range = 4.5f;
 
-            if (luzDelantera != null) luzDelantera.SetActive(false);
-            if (luzTrasera != null) luzTrasera.SetActive(false);
+            //if (luzDelantera != null) luzDelantera.SetActive(false);
+            //if (luzTrasera != null) luzTrasera.SetActive(false);
 
         }
     }

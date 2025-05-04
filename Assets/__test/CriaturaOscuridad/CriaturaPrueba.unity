@@ -17501,9 +17501,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   luz: {fileID: 1719209349}
-  tiempo: 10
+  tiempo: 5
   rangoMaximo: 8
-  rangoMinimo: 4.3
+  rangoMinimo: 4.5
   intensidadMaxima: 6
   intensidadMinima: 20
   luzDelantera: {fileID: 1315471214}
@@ -19023,11 +19023,11 @@ Transform:
   m_GameObject: {fileID: 2038617705}
   serializedVersion: 2
   m_LocalRotation: {x: 0.38595495, y: -0, z: -0, w: 0.92251766}
-  m_LocalPosition: {x: -10.54, y: -4.46, z: -0.41}
+  m_LocalPosition: {x: 1.44, y: -5.46, z: 10.96}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 379063110}
   m_LocalEulerAnglesHint: {x: 45.406, y: 0, z: 0}
 --- !u!114 &2038617707
 MonoBehaviour:
@@ -19042,12 +19042,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   atenuacionLuz: {fileID: 1719209350}
-  prefabCriatura: {fileID: 7607950084867107533, guid: 192ca6e0ba4affb41b17160fbef68948, type: 3}
+  prefabCriatura: {fileID: 1756221102612828073, guid: 4d2a7da5452e42d46aacdf548017afb4, type: 3}
   jugador: {fileID: 379063110}
   simboloExclamacionUI: {fileID: 1188246522}
-  camara: {fileID: 1680291552}
-  esquinaPantalla: {x: 0.95, y: 0.95}
-  zMundo: 0
+  direccionFija: {x: 0, y: 0, z: 1}
+  distanciaDesdeJugador: 8
+  alturaCriatura: 1
 --- !u!114 &2038617708
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19601,6 +19601,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8161410447312961153, guid: e92f0652ff8099e4a9bdd8b1a6cbc34c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1188246524}
+    - targetCorrespondingSourceObject: {fileID: 8161410447312961153, guid: e92f0652ff8099e4a9bdd8b1a6cbc34c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2038617706}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 4536321327154552408, guid: e92f0652ff8099e4a9bdd8b1a6cbc34c, type: 3}
       insertIndex: 2
@@ -19740,7 +19743,6 @@ SceneRoots:
   - {fileID: 627557035}
   - {fileID: 1511714461}
   - {fileID: 793436094960660289}
-  - {fileID: 2038617706}
   - {fileID: 1400715202}
   - {fileID: 1746302673}
   - {fileID: 1807426548}
