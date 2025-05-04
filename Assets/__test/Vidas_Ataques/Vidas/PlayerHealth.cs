@@ -12,16 +12,16 @@ public class PlayerHealth : MonoBehaviour
     public int maxLives = 3;
     private int currentLives;
 
-    public Image[] heartImages;       // Asigna los corazones en el inspector.
-    public GameObject gameOverMenu;   // Ya no se usará si vas a otra escena, pero lo dejamos por si acaso.
+    public Image[] heartImages;       
+    public GameObject gameOverMenu;   
 
-    private bool isHidden = false;    // El jugador puede estar protegido (por ejemplo, escondido).
+    private bool isHidden = false;    
 
     [Header("Escena de Derrota")]
 #if UNITY_EDITOR
-    public SceneAsset derrotaScene;   // Asigna aquí tu escena de "Game Over"
+    public SceneAsset derrotaScene;   
 #endif
-    [SerializeField] private string derrotaSceneName; // Se llena automáticamente con el nombre
+    [SerializeField] private string derrotaSceneName; 
 
     void OnValidate()
     {
