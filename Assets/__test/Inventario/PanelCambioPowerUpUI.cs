@@ -6,31 +6,32 @@ public class PanelCambioPowerUpUI : MonoBehaviour
 {
     public static PanelCambioPowerUpUI instance;
 
-    // Referencias del panel de cambio dentro del HUD
-    public GameObject panelCambio;             // Panel que se mostrará para decidir el intercambio
-    public TextMeshProUGUI mensajeTexto;         // Texto que mostrará la pregunta
-    public Button botonAceptar;                  // Botón para aceptar el cambio
-    public Button botonCancelar;                 // Botón para cancelar el cambio
+    public GameObject panelCambio;           
+    public TextMeshProUGUI mensajeTexto;       
+    public Button botonAceptar;                 
+    public Button botonCancelar;              
 
-    private string nuevoPowerUp;                 // Almacena el nuevo power-up que se encontró
+    private string nuevoPowerUp;               
 
     private void Awake()
     {
         if (instance == null)
             instance = this;
-        panelCambio.SetActive(false); // Se oculta el panel por defecto
+        panelCambio.SetActive(false); 
     }
 
-    // Método para mostrar el panel de cambio
+   
     public void MostrarPanel(string nuevoPowerUp)
     {
         this.nuevoPowerUp = nuevoPowerUp;
         string actual = Inventario.instance.ObtenerPowerUp();
-        // Se muestra un mensaje que indica lo obtenido y pregunta si desea cambiar
-        mensajeTexto.text = $"¡Has obtenido un Power-Up de {nuevoPowerUp}!\n¿Cambiar '{actual}' por '{nuevoPowerUp}'?";
+
+        //mensajeTexto.text = $"¡Has obtenido un Power-Up de {nuevoPowerUp}!\n¿Cambiar '{actual}' por '{nuevoPowerUp}'?";
+        mensajeTexto.text = $"¿Debería cambiar '{actual}' por '{nuevoPowerUp}'?";
         panelCambio.SetActive(true);
 
-        // Limpiar y asignar los listeners de los botones
+        Time.timeScale = 0f;//Pausar juego
+
         botonAceptar.onClick.RemoveAllListeners();
         botonCancelar.onClick.RemoveAllListeners();
 
@@ -42,10 +43,13 @@ public class PanelCambioPowerUpUI : MonoBehaviour
     {
         Inventario.instance.IntercambiarPowerUp(nuevoPowerUp);
         panelCambio.SetActive(false);
+
+        Time.timeScale = 1f; //Reanudar juego
     }
 
     void CancelarCambio()
     {
         panelCambio.SetActive(false);
+        Time.timeScale = 1f; //Reanudar juego
     }
 }
