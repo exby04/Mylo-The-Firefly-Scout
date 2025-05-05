@@ -22,6 +22,7 @@ public class AbrirCofre : MonoBehaviour
     private void Start()
     {
         playerTransform = FindFirstObjectByType<PlayerController>().transform;
+        cofresAbiertos = 0;
     }
 
     void Update()
