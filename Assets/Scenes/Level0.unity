@@ -88966,15 +88966,15 @@ PrefabInstance:
     - target: {fileID: 7921358629783343740, guid: 7cbf63fcb6155f14a8292124aebb4cc1, type: 3}
       propertyPath: 'heartImages.Array.data[0]'
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1398327455}
     - target: {fileID: 7921358629783343740, guid: 7cbf63fcb6155f14a8292124aebb4cc1, type: 3}
       propertyPath: 'heartImages.Array.data[1]'
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1634360124}
     - target: {fileID: 7921358629783343740, guid: 7cbf63fcb6155f14a8292124aebb4cc1, type: 3}
       propertyPath: 'heartImages.Array.data[2]'
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1683613664}
     - target: {fileID: 9167683302384039273, guid: 7cbf63fcb6155f14a8292124aebb4cc1, type: 3}
       propertyPath: m_LocalPosition.x
       value: -34.32
