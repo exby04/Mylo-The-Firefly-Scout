@@ -8,17 +8,14 @@ using UnityEditor;
 public class PauseMenu : MonoBehaviour
 {
     [Header("UI References")]
-    public GameObject pauseMenuUI;      // MUST BE ASSIGNED
-    public GameObject exitWarningUI;    // Optional, unless used
+    public GameObject pauseMenuUI;
+    public GameObject exitWarningUI;
 
     [Header("Scene Settings")]
 #if UNITY_EDITOR
-    public SceneAsset menuSceneAsset;   
-    public SceneAsset restartSceneAsset;
+    public SceneAsset menuSceneAsset; // Solo visible en el editor
 #endif
-
-    public string menuSceneName;        
-    public string restartSceneName; 
+    public string menuSceneName; 
 
     private bool isPaused = false;
 
@@ -27,23 +24,15 @@ public class PauseMenu : MonoBehaviour
 #if UNITY_EDITOR
         if (menuSceneAsset != null)
         {
-            menuSceneName = menuSceneAsset.name;
+            menuSceneName = menuSceneAsset.name; // Solo lo hace en el editor
             Debug.Log("Asignado automáticamente el nombre de la escena: " + menuSceneName);
         }
-
-        if (restartSceneAsset != null)
-    {
-        restartSceneName = restartSceneAsset.name;
-        Debug.Log("Asignado automáticamente el nombre de la escena de reinicio: " + restartSceneName);
-    }
-
 #endif
     }
 
-
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))   // GOOD: Triggers on Esc
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
             Debug.Log("ESC key pressed");
             if (isPaused)
@@ -56,8 +45,8 @@ public class PauseMenu : MonoBehaviour
     public void Resume()
     {
         Debug.Log("Resume() called");
-        pauseMenuUI.SetActive(false);   // Hides menu
-        exitWarningUI.SetActive(false); // Hides warning (if any)
+        pauseMenuUI.SetActive(false);
+        exitWarningUI.SetActive(false);
         Time.timeScale = 1f;
         isPaused = false;
     }
@@ -65,14 +54,7 @@ public class PauseMenu : MonoBehaviour
     public void Pause()
     {
         Debug.Log("Pause() called");
-
-        if (pauseMenuUI == null)
-        {
-            Debug.LogError("pauseMenuUI is NOT assigned!");
-            return;
-        }
-
-        pauseMenuUI.SetActive(true);    // <--- This is where it should show
+        pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
         isPaused = true;
     }
@@ -120,21 +102,4 @@ public class PauseMenu : MonoBehaviour
 #endif
         Debug.Log("Saliendo del juego...");
     }
-
-    public void RestartLevel()
-    {
-        Debug.Log("RestartLevel() called");
-        Time.timeScale = 1f;
-
-        if (!string.IsNullOrEmpty(restartSceneName))
-        {
-            SceneManager.LoadScene(restartSceneName);
-        }
-        else
-        {
-            Debug.LogWarning("No se ha asignado la escena de reinicio en el Inspector.");
-        }
-    }
-
-
 }
