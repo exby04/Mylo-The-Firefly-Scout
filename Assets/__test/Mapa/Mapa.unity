@@ -40015,8 +40015,8 @@ MonoBehaviour:
   powerUpLuzSprite: {fileID: 21300000, guid: 97ba21e4940b3b14781f5401cfd1d64e, type: 3}
   powerUpRapidezSprite: {fileID: 21300000, guid: 02865287bc6e91a4a8eca44e3d7b6368, type: 3}
   powerUpVacioSprite: {fileID: 21300000, guid: 2a85fac2e614db7439d2ae99f3539634, type: 3}
-  powerUpLuz: {fileID: 0}
-  speedPowerUpController: {fileID: 0}
+  powerUpLuz: {fileID: 1757559902}
+  speedPowerUpController: {fileID: 1757559900}
 --- !u!4 &958819009
 Transform:
   m_ObjectHideFlags: 0
@@ -68024,18 +68024,6 @@ PrefabInstance:
       propertyPath: powerUpImagen
       value: 
       objectReference: {fileID: 649344901}
-    - target: {fileID: 4228809539416582354, guid: 43a0a63fa9fba2b439fd0a507cc6ba83, type: 3}
-      propertyPath: cofreAbiertoPrefab
-      value: 
-      objectReference: {fileID: 6090499111846964721, guid: ac9a67bbd1e06fc4f90e5ad9e009aad7, type: 3}
-    - target: {fileID: 7399271499197418572, guid: 43a0a63fa9fba2b439fd0a507cc6ba83, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.98228884
-      objectReference: {fileID: 0}
-    - target: {fileID: 7399271499197418572, guid: 43a0a63fa9fba2b439fd0a507cc6ba83, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.98228884
-      objectReference: {fileID: 0}
     - target: {fileID: 7399271499197418572, guid: 43a0a63fa9fba2b439fd0a507cc6ba83, type: 3}
       propertyPath: m_LocalPosition.x
       value: -30.562765
@@ -71472,6 +71460,28 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2265093969803037324, guid: 3e6fab5f0701d984385f77fe32fd5c02, type: 3}
   m_PrefabInstance: {fileID: 1255351510}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1757559900 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8813833356967347039, guid: 7cbf63fcb6155f14a8292124aebb4cc1, type: 3}
+  m_PrefabInstance: {fileID: 4425922876510544392}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 066b03110726c7a4f9847deadc7d66fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1757559902 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4355334655519174929, guid: 7cbf63fcb6155f14a8292124aebb4cc1, type: 3}
+  m_PrefabInstance: {fileID: 4425922876510544392}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf095524c1bd4dc42b3db213412eaa63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1759273855
 GameObject:
   m_ObjectHideFlags: 0
