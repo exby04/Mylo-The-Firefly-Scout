@@ -14,6 +14,8 @@ public class PlayerController : MonoBehaviour
     private Vector3 camForward;
     private Vector3 camRight;
 
+    public Animator animator;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -38,6 +40,9 @@ public class PlayerController : MonoBehaviour
         player.transform.LookAt(player.transform.position + movePlayer);
 
         player.Move(movePlayer * playerSpeed * Time.deltaTime);
+
+        animator.SetFloat("VelX", horizontalMove);
+        animator.SetFloat("VelY", verticalMove);   
 
 
     }
