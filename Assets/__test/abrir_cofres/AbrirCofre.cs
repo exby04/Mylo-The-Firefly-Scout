@@ -21,6 +21,8 @@ public class AbrirCofre : MonoBehaviour
     private void Start()
     {
         playerTransform = FindFirstObjectByType<PlayerController>().transform;
+        // Reiniciar valores si estás reiniciando toda la escena
+        cofresAbiertos = 0;
     }
 
     void Update()
