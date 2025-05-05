@@ -9,8 +9,7 @@ public class AbrirCofre : MonoBehaviour
     private bool abierto = false;
     private static bool llaveObtenida = false;
 
-    // Variable estática para contar cofres abiertos
-    private static int cofresAbiertos = 0;
+ private static int cofresAbiertos = 0;
 
     public GameObject mensajeUI;
     public Image powerUpImagen;
