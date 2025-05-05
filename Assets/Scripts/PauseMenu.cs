@@ -15,7 +15,7 @@ public class PauseMenu : MonoBehaviour
 #if UNITY_EDITOR
     public SceneAsset menuSceneAsset; // Solo visible en el editor
 #endif
-    public string menuSceneName; // Visible en build y editor (asegúrate de que coincida con el nombre de la escena en Build Settings)
+    public string menuSceneName; 
 
     private bool isPaused = false;
 
