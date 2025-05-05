@@ -14,6 +14,8 @@ public class PlayerController : MonoBehaviour
     private Vector3 camForward;
     private Vector3 camRight;
 
+    public Animator animator;
+
 
     [HideInInspector] public bool puedeMover = true; // Se puede activar/desactivar desde fuera
 
@@ -45,6 +47,9 @@ public class PlayerController : MonoBehaviour
         player.transform.LookAt(player.transform.position + movePlayer);
 
         player.Move(movePlayer * playerSpeed * Time.deltaTime);
+
+        animator.SetFloat("VelX", horizontalMove);
+        animator.SetFloat("VelY", verticalMove);   
 
 
     }
