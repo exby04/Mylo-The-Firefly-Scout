@@ -29556,6 +29556,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7567477955875748546, guid: 082c8cc7d0c6626439ac023a4090262a, type: 3}
+      propertyPath: batPrefab
+      value: 
+      objectReference: {fileID: 2001665582310299782, guid: 6afe3fefe2f8db44c893c12499e67fc1, type: 3}
+    - target: {fileID: 7567477955875748546, guid: 082c8cc7d0c6626439ac023a4090262a, type: 3}
       propertyPath: warningText
       value: 
       objectReference: {fileID: 799468365}
@@ -74647,6 +74651,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Luciernagas
       objectReference: {fileID: 0}
+    - target: {fileID: 7827473442479226485, guid: 75fa77fe540f3ea46845b3c676011254, type: 3}
+      propertyPath: m_Intensity
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7827473442479226485, guid: 75fa77fe540f3ea46845b3c676011254, type: 3}
+      propertyPath: m_BounceIntensity
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8688372234266621580, guid: 75fa77fe540f3ea46845b3c676011254, type: 3}
       propertyPath: m_LocalPosition.x
       value: -35.237617
@@ -94512,6 +94524,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 370444182222142738, guid: 7cbf63fcb6155f14a8292124aebb4cc1, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 370444182222142738, guid: 7cbf63fcb6155f14a8292124aebb4cc1, type: 3}
       propertyPath: m_Center.y
       value: 0.7
       objectReference: {fileID: 0}
@@ -94519,6 +94535,10 @@ PrefabInstance:
       propertyPath: mainCamera
       value: 
       objectReference: {fileID: 1680291552}
+    - target: {fileID: 4068569596553176829, guid: 7cbf63fcb6155f14a8292124aebb4cc1, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4068569596553176829, guid: 7cbf63fcb6155f14a8292124aebb4cc1, type: 3}
       propertyPath: m_Center.y
       value: 1.02
@@ -94538,7 +94558,7 @@ PrefabInstance:
     - target: {fileID: 7921358629783343740, guid: 7cbf63fcb6155f14a8292124aebb4cc1, type: 3}
       propertyPath: 'heartImages.Array.data[0]'
       value: 
-      objectReference: {fileID: 1398327455}
+      objectReference: {fileID: 1683613664}
     - target: {fileID: 7921358629783343740, guid: 7cbf63fcb6155f14a8292124aebb4cc1, type: 3}
       propertyPath: 'heartImages.Array.data[1]'
       value: 
@@ -94546,7 +94566,11 @@ PrefabInstance:
     - target: {fileID: 7921358629783343740, guid: 7cbf63fcb6155f14a8292124aebb4cc1, type: 3}
       propertyPath: 'heartImages.Array.data[2]'
       value: 
-      objectReference: {fileID: 1683613664}
+      objectReference: {fileID: 1398327455}
+    - target: {fileID: 9121729368294051627, guid: 7cbf63fcb6155f14a8292124aebb4cc1, type: 3}
+      propertyPath: m_ImplicitCom
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9121729368294051627, guid: 7cbf63fcb6155f14a8292124aebb4cc1, type: 3}
       propertyPath: m_CollisionDetection
       value: 1

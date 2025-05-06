@@ -261,7 +261,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseSpeed: 3
-  maxSpeed: 12
+  maxSpeed: 10
   acceleration: 1
   attackDistance: 1
 --- !u!1 &2941733816454097820
