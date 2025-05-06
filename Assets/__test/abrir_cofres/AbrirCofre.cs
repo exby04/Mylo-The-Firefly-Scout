@@ -9,7 +9,8 @@ public class AbrirCofre : MonoBehaviour
     private bool abierto = false;
     private static bool llaveObtenida = false;
 
- private static int cofresAbiertos = 0;
+    
+    private int cofresAbiertos = 0;
 
     public GameObject mensajeUI;
     public Image powerUpImagen;
@@ -21,7 +22,6 @@ public class AbrirCofre : MonoBehaviour
     private void Start()
     {
         playerTransform = FindFirstObjectByType<PlayerController>().transform;
-        // Reiniciar valores si estás reiniciando toda la escena
         cofresAbiertos = 0;
     }
 
@@ -41,7 +41,7 @@ public class AbrirCofre : MonoBehaviour
         Destroy(gameObject);
         mensajeUI.SetActive(true);
 
-        cofresAbiertos++;
+        cofresAbiertos++; // Incrementar la cantidad de cofres abiertos
 
         // Comprobar si la llave ha sido obtenida por obligación
         if (!llaveObtenida && cofresAbiertos == 6)

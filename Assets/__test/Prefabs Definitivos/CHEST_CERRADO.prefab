@@ -326,7 +326,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 2ac2dafe71c89884ab4de81d033ded25, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.9822888
+      value: 0.98228884
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2ac2dafe71c89884ab4de81d033ded25, type: 3}
       propertyPath: m_LocalScale.y
@@ -334,23 +334,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2ac2dafe71c89884ab4de81d033ded25, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.9822888
+      value: 0.98228884
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2ac2dafe71c89884ab4de81d033ded25, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.24
+      value: -30.562765
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2ac2dafe71c89884ab4de81d033ded25, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -20.078136
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2ac2dafe71c89884ab4de81d033ded25, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 5.82
+      value: 38.888847
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2ac2dafe71c89884ab4de81d033ded25, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9999758
+      value: -0.0069565848
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2ac2dafe71c89884ab4de81d033ded25, type: 3}
       propertyPath: m_LocalRotation.x
@@ -358,7 +358,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2ac2dafe71c89884ab4de81d033ded25, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.0069566276
+      value: -0.99997586
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2ac2dafe71c89884ab4de81d033ded25, type: 3}
       propertyPath: m_LocalRotation.z
@@ -370,7 +370,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2ac2dafe71c89884ab4de81d033ded25, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -0.797
+      value: -180.797
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2ac2dafe71c89884ab4de81d033ded25, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -465,7 +465,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f351ac0c12f12e841bc22115f337e69f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cofreAbiertoPrefab: {fileID: 7220413067991566754, guid: 384f2cd4a903742439648775154b0fa4, type: 3}
+  cofreAbiertoPrefab: {fileID: 6090499111846964721, guid: ac9a67bbd1e06fc4f90e5ad9e009aad7, type: 3}
   mensajeUI: {fileID: 0}
   powerUpImagen: {fileID: 0}
   powerUpLuz: {fileID: 21300000, guid: dbddf8cb5694c5a44986be29531b5ade, type: 3}
