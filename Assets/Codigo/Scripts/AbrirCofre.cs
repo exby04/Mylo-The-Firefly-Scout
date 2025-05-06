@@ -10,7 +10,7 @@ public class AbrirCofre : MonoBehaviour
     private static bool llaveObtenida = false;
 
     
-    private int cofresAbiertos = 0;
+    private static int cofresAbiertos = 0;
 
     public GameObject mensajeUI;
     public Image powerUpImagen;
@@ -43,18 +43,18 @@ public class AbrirCofre : MonoBehaviour
 
         cofresAbiertos++; // Incrementar la cantidad de cofres abiertos
 
-        // Comprobar si la llave ha sido obtenida por obligación
-        if (!llaveObtenida && cofresAbiertos == 6)
+        // Comprobar si la llave ha sido obtenida por obligaciï¿½n
+        if (!llaveObtenida && cofresAbiertos == 4)
         {
             llaveObtenida = true;
             Inventario.instance.RecogerLlave();
-            Debug.Log("¡Has encontrado la llave por obligación!");
+            Debug.Log("ï¿½Has encontrado la llave por obligaciï¿½n!");
         }
         else if (!llaveObtenida && Random.Range(1, 8) == 1)
         {
             llaveObtenida = true;
             Inventario.instance.RecogerLlave();
-            Debug.Log("¡Has encontrado una llave!");
+            Debug.Log("ï¿½Has encontrado una llave!");
         }
         else
         {
@@ -83,7 +83,7 @@ public class AbrirCofre : MonoBehaviour
             else
             {
                 Inventario.instance.RecogerPowerUp(nuevoPowerUp);
-                Debug.Log("¡Has obtenido un Power-Up de " + nuevoPowerUp + "!");
+                Debug.Log("ï¿½Has obtenido un Power-Up de " + nuevoPowerUp + "!");
             }
         }
     }
