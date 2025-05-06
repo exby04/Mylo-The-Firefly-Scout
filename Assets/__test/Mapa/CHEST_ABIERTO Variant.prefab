@@ -52,6 +52,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CHEST_ABIERTO Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 1434435833634076377, guid: d076e6adb37da4c49b3b75ab5d923651, type: 3}
+      propertyPath: m_Size.y
+      value: 1.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
