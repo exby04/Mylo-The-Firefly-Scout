@@ -18339,6 +18339,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 411351130}
   m_Mesh: {fileID: -5935105722807837715, guid: fbab98b5977d2374e86f91558a1c1035, type: 3}
+--- !u!1 &412396470 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3447725941057063516, guid: f89fb801e14764a45b6f3d51e858cee6, type: 3}
+  m_PrefabInstance: {fileID: 879928866}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &413509374
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -38151,13 +38156,38 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3447725941057063516, guid: f89fb801e14764a45b6f3d51e858cee6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 879928868}
   m_SourcePrefab: {fileID: 100100000, guid: f89fb801e14764a45b6f3d51e858cee6, type: 3}
 --- !u!4 &879928867 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2636254198257936581, guid: f89fb801e14764a45b6f3d51e858cee6, type: 3}
   m_PrefabInstance: {fileID: 879928866}
   m_PrefabAsset: {fileID: 0}
+--- !u!64 &879928868
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 412396470}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 0}
 --- !u!1 &879937221
 GameObject:
   m_ObjectHideFlags: 0
@@ -42137,7 +42167,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 110, y: 1, z: 110}
-  m_Center: {x: 0, y: 0.995, z: 0}
+  m_Center: {x: 0, y: 0.99, z: 0}
 --- !u!23 &971243744
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -42200,7 +42230,7 @@ Transform:
   m_GameObject: {fileID: 971243742}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.9, y: -1.8, z: 9.3}
+  m_LocalPosition: {x: -1.9, y: -1.5, z: 24.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -94491,7 +94521,7 @@ PrefabInstance:
       objectReference: {fileID: 1680291552}
     - target: {fileID: 4068569596553176829, guid: 7cbf63fcb6155f14a8292124aebb4cc1, type: 3}
       propertyPath: m_Center.y
-      value: 1.1
+      value: 1.02
       objectReference: {fileID: 0}
     - target: {fileID: 4114787298922946782, guid: 7cbf63fcb6155f14a8292124aebb4cc1, type: 3}
       propertyPath: tiempo
@@ -94517,6 +94547,10 @@ PrefabInstance:
       propertyPath: 'heartImages.Array.data[2]'
       value: 
       objectReference: {fileID: 1683613664}
+    - target: {fileID: 9121729368294051627, guid: 7cbf63fcb6155f14a8292124aebb4cc1, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9167683302384039273, guid: 7cbf63fcb6155f14a8292124aebb4cc1, type: 3}
       propertyPath: m_LocalPosition.x
       value: -34.32
