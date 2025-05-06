@@ -29763,14 +29763,14 @@ PrefabInstance:
     - target: {fileID: 7567477955875748546, guid: 082c8cc7d0c6626439ac023a4090262a, type: 3}
       propertyPath: batPrefab
       value: 
-      objectReference: {fileID: 2001665582310299782, guid: 6afe3fefe2f8db44c893c12499e67fc1, type: 3}
+      objectReference: {fileID: 8302553108686168068, guid: 72c43fc0d877f0a4a9a3ea6c521a57d5, type: 3}
     - target: {fileID: 7567477955875748546, guid: 082c8cc7d0c6626439ac023a4090262a, type: 3}
       propertyPath: warningText
       value: 
       objectReference: {fileID: 536064879}
     - target: {fileID: 7567477955875748546, guid: 082c8cc7d0c6626439ac023a4090262a, type: 3}
       propertyPath: attackInterval
-      value: 35
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7567477955875748546, guid: 082c8cc7d0c6626439ac023a4090262a, type: 3}
       propertyPath: 'batSpawnPoints.Array.data[0]'
