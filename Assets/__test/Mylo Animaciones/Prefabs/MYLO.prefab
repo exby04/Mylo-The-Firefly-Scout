@@ -1186,6 +1186,8 @@ MonoBehaviour:
   rangoMinimo: 4
   intensidadMaxima: 6
   intensidadMinima: 8
+  luzDelantera: {fileID: 0}
+  luzTrasera: {fileID: 0}
 --- !u!1 &3199483853911681632
 GameObject:
   m_ObjectHideFlags: 0
@@ -2281,6 +2283,7 @@ MonoBehaviour:
   playerSpeed: 5
   mainCamera: {fileID: 0}
   animator: {fileID: 3663201665334269427}
+  puedeMover: 1
 --- !u!143 &4068569596553176829
 CharacterController:
   m_ObjectHideFlags: 0
@@ -2305,7 +2308,7 @@ CharacterController:
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0.99, z: 0}
 --- !u!54 &9121729368294051627
 Rigidbody:
   m_ObjectHideFlags: 0
