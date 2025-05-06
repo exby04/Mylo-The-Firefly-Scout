@@ -99,14 +99,24 @@ public class BatAttackTimer : MonoBehaviour
         isAttacking = false;
     }
 
-    // Permite forzar el ataque desde otros scripts (por ejemplo, trampas)
     public void ForceBatAttack()
     {
         StopAllCoroutines();
-        StartCoroutine(TriggerBatAttack());
+
+        // Mostrar mensaje de advertencia antes de atacar
+        ShowWarning();
+        StartCoroutine(TriggerBatAttackConRetraso(2f)); // Espera 2 segundos antes de atacar
+
         timer = 0f;
         hasShownWarning = false;
     }
+
+    IEnumerator TriggerBatAttackConRetraso(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        yield return TriggerBatAttack(); // llama al ataque real
+    }
+
 
     // Método para reiniciar el temporizador sin atacar
     public void ResetTimer()

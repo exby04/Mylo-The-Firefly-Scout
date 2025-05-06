@@ -7,18 +7,16 @@ using UnityEditor;
 
 public class AbrirPuertasFinal : MonoBehaviour
 {
-    [Header("Puertas")]
-    public Animator puertaIzquierda;
-    public Animator puertaDerecha;
-    public string nombreAnimacionIzquierda = "AbrirPuertaIzquierda";
-    public string nombreAnimacionDerecha = "AbrirPuertaDerecha";
+    [Header("Puerta con animación combinada")]
+    public Animator animatorPuerta; // El Animator con el controller que tiene la animación
+    public string nombreAnimacion = "AbrirPuertas"; // Nombre del state en el Animator Controller
 
-    public Collider colliderIzquierda;
-    public Collider colliderDerecha;
+    [Header("Collider que bloquea el paso")]
+    public Collider colliderPuerta; // Collider físico que impide el paso, se desactiva al abrir
 
     [Header("Escena Final")]
 #if UNITY_EDITOR
-    public SceneAsset escenaVictoria;  // arrastra aquí la escena final
+    public SceneAsset escenaVictoria; // Solo visible en el editor
 #endif
     [SerializeField] private string nombreEscenaVictoria;
 
@@ -38,16 +36,15 @@ public class AbrirPuertasFinal : MonoBehaviour
         {
             if (Inventario.instance.TieneLlave())
             {
-                // Animaciones
-                puertaIzquierda.Play(nombreAnimacionIzquierda);
-                puertaDerecha.Play(nombreAnimacionDerecha);
+                // Ejecutar la animación
+                animatorPuerta.Play(nombreAnimacion);
 
-                // Abrir puertas (colliders off)
-                if (colliderIzquierda != null) colliderIzquierda.enabled = false;
-                if (colliderDerecha != null) colliderDerecha.enabled = false;
+                // Desactivar el collider para dejar pasar
+                if (colliderPuerta != null)
+                    colliderPuerta.enabled = false;
 
-                // Esperar 2 segundos y luego ir a la escena final
-                Invoke("FinalizarJuego", 2f);
+                // Cargar la escena tras 2 segundos
+                Invoke(nameof(FinalizarJuego), 2f);
             }
             else
             {
