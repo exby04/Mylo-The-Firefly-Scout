@@ -42,7 +42,7 @@ public class AtenuacionLuz : MonoBehaviour
         else if (!luzApagada && luz.range <= rangoMinimo)
         {
             luzApagada = true;
-            luz.range = 4.5f;
+            luz.range = rangoMinimo;
 
             //if (luzDelantera != null) luzDelantera.SetActive(false);
             //if (luzTrasera != null) luzTrasera.SetActive(false);
