@@ -1,16 +1,19 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 
-public class HideSpot : MonoBehaviour
+public class HideSpot : MonoBehaviour, IInteractable
 {
+    [Header("Configuración")]
     public float hideDuration = 5f;
+    public float holdTimeToHide = 2f;
+
+    [Header("Prefab visual del escondite usado")]
+    public GameObject usedAssetPrefab;
+
     private bool isUsed = false;
-    private bool playerInZone = false;
     private GameObject player;
     private PlayerController playerController;
     private PlayerHealth playerHealth;
-
-    public GameObject usedAssetPrefab;
 
     private void Start()
     {
@@ -22,12 +25,13 @@ public class HideSpot : MonoBehaviour
         }
     }
 
-    void Update()
+    // ✅ Implementación de la interfaz
+    public float HoldDuration => holdTimeToHide;
+
+    public void OnInteract()
     {
-        if (playerInZone && !isUsed && Input.GetKeyDown(KeyCode.E))
-        {
-            StartCoroutine(HideRoutine());
-        }
+        if (isUsed || player == null) return;
+        StartCoroutine(HideRoutine());
     }
 
     private IEnumerator HideRoutine()
@@ -55,22 +59,6 @@ public class HideSpot : MonoBehaviour
         {
             Instantiate(usedAssetPrefab, transform.position, transform.rotation);
             Destroy(gameObject);
-        }
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject == player)
-        {
-            playerInZone = true;
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject == player)
-        {
-            playerInZone = false;
         }
     }
 }

@@ -386,7 +386,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 8914bd6be1c144c4bb013c70c9a7ccb0, type: 2}
     - target: {fileID: 919132149155446097, guid: 13100be12b34dce4f878d9308b5c4cd3, type: 3}
       propertyPath: m_Name
-      value: MyloPuerta_Animada
+      value: Puerta
       objectReference: {fileID: 0}
     - target: {fileID: 8017815783547229453, guid: 13100be12b34dce4f878d9308b5c4cd3, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
@@ -411,9 +411,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 13100be12b34dce4f878d9308b5c4cd3, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6467532991010553876}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 13100be12b34dce4f878d9308b5c4cd3, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 4528928675610706427}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 13100be12b34dce4f878d9308b5c4cd3, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5268761861638804136}
@@ -514,21 +511,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.766981, y: 3.1114209, z: 1.4390216}
   m_Center: {x: -0.038620114, y: 1.0557104, z: 0.2195108}
---- !u!114 &4528928675610706427
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1211022957667214720}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f240d101c8ff5747a2df0b48192f941, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mensajeUI: {fileID: 1689767789102011749}
-  jugador: {fileID: 0}
-  distanciaDeteccion: 7.01
 --- !u!114 &5268761861638804136
 MonoBehaviour:
   m_ObjectHideFlags: 0

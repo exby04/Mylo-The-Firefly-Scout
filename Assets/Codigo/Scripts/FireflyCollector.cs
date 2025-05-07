@@ -1,8 +1,9 @@
 using UnityEngine;
 
-public class FireflyCollector : MonoBehaviour
+public class FireflyCollector : MonoBehaviour, IInteractable
 {
-    private bool canCollect = false;
+    public float tiempoParaRecolectar = 1.5f; // Tiempo para mantener pulsado
+
     private GameObject player;
 
     private void Start()
@@ -14,36 +15,23 @@ public class FireflyCollector : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject == player)
-        {
-            Debug.Log("Presiona 'E' para recoger las luciérnagas.");
-            canCollect = true;
-        }
-    }
+    // Interfaz IInteractable
+    public float HoldDuration => tiempoParaRecolectar;
 
-    private void OnTriggerExit(Collider other)
+    public void OnInteract()
     {
-        if (other.gameObject == player)
-        {
-            canCollect = false;
-        }
-    }
+        Debug.Log("¡Luciérnagas recolectadas!");
 
-    private void Update()
-    {
-        if (canCollect && Input.GetKeyDown(KeyCode.E))
+        if (player != null)
         {
-            Debug.Log("Luciérnagas recolectadas!");
-
             AtenuacionLuz atenuacion = player.GetComponentInChildren<AtenuacionLuz>();
             if (atenuacion != null)
             {
                 atenuacion.ReiniciarLuz();
             }
-
-            // gameObject.SetActive(false);
         }
+
+        // Puedes desactivarlo o dejarlo visible
+        // gameObject.SetActive(false);
     }
 }

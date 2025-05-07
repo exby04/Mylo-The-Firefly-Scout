@@ -384,9 +384,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f141914f25bc71648af14bbb27483a1d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1763493234870326381}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f141914f25bc71648af14bbb27483a1d, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2426536376827720654}
   m_SourcePrefab: {fileID: 100100000, guid: f141914f25bc71648af14bbb27483a1d, type: 3}
 --- !u!4 &454414964292728844 stripped
 Transform:
@@ -411,6 +408,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hideDuration: 5
+  holdTimeToHide: 2
   usedAssetPrefab: {fileID: 889320165722260036, guid: d389925e1c841b24b826504f85583d72, type: 3}
 --- !u!65 &516315702990493172
 BoxCollider:
@@ -454,18 +452,3 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 193.25616, y: 401.44528, z: 621.7716}
   m_Center: {x: -5.300323, y: 1.9867274, z: -113.74176}
---- !u!114 &2426536376827720654
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 938359146350797494}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f240d101c8ff5747a2df0b48192f941, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mensajeUI: {fileID: 4431406068926020062}
-  jugador: {fileID: 0}
-  distanciaDeteccion: 2.1
