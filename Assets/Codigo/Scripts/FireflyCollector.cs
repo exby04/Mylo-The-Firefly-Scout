@@ -18,7 +18,7 @@ public class FireflyCollector : MonoBehaviour
     {
         if (other.gameObject == player)
         {
-            Debug.Log("Presiona 'E' para recoger las luciérnagas.");
+            Debug.Log("Presiona 'E' para recoger las luciï¿½rnagas.");
             canCollect = true;
         }
     }
@@ -31,19 +31,29 @@ public class FireflyCollector : MonoBehaviour
         }
     }
 
-    private void Update()
+   private void Update()
+{
+    if (canCollect && Input.GetKeyDown(KeyCode.E))
     {
-        if (canCollect && Input.GetKeyDown(KeyCode.E))
+        Debug.Log("LuciÃ©rnagas recolectadas!");
+
+        PowerUpLuz powerUp = player.GetComponent<PowerUpLuz>();
+        AtenuacionLuz atenuacion = player.GetComponentInChildren<AtenuacionLuz>();
+
+        // Only reset light if power-up is NOT active
+        if (powerUp != null && powerUp.EstaActivo)
         {
-            Debug.Log("Luciérnagas recolectadas!");
-
-            AtenuacionLuz atenuacion = player.GetComponentInChildren<AtenuacionLuz>();
-            if (atenuacion != null)
-            {
-                atenuacion.ReiniciarLuz();
-            }
-
-            // gameObject.SetActive(false);
+            Debug.Log("No se reinicia la luz porque el power-up de visiÃ³n estÃ¡ activo.");
+            return;
         }
+
+        if (atenuacion != null)
+        {
+            atenuacion.ReiniciarLuz();
+        }
+
+        // gameObject.SetActive(false);
     }
+}
+
 }

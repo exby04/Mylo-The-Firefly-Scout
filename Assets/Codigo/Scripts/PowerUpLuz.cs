@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections;
 
 public class PowerUpLuz : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class PowerUpLuz : MonoBehaviour
     private bool activo = false;
     private float tiempoRestante = 0f;
     private float rangoOriginal;
+    public bool EstaActivo => activo;
+
 
     public void Activar()
     {
@@ -40,10 +43,31 @@ public class PowerUpLuz : MonoBehaviour
 
             if (tiempoRestante <= 0f)
             {
-                atenuacionLuz.luz.range = rangoOriginal;
-                atenuacionLuz.enabled = true;
-                activo = false;
+             StartCoroutine(TransicionSuaveAlFinal());
+             activo = false;
+
             }
         }
     }
+    private IEnumerator TransicionSuaveAlFinal()
+{
+    float duracion = 1.5f; 
+    float tiempo = 0f;
+
+    float rangoInicial = atenuacionLuz.luz.range;
+    float rangoObjetivo = rangoOriginal;
+
+    while (tiempo < duracion)
+    {
+        tiempo += Time.deltaTime;
+        float t = tiempo / duracion;
+
+        atenuacionLuz.luz.range = Mathf.Lerp(rangoInicial, rangoObjetivo, t);
+        yield return null;
+    }
+
+    atenuacionLuz.luz.range = rangoObjetivo;
+    atenuacionLuz.enabled = true;
+}
+
 }
