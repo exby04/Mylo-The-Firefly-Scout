@@ -55,6 +55,7 @@ public class AtenuacionLuz : MonoBehaviour
         tiempoActual = 0f;
         luz.range = rangoMaximo;
         luz.intensity = intensidadMaxima;
+        luzApagada = false;
 
         Debug.Log("La luz se ha apagado completamente.");
     }

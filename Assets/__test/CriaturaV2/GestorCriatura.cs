@@ -6,8 +6,8 @@ public class GestorCriatura : MonoBehaviour
     [SerializeField] private GameObject prefabCriatura;
     [SerializeField] private Transform jugador;
     [SerializeField] private GameObject simboloExclamacionUI;
-    [SerializeField] private Vector3 direccionFija = new Vector3(0, 0, 1); 
-    [SerializeField] private float distanciaDesdeJugador = 8f;
+
+    [SerializeField] private float distanciaDelanteJugador = 6f;
     [SerializeField] private float alturaCriatura = 0f;
 
     private bool criaturaInstanciada = false;
@@ -15,24 +15,22 @@ public class GestorCriatura : MonoBehaviour
 
     void Update()
     {
+        
         if (!criaturaInstanciada && atenuacionLuz.luzApagada)
         {
             criaturaInstanciada = true;
 
-            Vector3 posicionMundo = jugador.position + direccionFija.normalized * distanciaDesdeJugador;
-            posicionMundo.y = alturaCriatura;
-            criaturaActual = Instantiate(prefabCriatura, posicionMundo, Quaternion.identity);
+            // aparecer delante del jugador
+            Vector3 posicionDelante = jugador.position + jugador.forward.normalized * distanciaDelanteJugador;
+            posicionDelante.y = alturaCriatura;
+
+            criaturaActual = Instantiate(prefabCriatura, posicionDelante, Quaternion.identity);
+            criaturaActual.transform.LookAt(jugador);
 
             CriaturaOscuridad script = criaturaActual.GetComponent<CriaturaOscuridad>();
             if (script != null)
             {
                 script.Configurar(atenuacionLuz, jugador);
-            }
-
-            PlayerController pc = jugador.GetComponent<PlayerController>();
-            if (pc != null)
-            {
-                pc.puedeMover = false;
             }
 
             if (simboloExclamacionUI != null)
@@ -44,15 +42,9 @@ public class GestorCriatura : MonoBehaviour
             }
         }
 
-
+        // la criatura desaparece cuando se recupera el rango de luz
         if (criaturaInstanciada && !atenuacionLuz.luzApagada)
         {
-            PlayerController pc = jugador.GetComponent<PlayerController>();
-            if (pc != null)
-            {
-                pc.puedeMover = true;
-            }
-
             criaturaInstanciada = false;
 
             if (criaturaActual != null)
