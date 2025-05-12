@@ -52,7 +52,7 @@ public class CriaturaOscuridad : MonoBehaviour
        
         if (Vector2.Distance(posCriatura, posJugador) < 0.5f)
         {
-            jugador.GetComponent<PlayerHealth>()?.TakeDamage(999, true); 
+            jugador.GetComponent<PlayerHealth>()?.TakeDamage(999);
             Destroy(gameObject);
         }
     }

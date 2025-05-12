@@ -1,16 +1,14 @@
 using UnityEngine;
+using System.Collections;
 
 public class HideSpot : MonoBehaviour
 {
+    public float hideDuration = 5f;
     private bool isUsed = false;
     private bool playerInZone = false;
-    private bool isHiding = false;
-
     private GameObject player;
     private PlayerController playerController;
     private PlayerHealth playerHealth;
-    private AtenuacionLuz atenuacionLuz;
-    private CharacterController characterController;
 
     public GameObject usedAssetPrefab;
 
@@ -21,80 +19,43 @@ public class HideSpot : MonoBehaviour
         {
             player = playerController.gameObject;
             playerHealth = player.GetComponent<PlayerHealth>();
-            atenuacionLuz = player.GetComponentInChildren<AtenuacionLuz>();
-            characterController = player.GetComponent<CharacterController>();
         }
     }
 
     void Update()
     {
-        if (playerInZone && (isHiding || !isUsed) && Input.GetKeyDown(KeyCode.E))
-
+        if (playerInZone && !isUsed && Input.GetKeyDown(KeyCode.E))
         {
-            if (!isHiding)
-                EnterHide();
-            else
-                ExitHide();
+            StartCoroutine(HideRoutine());
         }
     }
 
-    private void EnterHide()
+    private IEnumerator HideRoutine()
     {
-        isHiding = true;
         isUsed = true;
 
         if (playerController != null)
-        {
-            playerController.puedeMover = false;
-            playerController.horizontalMove = 0;
-            playerController.verticalMove = 0;
-        }
+            playerController.enabled = false;
 
         if (playerHealth != null)
             playerHealth.SetHidden(true);
 
+        player.SetActive(false);
 
-        // Hide only visuals, keep LuzJugador lights visible
-        foreach (Transform child in player.transform)
-        {
-            if (!child.name.StartsWith("LuzJugador"))
-            {
-                child.gameObject.SetActive(false);
-            }
-        }
-    }
+        yield return new WaitForSeconds(hideDuration);
 
-    private void ExitHide()
-    {
-        isHiding = false;
-
+        player.SetActive(true);
         if (playerController != null)
-            playerController.puedeMover = true;
+            playerController.enabled = true;
 
         if (playerHealth != null)
             playerHealth.SetHidden(false);
 
-        if (characterController != null)
-            characterController.enabled = true;
-
-        foreach (Transform child in player.transform)
-        {
-            child.gameObject.SetActive(true);
-        }
-
         if (usedAssetPrefab != null)
         {
             Instantiate(usedAssetPrefab, transform.position, transform.rotation);
+            Destroy(gameObject);
         }
-
-        Transform simbolo = player.transform.Find("SimboloExclamacion");
-      if (simbolo != null)
-     {
-      simbolo.gameObject.SetActive(false);
-     }
-
-
-        Destroy(gameObject);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -113,5 +74,3 @@ public class HideSpot : MonoBehaviour
         }
     }
 }
-
-

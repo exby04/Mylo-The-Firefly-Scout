@@ -43,31 +43,30 @@ public class PlayerHealth : MonoBehaviour
         }
         else
         {
-            Debug.Log("GameOverMenu no asignado (lo cual estï¿½ bien si usas escena de derrota).");
+            Debug.Log("GameOverMenu no asignado (lo cual está bien si usas escena de derrota).");
         }
     }
 
-    public void TakeDamage(int damage, bool ignoreHidden = false)
-{
-    if (isHidden && !ignoreHidden)
+    public void TakeDamage(int damage)
     {
-        Debug.Log("Ataque ignorado: el jugador estÃ¡ escondido.");
-        return;
+        if (isHidden)
+        {
+            Debug.Log("Ataque ignorado: el jugador está escondido.");
+            return;
+        }
+
+        currentLives -= damage;
+        if (currentLives < 0)
+            currentLives = 0;
+
+        Debug.Log("Vida perdida. Vidas restantes: " + currentLives);
+        UpdateHUD();
+
+        if (currentLives == 0)
+        {
+            GameOver();
+        }
     }
-
-    currentLives -= damage;
-    if (currentLives < 0)
-        currentLives = 0;
-
-    Debug.Log("Vida perdida. Vidas restantes: " + currentLives);
-    UpdateHUD();
-
-    if (currentLives == 0)
-    {
-        GameOver();
-    }
-}
-
 
     void UpdateHUD()
     {
@@ -79,9 +78,9 @@ public class PlayerHealth : MonoBehaviour
 
     void GameOver()
     {
-        Debug.Log("ï¿½Game Over! El jugador ha perdido todas sus vidas.");
+        Debug.Log("¡Game Over! El jugador ha perdido todas sus vidas.");
 
-        Time.timeScale = 1f; // Por si el juego estï¿½ pausado
+        Time.timeScale = 1f; // Por si el juego está pausado
 
         if (!string.IsNullOrEmpty(derrotaSceneName))
         {
