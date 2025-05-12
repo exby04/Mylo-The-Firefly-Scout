@@ -27,7 +27,7 @@ public class CriaturaOscuridad : MonoBehaviour
     {
         if (jugador == null) return;
 
-        // Simular que la luz ya está apagada para probar el ataque directamente
+       
         if (!haComenzadoAtaque)
         {
             haComenzadoAtaque = true;
@@ -40,18 +40,19 @@ public class CriaturaOscuridad : MonoBehaviour
             return;
         }
 
-        // Perseguir al jugador
+        
         agent.SetDestination(jugador.position);
 
-        // Mirar hacia el jugador
         Vector3 direccion = jugador.position - transform.position;
         direccion.y = 0;
         if (direccion != Vector3.zero)
         {
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direccion), 10f * Time.deltaTime);
+            Quaternion targetRotation = Quaternion.LookRotation(direccion);
+            Vector3 euler = targetRotation.eulerAngles;
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, euler.y, 0), 10f * Time.deltaTime);
         }
 
-        // Verificar colisión con el jugador
+
         Vector2 posCriatura = new Vector2(transform.position.x, transform.position.z);
         Vector2 posJugador = new Vector2(jugador.position.x, jugador.position.z);
 
