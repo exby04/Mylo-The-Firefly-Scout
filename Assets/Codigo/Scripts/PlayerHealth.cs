@@ -12,39 +12,16 @@ public class PlayerHealth : MonoBehaviour
     public int maxLives = 3;
     private int currentLives;
 
-    public Image[] heartImages;       
-    public GameObject gameOverMenu;   
+    public Image[] heartImages; 
 
     private bool isHidden = false;    
 
-    [Header("Escena de Derrota")]
-#if UNITY_EDITOR
-    public SceneAsset derrotaScene;   
-#endif
-    [SerializeField] private string derrotaSceneName; 
-
-    void OnValidate()
-    {
-#if UNITY_EDITOR
-        if (derrotaScene != null)
-            derrotaSceneName = derrotaScene.name;
-#endif
-    }
-
+    
     void Start()
     {
         currentLives = maxLives;
         UpdateHUD();
 
-        if (gameOverMenu != null)
-        {
-            gameOverMenu.SetActive(false);
-            Debug.Log("GameOverMenu desactivado al iniciar.");
-        }
-        else
-        {
-            Debug.Log("GameOverMenu no asignado (lo cual está bien si usas escena de derrota).");
-        }
     }
 
     public void TakeDamage(int damage)
@@ -64,7 +41,9 @@ public class PlayerHealth : MonoBehaviour
 
         if (currentLives == 0)
         {
-            GameOver();
+            CrossfadeManager.Instance.FadeThroughScenes("DeathScene", 5f, "DefeatScene");
+
+
         }
     }
 
@@ -76,7 +55,7 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
-    void GameOver()
+    /*void GameOver()
     {
         Debug.Log("¡Game Over! El jugador ha perdido todas sus vidas.");
 
@@ -95,13 +74,8 @@ public class PlayerHealth : MonoBehaviour
                 Time.timeScale = 0f;
             }
         }
-    }
+    }*/
 
-    public void RestartGame()
-    {
-        Time.timeScale = 1f;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    }
 
     public void SetHidden(bool hidden)
     {

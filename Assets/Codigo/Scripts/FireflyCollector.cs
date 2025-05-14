@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public class FireflyCollector : MonoBehaviour
+public class FireflyCollector : MonoBehaviour, IInteractable
 {
-    private bool canCollect = false;
+    public float tiempoParaRecolectar = 1.5f; // Tiempo para mantener pulsado
     private GameObject player;
 
     private void Start()
@@ -14,33 +14,17 @@ public class FireflyCollector : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject == player)
-        {
-            Debug.Log("Presiona 'E' para recoger las luci�rnagas.");
-            canCollect = true;
-        }
-    }
+    // Interfaz IInteractable
+    public float HoldDuration => tiempoParaRecolectar;
 
-    private void OnTriggerExit(Collider other)
+    public void OnInteract()
     {
-        if (other.gameObject == player)
-        {
-            canCollect = false;
-        }
-    }
-
-   private void Update()
-{
-    if (canCollect && Input.GetKeyDown(KeyCode.E))
-    {
-        Debug.Log("Luciérnagas recolectadas!");
+        if (player == null) return;
 
         PowerUpLuz powerUp = player.GetComponent<PowerUpLuz>();
         AtenuacionLuz atenuacion = player.GetComponentInChildren<AtenuacionLuz>();
 
-        // Only reset light if power-up is NOT active
+        // Solo reinicia la luz si el power-up no está activo
         if (powerUp != null && powerUp.EstaActivo)
         {
             Debug.Log("No se reinicia la luz porque el power-up de visión está activo.");
@@ -52,8 +36,7 @@ public class FireflyCollector : MonoBehaviour
             atenuacion.ReiniciarLuz();
         }
 
+        Debug.Log("¡Luciérnagas recolectadas!");
         // gameObject.SetActive(false);
     }
-}
-
 }

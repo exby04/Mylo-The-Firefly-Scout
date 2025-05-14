@@ -5,22 +5,25 @@ using UnityEngine.SceneManagement;
 using UnityEditor;
 #endif
 
-public class AbrirPuertasFinal : MonoBehaviour
+public class AbrirPuertasFinal : MonoBehaviour, IInteractable
 {
     [Header("Puerta con animación combinada")]
-    public Animator animatorPuerta; // El Animator con el controller que tiene la animación
-    public string nombreAnimacion = "AbrirPuertas"; // Nombre del state en el Animator Controller
+    public Animator animatorPuerta;
+    public string nombreAnimacion = "AbrirPuertas";
 
     [Header("Collider que bloquea el paso")]
-    public Collider colliderPuerta; // Collider físico que impide el paso, se desactiva al abrir
+    public Collider colliderPuerta;
 
     [Header("Escena Final")]
 #if UNITY_EDITOR
-    public SceneAsset escenaVictoria; // Solo visible en el editor
+    public SceneAsset escenaVictoria;
 #endif
     [SerializeField] private string nombreEscenaVictoria;
 
-    private bool jugadorDentro = false;
+    [Header("Interacción")]
+    public float tiempoParaAbrir = 2f;
+
+    private bool yaSeAbrio = false;
 
     void OnValidate()
     {
@@ -30,26 +33,31 @@ public class AbrirPuertasFinal : MonoBehaviour
 #endif
     }
 
-    private void Update()
+    // Interfaz IInteractable
+    public float HoldDuration => tiempoParaAbrir;
+
+    public void OnInteract()
     {
-        if (jugadorDentro && Input.GetKeyDown(KeyCode.E))
+        if (yaSeAbrio) return;
+
+        if (Inventario.instance.TieneLlave())
         {
-            if (Inventario.instance.TieneLlave())
-            {
-                // Ejecutar la animación
+            yaSeAbrio = true;
+
+            // Ejecutar la animación
+            if (animatorPuerta != null)
                 animatorPuerta.Play(nombreAnimacion);
 
-                // Desactivar el collider para dejar pasar
-                if (colliderPuerta != null)
-                    colliderPuerta.enabled = false;
+            // Desactivar el collider
+            if (colliderPuerta != null)
+                colliderPuerta.enabled = false;
 
-                // Cargar la escena tras 2 segundos
-                Invoke(nameof(FinalizarJuego), 2f);
-            }
-            else
-            {
-                Debug.Log("Necesitas una llave para abrir las puertas.");
-            }
+            // Cargar la escena tras un retraso
+            Invoke(nameof(FinalizarJuego), 2f);
+        }
+        else
+        {
+            Debug.Log("Necesitas una llave para abrir las puertas.");
         }
     }
 
@@ -59,27 +67,11 @@ public class AbrirPuertasFinal : MonoBehaviour
 
         if (!string.IsNullOrEmpty(nombreEscenaVictoria))
         {
-            SceneManager.LoadScene(nombreEscenaVictoria);
+            CrossfadeManager.Instance.FadeThroughScenes("VictoryTransitionScene", 5f, "VictoryScene");
         }
         else
         {
             Debug.LogWarning("No se asignó la escena de victoria.");
-        }
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.GetComponent<PlayerController>())
-        {
-            jugadorDentro = true;
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.GetComponent<PlayerController>())
-        {
-            jugadorDentro = false;
         }
     }
 }
