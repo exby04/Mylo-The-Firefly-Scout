@@ -67,7 +67,7 @@ public class AbrirPuertasFinal : MonoBehaviour, IInteractable
 
         if (!string.IsNullOrEmpty(nombreEscenaVictoria))
         {
-            SceneManager.LoadScene(nombreEscenaVictoria);
+            CrossfadeManager.Instance.FadeThroughScenes("VictoryTransitionScene", 5f, "VictoryScene");
         }
         else
         {

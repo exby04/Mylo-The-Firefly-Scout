@@ -15,8 +15,14 @@ EditorBuildSettings:
     path: Assets/Nivel/Scenes/VictoryScene.unity
     guid: 05a3d0500306a5a448da5d7ab230b1dc
   - enabled: 1
-    path: Assets/Nivel/Scenes/pantalla_derrota.unity
+    path: Assets/Nivel/Scenes/VictoryTransitionScene.unity
+    guid: 012d28dbaa869d449822825052267e6c
+  - enabled: 1
+    path: Assets/Nivel/Scenes/DefeatScene.unity
     guid: 02a0f569b8b58b14bb0df2ab61b753fe
+  - enabled: 1
+    path: Assets/Nivel/Scenes/DeathScene.unity
+    guid: 1123e4f9a0211034bb1cf5f0d8551d4b
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0
