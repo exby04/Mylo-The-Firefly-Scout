@@ -12,7 +12,11 @@ public class BatAttackTimer : MonoBehaviour
     [Header("Referencias")]
     public GameObject batPrefab;         
     public Transform[] batSpawnPoints;   
-    public GameObject warningText;       
+    public GameObject warningText;
+
+    [Header("Animacion de Ataque")]
+    public Animator animator;
+    public float delayAnimacionAtaque;
 
     private GameObject cachedPlayer;
 
@@ -48,11 +52,36 @@ public class BatAttackTimer : MonoBehaviour
         if (warningText != null)
         {
             warningText.SetActive(true);
+            //StartCoroutine(TriggerAttackAnimation(delayAnimacionAtaque));
             Debug.Log("¡Murciélagos en camino!  " + warningText.name);
             StartCoroutine(HideWarningAfterDelay(2f));
+           
         }
 
         hasShownWarning = true;
+    }
+
+    IEnumerator DesactivarMovimiento(float delay)
+    {
+        if (cachedPlayer == null)
+            yield break;
+
+        var controller = cachedPlayer.GetComponent<PlayerController>();
+        if (controller != null)
+            controller.enabled = false;
+
+        yield return new WaitForSeconds(delay);
+
+        if (controller != null)
+            controller.enabled = true;
+    }
+
+
+    IEnumerator TriggerAttackAnimation(float retraso)
+    {
+        yield return new WaitForSeconds(retraso);
+        animator.SetTrigger("GetAttacked");
+        StartCoroutine(DesactivarMovimiento(1f));
     }
 
     IEnumerator HideWarningAfterDelay(float delay)
@@ -65,6 +94,7 @@ public class BatAttackTimer : MonoBehaviour
             Debug.Log("Aviso de murciélagos ocultado automáticamente");
         }
     }
+
 
     IEnumerator TriggerBatAttack()
     {
@@ -97,6 +127,8 @@ public class BatAttackTimer : MonoBehaviour
         yield return new WaitForSeconds(2f);
 
         isAttacking = false;
+
+
     }
 
     public void ForceBatAttack()

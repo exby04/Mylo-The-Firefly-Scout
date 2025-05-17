@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
@@ -14,25 +14,22 @@ public class PlayerController : MonoBehaviour
     private Vector3 camForward;
     private Vector3 camRight;
 
-    public Animator animator;
+    private Animator animator;
 
+    [HideInInspector] public bool puedeMover = true;
 
-    [HideInInspector] public bool puedeMover = true; // Se puede activar/desactivar desde fuera
-
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         player = GetComponent<CharacterController>();
+        animator = GetComponent<Animator>();
         puedeMover = true;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        //Bloquear movimiento si no se permite
         if (!puedeMover) return;
 
+        // Captura input
         horizontalMove = Input.GetAxis("Horizontal");
         verticalMove = Input.GetAxis("Vertical");
 
@@ -41,17 +38,21 @@ public class PlayerController : MonoBehaviour
 
         camDirection();
 
-        //Mirar con respecto a la camara
         movePlayer = playerInput.x * camRight + playerInput.z * camForward;
-        //Personaje gire hacia donde se esta moviendo
-        player.transform.LookAt(player.transform.position + movePlayer);
 
+        if (movePlayer != Vector3.zero)
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(movePlayer);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 10f);
+        }
+
+
+        // Movimiento físico
         player.Move(movePlayer * playerSpeed * Time.deltaTime);
 
-        animator.SetFloat("VelX", horizontalMove);
-        animator.SetFloat("VelY", verticalMove);   
-
-
+        // Animación: cambiar a caminar si hay input
+        bool estaCaminando = movePlayer.magnitude > 0.01f;
+        animator.SetBool("isWalking", estaCaminando);
     }
 
     void camDirection()
@@ -65,8 +66,4 @@ public class PlayerController : MonoBehaviour
         camForward = camForward.normalized;
         camRight = camRight.normalized;
     }
-
-
-
-    
 }

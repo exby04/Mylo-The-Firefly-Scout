@@ -1,6 +1,7 @@
-using UnityEngine;
+Ôªøusing UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -12,39 +13,55 @@ public class PlayerHealth : MonoBehaviour
     public int maxLives = 3;
     private int currentLives;
 
-    public Image[] heartImages; 
+    public Image[] heartImages;
+    private bool isHidden = false;
+    private bool isDead = false;
 
-    private bool isHidden = false;    
+    private Animator animator;
 
-    
     void Start()
     {
         currentLives = maxLives;
         UpdateHUD();
 
+        animator = GetComponent<Animator>();
     }
 
     public void TakeDamage(int damage)
     {
-        if (isHidden)
-        {
-            Debug.Log("Ataque ignorado: el jugador est· escondido.");
+        if (isHidden || isDead)
             return;
-        }
 
         currentLives -= damage;
-        if (currentLives < 0)
-            currentLives = 0;
+        if (currentLives < 0) currentLives = 0;
 
-        Debug.Log("Vida perdida. Vidas restantes: " + currentLives);
+
         UpdateHUD();
 
         if (currentLives == 0)
         {
-            CrossfadeManager.Instance.FadeThroughScenes("DeathScene", 5f, "DefeatScene");
+            isDead = true;
 
+            // Disparar animaci√≥n de muerte
+            animator.SetTrigger("Die");
 
+            // Desactivar movimiento
+            var controller = GetComponent<PlayerController>();
+            if (controller != null)
+                controller.enabled = false;
+
+            // Esperar a que termine la animaci√≥n antes del fade
+            StartCoroutine(EsperarAntesDeMorir());
         }
+    }
+
+    IEnumerator EsperarAntesDeMorir()
+    {
+        // Esperamos un tiempo fijo o la duraci√≥n de la animaci√≥n (ajustable)
+        yield return new WaitForSeconds(4f); // Puedes ajustar este valor si lo necesitas
+
+        if (CrossfadeManager.Instance != null)
+            CrossfadeManager.Instance.FadeThroughScenes("DeathScene", 5f, "DefeatScene");
     }
 
     void UpdateHUD()
@@ -54,28 +71,6 @@ public class PlayerHealth : MonoBehaviour
             heartImages[i].enabled = (i < currentLives);
         }
     }
-
-    /*void GameOver()
-    {
-        Debug.Log("°Game Over! El jugador ha perdido todas sus vidas.");
-
-        Time.timeScale = 1f; // Por si el juego est· pausado
-
-        if (!string.IsNullOrEmpty(derrotaSceneName))
-        {
-            SceneManager.LoadScene(derrotaSceneName);
-        }
-        else
-        {
-            Debug.LogWarning("No se ha asignado ninguna escena de derrota.");
-            if (gameOverMenu != null)
-            {
-                gameOverMenu.SetActive(true);
-                Time.timeScale = 0f;
-            }
-        }
-    }*/
-
 
     public void SetHidden(bool hidden)
     {
