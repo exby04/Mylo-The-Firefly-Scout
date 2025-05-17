@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 28585770223e95b48845c97d042a2de3
+guid: f669342d944c61e488fbb54a1df2815f
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -118,7 +118,7 @@ ModelImporter:
     legStretch: 0.05
     feetSpacing: 0
     globalScale: 1
-    rootMotionBoneName: "Murci\xE9lago"
+    rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
