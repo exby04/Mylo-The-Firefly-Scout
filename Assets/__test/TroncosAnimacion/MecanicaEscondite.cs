@@ -18,6 +18,15 @@ public class HideSpot : MonoBehaviour, IInteractable
     [Header("Salida manual opcional")]
     [SerializeField] private bool permitirSalidaManual = false;
 
+// LIGHTTT
+[Header("Luz del tronco")]
+[SerializeField] private Light troncoLight;
+
+[Header("UI - Tag de Salir")]
+[SerializeField] private GameObject salirTagUI;
+
+
+
     private bool isUsed = false;
     private bool isHiding = false;
     private bool playerInZone = false;
@@ -40,6 +49,14 @@ public class HideSpot : MonoBehaviour, IInteractable
 
         if (animator != null)
             animator.speed = animationSpeed;
+
+        // 🔹 ADDED: Ensure tronco light starts off
+        if (troncoLight != null)
+            troncoLight.enabled = false;
+
+        // 🔹 ADDED: Ensure salir tag starts off
+        if (salirTagUI != null)
+            salirTagUI.SetActive(false);
     }
 
     private void Update()
@@ -56,15 +73,36 @@ public class HideSpot : MonoBehaviour, IInteractable
 
     public void OnInteract()
     {
-        if (isUsed || player == null || isHiding) return;
+        if (player == null) return;
 
-        hidingCoroutine = StartCoroutine(HideRoutine());
+if (isHiding && permitirSalidaManual)
+{
+    // Allow calling OnInteract() to exit while hiding, e.g. from SALIR tag
+    StopCoroutine(hidingCoroutine);
+    ExitHiding();
+    return;
+}
+
+if (isUsed || isHiding) return;
+
+hidingCoroutine = StartCoroutine(HideRoutine());
+
+
+     
     }
 
     private IEnumerator HideRoutine()
     {
         isHiding = true;
         isUsed = true;
+
+         // 🔹 ADDED: Turn on the tronco light
+        if (troncoLight != null)
+            troncoLight.enabled = true;
+
+        // 🔹 ADDED: Show the Salir tag UI
+        if (salirTagUI != null)
+            salirTagUI.SetActive(true);
 
         if (playerController != null)
             playerController.enabled = false;
@@ -82,6 +120,13 @@ public class HideSpot : MonoBehaviour, IInteractable
     private void ExitHiding()
     {
         isHiding = false;
+           // 🔹 ADDED: Turn off the tronco light
+        if (troncoLight != null)
+            troncoLight.enabled = false;
+
+        // 🔹 ADDED: Hide the Salir tag UI
+        if (salirTagUI != null)
+            salirTagUI.SetActive(false);
 
         //Activar animación
         if (animator != null && !string.IsNullOrEmpty(animTriggerName))
