@@ -18,6 +18,7 @@ public class PlayerHealth : MonoBehaviour
     private bool isDead = false;
 
     private Animator animator;
+    private PlayerController controller;
 
     void Start()
     {
@@ -25,6 +26,7 @@ public class PlayerHealth : MonoBehaviour
         UpdateHUD();
 
         animator = GetComponent<Animator>();
+        controller = GetComponent<PlayerController>();
     }
 
     public void TakeDamage(int damage)
@@ -43,12 +45,12 @@ public class PlayerHealth : MonoBehaviour
             isDead = true;
 
             // Disparar animación de muerte
-            animator.SetTrigger("Die");
+            if (animator != null)
+                animator.SetTrigger("Die");
 
             // Desactivar movimiento
-            var controller = GetComponent<PlayerController>();
             if (controller != null)
-                controller.enabled = false;
+                controller.puedeMover = false;
 
             // Esperar a que termine la animación antes del fade
             StartCoroutine(EsperarAntesDeMorir());
