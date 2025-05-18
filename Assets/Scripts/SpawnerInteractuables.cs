@@ -1,19 +1,59 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class SpawnerInteractuables : MonoBehaviour
 {
+    [Header("Prefabs de Cofres")]
     public GameObject cofreNormalPrefab;
     public GameObject cofreTrampaPrefab;
-    public float probabilidadTrampa = 0.5f; // 50% chance de ser trampa
+
+    [Header("Configuración")]
+    public int cantidadCofresNormales = 6;
+    [Range(0f, 1f)]
+    public float probabilidadTrampa = 0.4f;
 
     void Start()
     {
-        GameObject[] puntos = GameObject.FindGameObjectsWithTag("UbicacionItem");
+        // Encuentra todos los puntos marcados con la tag "UbicacionItem"
+        GameObject[] puntosDeSpawn = GameObject.FindGameObjectsWithTag("UbicacionItem");
 
-        foreach (GameObject punto in puntos)
+        if (puntosDeSpawn.Length < cantidadCofresNormales)
         {
-            GameObject prefabAInstanciar = (Random.value < probabilidadTrampa) ? cofreTrampaPrefab : cofreNormalPrefab;
-            Instantiate(prefabAInstanciar, punto.transform.position, Quaternion.identity);
+            Debug.LogError("No hay suficientes puntos para colocar los cofres normales.");
+            return;
+        }
+
+        // Mezclar las ubicaciones disponibles
+        List<GameObject> ubicacionesDisponibles = new List<GameObject>(puntosDeSpawn);
+        Shuffle(ubicacionesDisponibles);
+
+        // Instanciar cofres normales
+        for (int i = 0; i < cantidadCofresNormales; i++)
+        {
+            Transform punto = ubicacionesDisponibles[i].transform;
+            Instantiate(cofreNormalPrefab, punto.position, punto.rotation);
+        }
+
+        // Instanciar cofres trampa aleatorios (en las ubicaciones restantes)
+        for (int i = cantidadCofresNormales; i < ubicacionesDisponibles.Count; i++)
+        {
+            if (Random.value < probabilidadTrampa)
+            {
+                Transform punto = ubicacionesDisponibles[i].transform;
+                Instantiate(cofreTrampaPrefab, punto.position, punto.rotation);
+            }
+        }
+    }
+
+    // Mezclar lista (algoritmo Fisher-Yates)
+    void Shuffle(List<GameObject> lista)
+    {
+        for (int i = 0; i < lista.Count; i++)
+        {
+            int randomIndex = Random.Range(i, lista.Count);
+            GameObject temp = lista[i];
+            lista[i] = lista[randomIndex];
+            lista[randomIndex] = temp;
         }
     }
 }
