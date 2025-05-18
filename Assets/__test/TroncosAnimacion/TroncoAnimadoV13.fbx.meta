@@ -3,7 +3,17 @@ guid: de3626c4a25915d4aac5ec02bffd7713
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Musgo
+    second: {fileID: 2100000, guid: e98e370430e858646a2d1fa22452c395, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tronco
+    second: {fileID: 2100000, guid: 467db17fb07289f47a46c32d3c169f1b, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
