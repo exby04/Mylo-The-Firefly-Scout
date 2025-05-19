@@ -55,7 +55,7 @@ public class PlayerController : MonoBehaviour
 
         player.Move(movePlayer * playerSpeed * Time.deltaTime);
 
-        // solo activa caminar si no está corriendo
+        
         bool isRunning = animator.GetBool("isRunning");
         bool isWalking = movePlayer.magnitude > 0.01f && !isRunning;
         animator.SetBool("isWalking", isWalking);

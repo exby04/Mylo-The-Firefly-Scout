@@ -15,7 +15,7 @@ public class LookAtPlayer : MonoBehaviour
         if (player != null)
         {
             transform.LookAt(player);
-            // Opcional: invertir para que no se vea al revés
+            
             transform.Rotate(0, 180f, 0);
         }
     }

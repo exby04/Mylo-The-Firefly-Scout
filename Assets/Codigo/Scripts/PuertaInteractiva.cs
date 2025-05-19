@@ -7,7 +7,7 @@ using UnityEditor;
 
 public class AbrirPuertasFinal : MonoBehaviour, IInteractable
 {
-    [Header("Puerta con animación combinada")]
+    [Header("Puerta con animaciï¿½n combinada")]
     public Animator animatorPuerta;
     public string nombreAnimacion = "AbrirPuertas";
 
@@ -20,7 +20,7 @@ public class AbrirPuertasFinal : MonoBehaviour, IInteractable
 #endif
     [SerializeField] private string nombreEscenaVictoria;
 
-    [Header("Interacción")]
+    [Header("Interacciï¿½n")]
     public float tiempoParaAbrir = 2f;
 
     private bool yaSeAbrio = false;
@@ -33,7 +33,7 @@ public class AbrirPuertasFinal : MonoBehaviour, IInteractable
 #endif
     }
 
-    // Interfaz IInteractable
+    
     public float HoldDuration => tiempoParaAbrir;
 
     public void OnInteract()
@@ -44,15 +44,15 @@ public class AbrirPuertasFinal : MonoBehaviour, IInteractable
         {
             yaSeAbrio = true;
 
-            // Ejecutar la animación
+            
             if (animatorPuerta != null)
                 animatorPuerta.Play(nombreAnimacion);
 
-            // Desactivar el collider
+            
             if (colliderPuerta != null)
                 colliderPuerta.enabled = false;
 
-            // Cargar la escena tras un retraso
+            
             Invoke(nameof(FinalizarJuego), 2f);
         }
         else
@@ -63,7 +63,7 @@ public class AbrirPuertasFinal : MonoBehaviour, IInteractable
 
     private void FinalizarJuego()
     {
-        Debug.Log("¡Juego finalizado!");
+        Debug.Log("ï¿½Juego finalizado!");
 
         if (!string.IsNullOrEmpty(nombreEscenaVictoria))
         {
@@ -71,7 +71,7 @@ public class AbrirPuertasFinal : MonoBehaviour, IInteractable
         }
         else
         {
-            Debug.LogWarning("No se asignó la escena de victoria.");
+            Debug.LogWarning("No se asignï¿½ la escena de victoria.");
         }
     }
 }

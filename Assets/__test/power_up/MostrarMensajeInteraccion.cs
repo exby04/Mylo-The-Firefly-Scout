@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class MostrarMensajeInteraccion_powerup : MonoBehaviour
 {
-    public GameObject mensajeUI;         // Panel con el texto
-    public Transform jugador;            // Objeto del jugador
+    public GameObject mensajeUI;         
+    public Transform jugador;           
     public float distanciaDeteccion = 3f;
 
     void Update()
@@ -21,7 +21,7 @@ public class MostrarMensajeInteraccion_powerup : MonoBehaviour
 
         if (mensajeUI.activeSelf)
         {
-            // Que mire siempre hacia la cámara
+            
             mensajeUI.transform.LookAt(Camera.main.transform);
             mensajeUI.transform.Rotate(0, 180, 0);
         }

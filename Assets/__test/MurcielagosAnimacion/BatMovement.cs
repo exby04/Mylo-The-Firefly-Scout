@@ -41,7 +41,7 @@ public class BatMovement : MonoBehaviour
         if (selfAnimator != null)
         {
             selfAnimator.speed = velocidadAnimacion;
-            selfAnimator.Play(nombreAnimacionAtaque); // animación al comenzar
+            selfAnimator.Play(nombreAnimacionAtaque); 
         }
     }
 
@@ -112,7 +112,7 @@ public class BatMovement : MonoBehaviour
                     ph.TakeDamage(1);
                 }
 
-                //Instanciar la nubecita de impacto
+                
                 if (efectoNubePrefab != null)
                 {
                     Vector3 posicionImpacto = player.position + offsetImpacto;
@@ -191,7 +191,7 @@ public class BatMovement : MonoBehaviour
         Vector3 escapeDirection = (awayDirection + Vector3.up).normalized;
         Vector3 exitPoint = transform.position + escapeDirection * 10f;
 
-        // Rotar horizontalmente en dirección de escape
+        
         Vector3 lookDir = new Vector3(escapeDirection.x, 0f, escapeDirection.z);
         if (lookDir != Vector3.zero)
         {

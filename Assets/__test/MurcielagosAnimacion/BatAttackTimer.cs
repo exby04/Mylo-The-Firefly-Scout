@@ -29,7 +29,7 @@ public class BatAttackTimer : MonoBehaviour
 
     void Update()
     {
-        // Bloquear ataque si ya hay uno en curso
+        
         if (isAttacking) return;
 
         timer += Time.deltaTime;
@@ -52,7 +52,7 @@ public class BatAttackTimer : MonoBehaviour
         if (warningText != null)
         {
             warningText.SetActive(true);
-            //StartCoroutine(TriggerAttackAnimation(delayAnimacionAtaque));
+            
             Debug.Log("¡Murciélagos en camino!  " + warningText.name);
             StartCoroutine(HideWarningAfterDelay(2f));
            
@@ -123,7 +123,7 @@ public class BatAttackTimer : MonoBehaviour
             Debug.LogWarning("Faltan datos: puntos de aparición, prefab de murciélago o referencia al jugador.");
         }
 
-        // Esperar un poco antes de permitir nuevos ataques
+        
         yield return new WaitForSeconds(2f);
 
         isAttacking = false;
@@ -135,9 +135,9 @@ public class BatAttackTimer : MonoBehaviour
     {
         StopAllCoroutines();
 
-        // Mostrar mensaje de advertencia antes de atacar
+        
         ShowWarning();
-        StartCoroutine(TriggerBatAttackConRetraso(2f)); // Espera 2 segundos antes de atacar
+        StartCoroutine(TriggerBatAttackConRetraso(2f)); 
 
         timer = 0f;
         hasShownWarning = false;
@@ -146,11 +146,11 @@ public class BatAttackTimer : MonoBehaviour
     IEnumerator TriggerBatAttackConRetraso(float delay)
     {
         yield return new WaitForSeconds(delay);
-        yield return TriggerBatAttack(); // llama al ataque real
+        yield return TriggerBatAttack(); 
     }
 
 
-    // Método para reiniciar el temporizador sin atacar
+    
     public void ResetTimer()
     {
         timer = 0f;
