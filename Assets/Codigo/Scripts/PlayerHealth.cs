@@ -44,23 +44,21 @@ public class PlayerHealth : MonoBehaviour
         {
             isDead = true;
 
-            // Disparar animación de muerte
+            // Animación muerte
             if (animator != null)
                 animator.SetTrigger("Die");
 
-            // Desactivar movimiento
+            
             if (controller != null)
                 controller.puedeMover = false;
 
-            // Esperar a que termine la animación antes del fade
             StartCoroutine(EsperarAntesDeMorir());
         }
     }
 
     IEnumerator EsperarAntesDeMorir()
     {
-        // Esperamos un tiempo fijo o la duración de la animación (ajustable)
-        yield return new WaitForSeconds(4f); // Puedes ajustar este valor si lo necesitas
+        yield return new WaitForSeconds(4f); 
 
         if (CrossfadeManager.Instance != null)
             CrossfadeManager.Instance.FadeThroughScenes("DeathScene", 5f, "DefeatScene");

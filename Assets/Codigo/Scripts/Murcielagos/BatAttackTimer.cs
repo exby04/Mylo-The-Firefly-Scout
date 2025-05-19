@@ -54,8 +54,12 @@ public class BatAttackTimer : MonoBehaviour
         if (warningText != null)
         {
             warningText.SetActive(true);
-            warningText.transform.position = jugador.position + Vector3.up * 2f;
-            warningText.transform.rotation = Quaternion.identity;
+
+            if (warningText.GetComponent<LookAtPlayer>() == null)
+            {
+                warningText.AddComponent<LookAtPlayer>();
+
+            }
             //StartCoroutine(TriggerAttackAnimation(delayAnimacionAtaque));
             Debug.Log("¡Murciélagos en camino!  " + warningText.name);
             StartCoroutine(HideWarningAfterDelay(2f));

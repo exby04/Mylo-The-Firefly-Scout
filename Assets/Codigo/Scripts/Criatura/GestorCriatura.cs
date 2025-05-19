@@ -36,8 +36,13 @@ public class GestorCriatura : MonoBehaviour
             if (simboloExclamacionUI != null)
             {
                 simboloExclamacionUI.SetActive(true);
-                simboloExclamacionUI.transform.position = jugador.position + Vector3.up * 2f;
-                simboloExclamacionUI.transform.rotation = Quaternion.identity;
+                //simboloExclamacionUI.transform.position = jugador.position + Vector3.up * 2f;
+                //simboloExclamacionUI.transform.rotation = Quaternion.identity;
+                if (simboloExclamacionUI.GetComponent<LookAtPlayer>() == null)
+                {
+                    simboloExclamacionUI.AddComponent<LookAtPlayer>();
+
+                }
                 Invoke(nameof(DesactivarSimbolo), 1f);
             }
         }
