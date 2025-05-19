@@ -29,7 +29,6 @@ public class PlayerController : MonoBehaviour
     {
         if (!puedeMover) return;
 
-        // Captura input
         horizontalMove = Input.GetAxis("Horizontal");
         verticalMove = Input.GetAxis("Vertical");
 
@@ -40,30 +39,40 @@ public class PlayerController : MonoBehaviour
 
         movePlayer = playerInput.x * camRight + playerInput.z * camForward;
 
-        if (movePlayer != Vector3.zero)
+        if (movePlayer.sqrMagnitude > 0.01f)
         {
             Quaternion targetRotation = Quaternion.LookRotation(movePlayer);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 10f);
+            float angle = Quaternion.Angle(transform.rotation, targetRotation);
+
+            if (angle > 0.5f)
+            {
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 5f);
+            }
         }
 
 
-        // Movimiento físico
+
+
         player.Move(movePlayer * playerSpeed * Time.deltaTime);
 
-        // Animación: cambiar a caminar si hay input
-        bool estaCaminando = movePlayer.magnitude > 0.01f;
-        animator.SetBool("isWalking", estaCaminando);
+        // solo activa caminar si no está corriendo
+        bool isRunning = animator.GetBool("isRunning");
+        bool isWalking = movePlayer.magnitude > 0.01f && !isRunning;
+        animator.SetBool("isWalking", isWalking);
     }
 
     void camDirection()
     {
         camForward = mainCamera.transform.forward;
         camRight = mainCamera.transform.right;
-
         camForward.y = 0;
         camRight.y = 0;
-
         camForward = camForward.normalized;
         camRight = camRight.normalized;
+    }
+
+    public bool IsMoving()
+    {
+        return movePlayer.magnitude > 0.01f;
     }
 }

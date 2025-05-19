@@ -8,20 +8,14 @@ public class AbrirCofre : MonoBehaviour, IInteractable
     private static bool llaveObtenida = false;
     private static int cofresAbiertos = 0;
 
-    public GameObject mensajeUI;
-    public Image powerUpImagen;
-    public Sprite powerUpLuz;
-    public Sprite powerUpRapidez;
+    public float tiempoParaAbrir = 2f;
 
-    public float tiempoParaAbrir = 2f; // <-- NUEVO: tiempo de mantener E
+    public float HoldDuration => tiempoParaAbrir;
 
     private void Start()
     {
         cofresAbiertos = 0;
     }
-
-    // ✅ Implementación de la interfaz
-    public float HoldDuration => tiempoParaAbrir;
 
     public void OnInteract()
     {
@@ -36,11 +30,10 @@ public class AbrirCofre : MonoBehaviour, IInteractable
 
         Instantiate(cofreAbiertoPrefab, transform.position, transform.rotation);
         Destroy(gameObject);
-        mensajeUI.SetActive(true);
 
         cofresAbiertos++;
 
-        if (!llaveObtenida && cofresAbiertos == 1)
+        if (!llaveObtenida && cofresAbiertos == 6)
         {
             llaveObtenida = true;
             Inventario.instance.RecogerLlave();
@@ -66,7 +59,10 @@ public class AbrirCofre : MonoBehaviour, IInteractable
 
             if (!string.IsNullOrEmpty(actual))
             {
-                PanelCambioPowerUpUI.instance.MostrarPanel(nuevoPowerUp);
+                Sprite spriteActual = Inventario.instance.GetSpriteFromName(actual);
+                Sprite spriteNuevo = Inventario.instance.GetSpriteFromName(nuevoPowerUp);
+
+                PanelCambioPowerUpUI.instance.MostrarPanel(actual, nuevoPowerUp, spriteActual, spriteNuevo);
                 Debug.Log("Mostrando panel de cambio para power-up.");
             }
             else
