@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
 public class Inventario : MonoBehaviour
 {
@@ -9,21 +8,19 @@ public class Inventario : MonoBehaviour
     private string powerUpActual = null;
     private bool tieneLlave = false;
 
-    [Header("HUD")]
-    public Image keyImage;
-    public Image powerUpImage;
-    public GameObject mensajeUI;
-    public Image mensajeImagen;
-    public TextMeshProUGUI mensajeTexto;
-    public GameObject textoSpacebar; // 👈 Referencia al texto "Pulsa Spacebar"
-
     [Header("Sprites")]
     public Sprite llaveSprite;
     public Sprite powerUpLuzSprite;
     public Sprite powerUpRapidezSprite;
     public Sprite powerUpVacioSprite;
+    public Sprite llaveSlotVacioSprite;
 
-    [Header("Referencias de scripts")]
+    [Header("HUD")]
+    public Image keyImage;
+    public Image powerUpImage;
+    public GameObject textoSpacebar;
+
+    [Header("Referencias")]
     public PowerUpLuz powerUpLuz;
     public SpeedPowerUpController speedPowerUpController;
 
@@ -33,12 +30,28 @@ public class Inventario : MonoBehaviour
             instance = this;
     }
 
+    private void Start()
+    {
+        if (keyImage != null && llaveSlotVacioSprite != null)
+        {
+            keyImage.sprite = llaveSlotVacioSprite;
+            keyImage.color = Color.gray;
+        }
+
+        if (powerUpImage != null && powerUpVacioSprite != null)
+        {
+            powerUpImage.sprite = powerUpVacioSprite;
+            powerUpImage.color = Color.gray;
+        }
+
+        if (textoSpacebar != null)
+            textoSpacebar.SetActive(false);
+    }
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
-        {
             ActivarPowerUp();
-        }
     }
 
     public void RecogerLlave()
@@ -47,33 +60,63 @@ public class Inventario : MonoBehaviour
         keyImage.sprite = llaveSprite;
         keyImage.color = Color.white;
 
-        mensajeImagen.sprite = llaveSprite;
-        mensajeTexto.text = "¡Has obtenido una llave!";
-        mensajeUI.SetActive(true);
+        ObjetoObtenidoUI.instance?.Mostrar(llaveSprite);
+
+        Transform jugador = FindFirstObjectByType<PlayerController>().transform;
+        Animator animador = jugador.GetComponent<Animator>();
+
+        CameraZoomController.instance?.ZoomAndPauseWithAnimation(jugador, animador);
     }
 
     public void RecogerPowerUp(string powerUp)
     {
         powerUpActual = powerUp;
 
-        if (powerUp == "Velocidad")
-        {
-            powerUpImage.sprite = powerUpRapidezSprite;
-            mensajeImagen.sprite = powerUpRapidezSprite;
-            mensajeTexto.text = "¡Has obtenido un Power-Up de Velocidad!";
-        }
-        else if (powerUp == "Vision")
-        {
-            powerUpImage.sprite = powerUpLuzSprite;
-            mensajeImagen.sprite = powerUpLuzSprite;
-            mensajeTexto.text = "¡Has obtenido un Power-Up de Visión!";
-        }
+        Sprite sprite = powerUpVacioSprite;
+        if (powerUp == "Vision")
+            sprite = powerUpLuzSprite;
+        else if (powerUp == "Velocidad")
+            sprite = powerUpRapidezSprite;
 
+        powerUpImage.sprite = sprite;
         powerUpImage.color = Color.white;
-        mensajeUI.SetActive(true);
-        //Mostrar el spacebar
+
+        ObjetoObtenidoUI.instance?.Mostrar(sprite);
+
         if (textoSpacebar != null)
             textoSpacebar.SetActive(true);
+
+        Transform jugador = FindFirstObjectByType<PlayerController>().transform;
+        Animator animador = jugador.GetComponent<Animator>();
+
+        CameraZoomController.instance?.ZoomAndPauseWithAnimation(jugador, animador);
+    }
+
+    public void ActivarPowerUp()
+    {
+        if (powerUpActual == null) return;
+
+        switch (powerUpActual)
+        {
+            case "Vision":
+                powerUpLuz?.Activar();
+                break;
+            case "Velocidad":
+                speedPowerUpController?.GiveSpeedPowerUp();
+                break;
+        }
+
+        powerUpActual = null;
+        powerUpImage.sprite = powerUpVacioSprite;
+        powerUpImage.color = Color.gray;
+
+        if (textoSpacebar != null)
+            textoSpacebar.SetActive(false);
+    }
+
+    public bool TieneLlave()
+    {
+        return tieneLlave;
     }
 
     public string ObtenerPowerUp()
@@ -84,46 +127,16 @@ public class Inventario : MonoBehaviour
     public void IntercambiarPowerUp(string nuevoPowerUp)
     {
         RecogerPowerUp(nuevoPowerUp);
-        Debug.Log("Power-up intercambiado por: " + nuevoPowerUp);
     }
 
-    public bool TieneLlave()
+    public Sprite GetSpriteFromName(string nombre)
     {
-        return tieneLlave;
-    }
-
-    public void ActivarPowerUp()
-    {
-        if (powerUpActual == null) return;
-
-        switch (powerUpActual)
+        switch (nombre)
         {
-            case "Vision":
-                if (powerUpLuz != null)
-                {
-                    powerUpLuz.Activar();
-                    Debug.Log("PowerUp de Visión activado");
-                }
-                break;
-
-            case "Velocidad":
-                if (speedPowerUpController != null)
-                {
-                    speedPowerUpController.GiveSpeedPowerUp();
-                    Debug.Log("PowerUp de Velocidad activado");
-                }
-                break;
-
-            default:
-                Debug.LogWarning("Power-up desconocido: " + powerUpActual);
-                return;
+            case "Vision": return powerUpLuzSprite;
+            case "Velocidad": return powerUpRapidezSprite;
+            default: return powerUpVacioSprite;
         }
-
-        powerUpActual = null;
-        powerUpImage.sprite = powerUpVacioSprite;
-        powerUpImage.color = Color.white;
-
-        if (textoSpacebar != null)
-            textoSpacebar.SetActive(false); // 👈 Ocultar el texto "Pulsa Spacebar"
     }
+
 }

@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class SpeedPowerUpController : MonoBehaviour
 {
@@ -6,8 +6,9 @@ public class SpeedPowerUpController : MonoBehaviour
     public float speedMultiplier = 2f;
     public float powerUpDuration = 10f;
 
-    private bool hasPowerUp = false;       // Recibido desde el inventario
-    private bool isActive = false;         // Efecto activado
+    public Animator animator;
+
+    private bool isActive = false;
     private float timer = 0f;
     private float originalSpeed;
 
@@ -16,20 +17,14 @@ public class SpeedPowerUpController : MonoBehaviour
         if (playerController == null)
             playerController = GetComponent<PlayerController>();
 
-        originalSpeed = playerController.playerSpeed;
-        
+        if (animator == null)
+            animator = GetComponent<Animator>();
 
+        originalSpeed = playerController.playerSpeed;
     }
 
     void Update()
     {
-        // Activar si tiene el powerUp y pulsa espacio
-        if (hasPowerUp && !isActive && Input.GetKeyDown(KeyCode.Space))
-        {
-            
-        }
-
-        // Temporizador activo
         if (isActive)
         {
             timer -= Time.deltaTime;
@@ -37,31 +32,40 @@ public class SpeedPowerUpController : MonoBehaviour
             {
                 EndPowerUp();
             }
+            else
+            {
+                UpdateRunningState();
+            }
         }
     }
 
-    // Llamado desde fuera (ej: inventario) cuando se obtiene el power up
     public void GiveSpeedPowerUp()
     {
-        hasPowerUp = true;
         ActivatePowerUp();
-        Debug.Log("PowerUp de velocidad recibido.");
+        Debug.Log("✅ PowerUp de velocidad recibido.");
     }
 
     private void ActivatePowerUp()
     {
         isActive = true;
-        hasPowerUp = false; // Se consume
         timer = powerUpDuration;
         playerController.playerSpeed = originalSpeed * speedMultiplier;
-        Debug.Log("�PowerUp de velocidad activado!");
+
+        UpdateRunningState();
+        Debug.Log("🏃‍♂️ PowerUp activado");
     }
 
     private void EndPowerUp()
     {
         isActive = false;
         playerController.playerSpeed = originalSpeed;
-        Debug.Log("PowerUp de velocidad finalizado.");
+        animator.SetBool("isRunning", false);
+        Debug.Log("🧘‍♂️ PowerUp finalizado");
+    }
+
+    private void UpdateRunningState()
+    {
+        bool isMoving = playerController.IsMoving();
+        animator.SetBool("isRunning", isMoving);
     }
 }
-
