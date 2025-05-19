@@ -121,13 +121,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 844792603979360614}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.0051536784, y: 0.98633087, z: 0.16464937, w: 0.0039420105}
-  m_LocalPosition: {x: -0.007, y: -0.02, z: 1.405}
+  m_LocalRotation: {x: -0.0059983367, y: 0.9953369, z: -0.09624164, w: 0.002473823}
+  m_LocalPosition: {x: -0.007, y: 0.651, z: 1.405}
   m_LocalScale: {x: 8.2708, y: 14.864281, z: 8.2708}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 9167683302384039273}
-  m_LocalEulerAnglesHint: {x: -18.956, y: 179.632, z: -0.537}
+  m_LocalEulerAnglesHint: {x: 11.044, y: 179.645, z: -0.725}
 --- !u!108 &5473962462574879194
 Light:
   m_ObjectHideFlags: 0
@@ -2230,6 +2230,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4464567bc182e041b4a13d36af8656f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tiempoParaRecolectar: 1.5
 --- !u!114 &8813833356967347039
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2262,9 +2263,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  gameOverMenu: {fileID: 0}
-  derrotaScene: {fileID: 102900000, guid: 02a0f569b8b58b14bb0df2ab61b753fe, type: 3}
-  derrotaSceneName: pantalla_derrota
 --- !u!114 &1198120751103406281
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2282,7 +2280,6 @@ MonoBehaviour:
   player: {fileID: 4068569596553176829}
   playerSpeed: 5
   mainCamera: {fileID: 0}
-  animator: {fileID: 3663201665334269427}
   puedeMover: 1
 --- !u!143 &4068569596553176829
 CharacterController:
@@ -2302,13 +2299,13 @@ CharacterController:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Height: 2
-  m_Radius: 0.5
+  m_Height: 1.63
+  m_Radius: 0.52
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0.99, z: 0}
+  m_Center: {x: 0.02, y: 0.63, z: 0}
 --- !u!54 &9121729368294051627
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2356,7 +2353,7 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.38432646
-  m_Height: 1.368716
+  m_Height: 1.7
   m_Direction: 1
   m_Center: {x: -0.0027762055, y: 0.7130902, z: 0.059235156}
 --- !u!1 &5805222160035393614
