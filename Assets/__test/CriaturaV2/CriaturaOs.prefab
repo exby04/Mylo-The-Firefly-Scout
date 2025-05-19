@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 9068197461019978884}
   - component: {fileID: 3069102906471007940}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: CriaturaOs
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
