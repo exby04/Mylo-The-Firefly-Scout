@@ -1,0 +1,167 @@
+using System.Collections;
+using UnityEngine;
+
+public class BatAttackTimer : MonoBehaviour
+{
+    [Header("Configuración de Ataque de Murciélagos")]
+    [SerializeField] private float attackInterval = 40f;
+    [SerializeField] private float timer = 0f;
+    private bool hasShownWarning = false;
+    private bool isAttacking = false;
+
+    [SerializeField] private Transform jugador;
+
+    [Header("Referencias")]
+    public GameObject batPrefab;         
+    public Transform[] batSpawnPoints;   
+    public GameObject warningText;
+
+    [Header("Animacion de Ataque")]
+    public Animator animator;
+    public float delayAnimacionAtaque;
+
+    private GameObject cachedPlayer;
+
+    void Start()
+    {
+        cachedPlayer = GameObject.FindWithTag("Player");
+        if (cachedPlayer == null)
+            Debug.LogWarning("Jugador no encontrado. Asegúrate de que tenga la etiqueta 'Player'.");
+    }
+
+    void Update()
+    {
+        // Bloquear ataque si ya hay uno en curso
+        if (isAttacking) return;
+
+        timer += Time.deltaTime;
+
+        if (!hasShownWarning && timer >= attackInterval - 5f)
+        {
+            ShowWarning();
+        }
+
+        if (timer >= attackInterval)
+        {
+            StartCoroutine(TriggerBatAttack());
+            timer = 0f;
+            hasShownWarning = false;
+        }
+    }
+
+    void ShowWarning()
+    {
+        if (warningText != null)
+        {
+            warningText.SetActive(true);
+
+            if (warningText.GetComponent<LookAtPlayer>() == null)
+            {
+                warningText.AddComponent<LookAtPlayer>();
+
+            }
+            //StartCoroutine(TriggerAttackAnimation(delayAnimacionAtaque));
+            Debug.Log("¡Murciélagos en camino!  " + warningText.name);
+            StartCoroutine(HideWarningAfterDelay(2f));
+           
+        }
+
+        hasShownWarning = true;
+    }
+
+    IEnumerator DesactivarMovimiento(float delay)
+    {
+        if (cachedPlayer == null)
+            yield break;
+
+        var controller = cachedPlayer.GetComponent<PlayerController>();
+        if (controller != null)
+            controller.enabled = false;
+
+        yield return new WaitForSeconds(delay);
+
+        if (controller != null)
+            controller.enabled = true;
+    }
+
+
+    IEnumerator TriggerAttackAnimation(float retraso)
+    {
+        yield return new WaitForSeconds(retraso);
+        animator.SetTrigger("GetAttacked");
+        StartCoroutine(DesactivarMovimiento(1f));
+    }
+
+    IEnumerator HideWarningAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        if (warningText != null)
+        {
+            warningText.SetActive(false);
+            Debug.Log("Aviso de murciélagos ocultado automáticamente");
+        }
+    }
+
+
+    IEnumerator TriggerBatAttack()
+    {
+        isAttacking = true;
+
+        if (warningText != null)
+            warningText.SetActive(false);
+
+        Debug.Log("¡Ataque de murciélagos iniciado!");
+
+        if (batSpawnPoints.Length > 0 && batPrefab != null && cachedPlayer != null)
+        {
+            GameObject bat = Instantiate(batPrefab, batSpawnPoints[0].position, Quaternion.identity);
+            BatMovement batScript = bat.GetComponent<BatMovement>();
+            if (batScript != null)
+            {
+                batScript.FlyToAttack(cachedPlayer);
+            }
+            else
+            {
+                Debug.LogWarning("El prefab del murciélago no tiene el script BatMovement.");
+            }
+        }
+        else
+        {
+            Debug.LogWarning("Faltan datos: puntos de aparición, prefab de murciélago o referencia al jugador.");
+        }
+
+        // Esperar un poco antes de permitir nuevos ataques
+        yield return new WaitForSeconds(2f);
+
+        isAttacking = false;
+
+
+    }
+
+    public void ForceBatAttack()
+    {
+        StopAllCoroutines();
+
+        ShowWarning();
+        StartCoroutine(TriggerBatAttackConRetraso(2f));
+
+        timer = 0f;
+        hasShownWarning = false;
+    }
+
+    IEnumerator TriggerBatAttackConRetraso(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        yield return TriggerBatAttack(); 
+    }
+
+
+    // Reiniciar el temporizador sin atacar
+    public void ResetTimer()
+    {
+        timer = 0f;
+        hasShownWarning = false;
+        Debug.Log("Temporizador reiniciado manualmente desde otra fuente (ej. cofre trampa).");
+    }
+}
