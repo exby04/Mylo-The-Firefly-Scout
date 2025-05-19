@@ -3,7 +3,6 @@ using UnityEngine.UI;
 
 public class AbrirCofre : MonoBehaviour, IInteractable
 {
-    public GameObject cofreAbiertoPrefab;
     private bool abierto = false;
     private static bool llaveObtenida = false;
     private static int cofresAbiertos = 0;
@@ -11,6 +10,8 @@ public class AbrirCofre : MonoBehaviour, IInteractable
     public float tiempoParaAbrir = 2f;
 
     public float HoldDuration => tiempoParaAbrir;
+
+    public Animator animator;
 
     private void Start()
     {
@@ -28,12 +29,11 @@ public class AbrirCofre : MonoBehaviour, IInteractable
     {
         abierto = true;
 
-        Instantiate(cofreAbiertoPrefab, transform.position, transform.rotation);
-        Destroy(gameObject);
+        animator.SetTrigger("AbrirCofre");
 
         cofresAbiertos++;
 
-        if (!llaveObtenida && cofresAbiertos == 6)
+        if (!llaveObtenida && cofresAbiertos == 1)
         {
             llaveObtenida = true;
             Inventario.instance.RecogerLlave();

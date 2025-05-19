@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class AbrirCofreTrampa : MonoBehaviour
 {
-    public GameObject cofreAbiertoPrefab;
+    public Animator animator;
     private bool jugadorCerca = false;
     private bool abierto = false;
 
@@ -27,8 +27,7 @@ public class AbrirCofreTrampa : MonoBehaviour
     {
         abierto = true;
 
-        Instantiate(cofreAbiertoPrefab, transform.position, transform.rotation);
-        Destroy(gameObject);
+        animator.SetTrigger("AbrirCofre");
 
         if (batAttackTimer != null)
         {

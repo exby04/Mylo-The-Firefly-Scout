@@ -1429,9 +1429,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 066b03110726c7a4f9847deadc7d66fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerController: {fileID: 0}
+  playerController: {fileID: 2083688632570570218}
   speedMultiplier: 2
   powerUpDuration: 10
+  animator: {fileID: 4969981352705235002}
+--- !u!95 &4969981352705235002 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 1383bf8b096fb3542997e21a45d00052, type: 3}
+  m_PrefabInstance: {fileID: 1554443483200038315}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5741556034186358888 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6502182839619065283, guid: 1383bf8b096fb3542997e21a45d00052, type: 3}
