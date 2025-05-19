@@ -10,7 +10,7 @@ public class InteractionHandler : MonoBehaviour
     public float ocultarUIRadius = 3.5f;
 
     [Header("UI")]
-    public GameObject uiCanvas; // Canvas encima del objeto (World Space)
+    public GameObject uiCanvas;
     public Image progressCircle;
 
     private IInteractable interactable;
@@ -42,7 +42,7 @@ public class InteractionHandler : MonoBehaviour
 
         float distance = Vector3.Distance(transform.position, player.position);
 
-        // 🛡️ Histeresis: evita titileo del Canvas
+        //Evita titileo del Canvas
         if (!playerInRange && distance <= mostrarUIRadius)
             playerInRange = true;
         else if (playerInRange && distance > ocultarUIRadius)
@@ -51,7 +51,7 @@ public class InteractionHandler : MonoBehaviour
         if (uiCanvas != null)
             uiCanvas.SetActive(playerInRange);
 
-        // 🎮 Mantener tecla para interactuar
+        // Mantener tecla para interactuar
         if (playerInRange && Input.GetKey(interactionKey))
         {
             holdTimer += Time.deltaTime;
@@ -72,7 +72,10 @@ public class InteractionHandler : MonoBehaviour
                         progressCircle.fillAmount = 0f;
                 }
 
-                enabled = false; // Desactivar el script tras la interacción
+                if (!(interactable is FireflyCollector))
+                {
+                    enabled = false;
+                }
             }
         }
         else if (!Input.GetKey(interactionKey))
@@ -82,7 +85,7 @@ public class InteractionHandler : MonoBehaviour
                 progressCircle.fillAmount = 0f;
         }
 
-        // 🔁 Rotar la UI hacia la cámara
+        //Rotar la UI hacia la cámara
         if (uiCanvas != null && Camera.main != null)
         {
             uiCanvas.transform.LookAt(Camera.main.transform);
