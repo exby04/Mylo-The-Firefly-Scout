@@ -61,19 +61,20 @@ public class GestorCriatura : MonoBehaviour
         }
     }
 
-    private Vector3 BuscarPosicionValidaCercaJugador(Vector3 origen, float radio, float altura)
+    private Vector3 BuscarPosicionValidaCercaJugador(Vector3 origen, float radioMax, float altura)
     {
         int intentosMaximos = 20;
+        float distanciaMinima = 2f;
 
         for (int i = 0; i < intentosMaximos; i++)
         {
-            Vector2 randomCircle = UnityEngine.Random.insideUnitCircle.normalized * radio;
-            Vector3 punto = new Vector3(origen.x + randomCircle.x, origen.y + 10f, origen.z + randomCircle.y);
+            Vector2 randomCircle = UnityEngine.Random.insideUnitCircle * radioMax;
+            Vector3 puntoDesdeAire = new Vector3(origen.x + randomCircle.x, origen.y + 10f, origen.z + randomCircle.y);
 
-            if (Physics.Raycast(punto, Vector3.down, out RaycastHit hit, 20f))
+            if (Physics.Raycast(puntoDesdeAire, Vector3.down, out RaycastHit hit, 20f))
             {
-                string tagSuelo = hit.collider.tag;
-                if (tagSuelo == "Floor" || tagSuelo == "Camino")
+                if ((hit.collider.CompareTag("Floor") || hit.collider.CompareTag("Camino")) &&
+                    Vector3.Distance(hit.point, origen) >= distanciaMinima)
                 {
                     Vector3 puntoValido = hit.point;
                     puntoValido.y = altura;
@@ -82,7 +83,7 @@ public class GestorCriatura : MonoBehaviour
             }
         }
 
-        UnityEngine.Debug.LogWarning("No se encontró suelo válido. Se usará la posición del jugador.");
+        UnityEngine.Debug.LogWarning("No se encontró suelo válido lejos del jugador. Se usará la posición del jugador.");
         return new Vector3(origen.x, altura, origen.z);
     }
 }
