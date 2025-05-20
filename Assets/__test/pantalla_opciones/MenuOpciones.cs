@@ -75,24 +75,28 @@ public TMP_InputField inputTemporizadorMurcielagos;
 
     
     public void DarLlave()
-    {
-        inventario.RecogerLlave();
-        Debug.Log("Llave otorgada desde el menú de opciones");
-    }
-
-    
-    public void ActivarPowerUpLuz()
-    {
-        inventario.RecogerPowerUp("Vision");
-        Debug.Log("Power-Up de Luz activado desde el menú");
-    }
-
-    
-    public void ActivarPowerUpVelocidad()
 {
-    Time.timeScale = 1f; 
+    Time.timeScale = 1f;
+    inventario.RecogerLlave();
+    Time.timeScale = 0f;
+    Debug.Log("Llave otorgada desde el menú de opciones");
+}
+
+public void ActivarPowerUpLuz()
+{
+    Time.timeScale = 1f;
+    inventario.RecogerPowerUp("Vision");
+    Time.timeScale = 0f;
+    Debug.Log("Power-Up de Luz activado desde el menú");
+}
+
+public void ActivarPowerUpVelocidad()
+{
+    Time.timeScale = 1f;
     inventario.RecogerPowerUp("Velocidad");
+    Time.timeScale = 0f;
     Debug.Log("Power-Up de Velocidad activado desde el menú");
 }
+
 
 }
