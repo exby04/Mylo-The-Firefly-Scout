@@ -8,6 +8,7 @@ TagManager:
   - Interactuable
   - UbicacionItem
   - UbicacionEscape
+  - Camino
   layers:
   - Default
   - TransparentFX
