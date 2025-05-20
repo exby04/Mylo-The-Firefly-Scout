@@ -33,7 +33,7 @@ public class AbrirCofre : MonoBehaviour, IInteractable
 
         cofresAbiertos++;
 
-        if (!llaveObtenida && cofresAbiertos == 1)
+        if (!llaveObtenida && cofresAbiertos == 6)
         {
             llaveObtenida = true;
             Inventario.instance.RecogerLlave();

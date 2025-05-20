@@ -1,54 +1,33 @@
-using UnityEngine;
+﻿using UnityEngine;
 
-public class AbrirCofreTrampa : MonoBehaviour
+public class AbrirCofreTrampa : MonoBehaviour, IInteractable
 {
+    [Header("Animación")]
     public Animator animator;
-    private bool jugadorCerca = false;
-    private bool abierto = false;
 
-    private Transform playerTransform;
+    [Header("Configuración de interacción")]
+    public float tiempoParaAbrir = 2f;
+
+    private bool abierto = false;
     private BatAttackTimer batAttackTimer;
 
     private void Start()
     {
-        playerTransform = GameObject.FindWithTag("Player")?.transform;
         batAttackTimer = FindFirstObjectByType<BatAttackTimer>();
     }
 
-    void Update()
-    {
-        if (jugadorCerca && !abierto && Input.GetKeyDown(KeyCode.E))
-        {
-            Abrir();
-        }
-    }
+    public float HoldDuration => tiempoParaAbrir;
 
-    void Abrir()
+    public void OnInteract()
     {
+        if (abierto) return;
+
         abierto = true;
 
-        animator.SetTrigger("AbrirCofre");
+        if (animator != null)
+            animator.SetTrigger("AbrirCofre");
 
         if (batAttackTimer != null)
-        {
             batAttackTimer.ForceBatAttack();
-        }
-    }
-
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            jugadorCerca = true;
-            playerTransform = other.transform;
-        }
-    }
-
-    void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            jugadorCerca = false;
-        }
     }
 }
