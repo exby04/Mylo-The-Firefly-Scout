@@ -11,6 +11,7 @@ public class PauseMenu : MonoBehaviour
     public GameObject pauseMenuUI;
     public GameObject exitWarningUI;
 
+    [Header("Opciones")]
     public OpcionesDebugMenu opcionesDebugMenu;
 
     [Header("Scene Settings")]
@@ -34,13 +35,16 @@ public class PauseMenu : MonoBehaviour
         }
 
         if (restartSceneAsset != null)
-
         {
+            restartSceneName = restartSceneAsset.name;
+            Debug.Log("Asignado automáticamente el nombre de la escena de reinicio: " + restartSceneName);
+        }
 #endif
     }
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
             Debug.Log("ESC key pressed");
             if (isPaused)
@@ -81,7 +85,10 @@ public class PauseMenu : MonoBehaviour
             opcionesDebugMenu.AbrirOpciones();
             Debug.Log("Menú de Opciones abierto desde el menú de pausa.");
         }
+        else
         {
+            Debug.LogWarning("OpcionesDebugMenu no está asignado en el PauseMenu.");
+        }
     }
 
     public void ExitToMenu()
@@ -137,6 +144,4 @@ public class PauseMenu : MonoBehaviour
             Debug.LogWarning("No se ha asignado la escena de reinicio en el Inspector.");
         }
     }
-
-
 }
