@@ -52,7 +52,7 @@ public class AbrirPuertasFinal : MonoBehaviour, IInteractable
                 colliderPuerta.enabled = false;
 
             // Cargar la escena tras un retraso
-            Invoke(nameof(FinalizarJuego), 2f);
+            Invoke(nameof(FinalizarJuego), 0.5f);
         }
         else
         {
