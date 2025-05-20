@@ -30,11 +30,11 @@ public class CrossfadeManager : MonoBehaviour
 
     private IEnumerator Transition(string sceneName)
     {
-        animator.SetTrigger("Start"); // fade to black
+        animator.SetTrigger("Start"); 
         yield return new WaitForSeconds(transitionTime);
         SceneManager.LoadScene(sceneName);
-        yield return null; // espera 1 frame
-        animator.SetTrigger("End"); // fade from black
+        yield return null;
+        animator.SetTrigger("End");
     }
 
     

@@ -33,7 +33,6 @@ public class AbrirPuertasFinal : MonoBehaviour, IInteractable
 #endif
     }
 
-    // Interfaz IInteractable
     public float HoldDuration => tiempoParaAbrir;
 
     public void OnInteract()
