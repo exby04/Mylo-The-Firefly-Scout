@@ -476,7 +476,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   luz: {fileID: 4881801671705534423}
-  tiempo: 45
+  tiempo: 70
   rangoMaximo: 8
   rangoMinimo: 3.5
   intensidadMaxima: 6

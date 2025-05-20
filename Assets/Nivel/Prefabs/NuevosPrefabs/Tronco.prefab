@@ -6045,7 +6045,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: de3626c4a25915d4aac5ec02bffd7713, type: 3}
       propertyPath: m_Name
-      value: Tronco 1
+      value: Tronco
       objectReference: {fileID: 0}
     - target: {fileID: 2763888063733486390, guid: de3626c4a25915d4aac5ec02bffd7713, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6165,7 +6165,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hideDuration: 5
-  holdTimeToHide: 2
+  holdTimeToHide: 1.5
   animator: {fileID: 433459682177121253}
   animTriggerName: Salir
   animationSpeed: 1
