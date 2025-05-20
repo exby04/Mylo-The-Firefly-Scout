@@ -4,7 +4,8 @@ using UnityEngine;
 public class BatAttackTimer : MonoBehaviour
 {
     [Header("Configuración de Ataque de Murciélagos")]
-    [SerializeField] private float attackInterval = 40f;
+    public float attackInterval = 40f;
+
     [SerializeField] private float timer = 0f;
     private bool hasShownWarning = false;
     private bool isAttacking = false;
