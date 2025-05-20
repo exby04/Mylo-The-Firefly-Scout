@@ -11602,7 +11602,7 @@ PrefabInstance:
       objectReference: {fileID: 831892264}
     - target: {fileID: 7567477955875748546, guid: 082c8cc7d0c6626439ac023a4090262a, type: 3}
       propertyPath: attackInterval
-      value: 45
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 7567477955875748546, guid: 082c8cc7d0c6626439ac023a4090262a, type: 3}
       propertyPath: delayAnimacionAtaque
@@ -27540,11 +27540,11 @@ PrefabInstance:
       objectReference: {fileID: 1398327455}
     - target: {fileID: 8708115548945271839, guid: 6ee3f862f83dc9548ab5f1af7ef0c4a9, type: 3}
       propertyPath: tiempo
-      value: 40
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 8708115548945271839, guid: 6ee3f862f83dc9548ab5f1af7ef0c4a9, type: 3}
       propertyPath: rangoMinimo
-      value: 4
+      value: 3.8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
