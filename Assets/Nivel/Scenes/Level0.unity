@@ -32296,6 +32296,10 @@ PrefabInstance:
       propertyPath: exitWarningUI
       value: 
       objectReference: {fileID: 2628363789463596861}
+    - target: {fileID: 8525162493928207119, guid: 465a93e96dc9dd648bb422d61010922d, type: 3}
+      propertyPath: restartSceneAsset
+      value: 
+      objectReference: {fileID: 102900000, guid: 30fc554c6a7fd254295557e2abb59387, type: 3}
     - target: {fileID: 8819702884563582815, guid: 465a93e96dc9dd648bb422d61010922d, type: 3}
       propertyPath: m_Name
       value: PauseMenuManager

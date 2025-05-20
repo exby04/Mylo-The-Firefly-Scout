@@ -24,8 +24,6 @@ public class HideSpot : MonoBehaviour, IInteractable
 [Header("UI - Tag de Salir")]
 [SerializeField] private GameObject salirTagUI;
 
-
-
     private bool isUsed = false;
     private bool isHiding = false;
     private bool playerInZone = false;
