@@ -11,6 +11,8 @@ public class PauseMenu : MonoBehaviour
     public GameObject pauseMenuUI;
     public GameObject exitWarningUI;
 
+    public OpcionesDebugMenu opcionesDebugMenu;
+
     [Header("Scene Settings")]
 #if UNITY_EDITOR
     public SceneAsset menuSceneAsset;   
@@ -32,18 +34,13 @@ public class PauseMenu : MonoBehaviour
         }
 
         if (restartSceneAsset != null)
-    {
-        restartSceneName = restartSceneAsset.name;
-        Debug.Log("Asignado automáticamente el nombre de la escena de reinicio: " + restartSceneName);
-    }
 
+        {
 #endif
     }
 
-
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape)) 
         {
             Debug.Log("ESC key pressed");
             if (isPaused)
@@ -79,7 +76,12 @@ public class PauseMenu : MonoBehaviour
 
     public void OpenOptions()
     {
-        Debug.Log("Opciones button clicked — functionality not implemented yet.");
+        if (opcionesDebugMenu != null)
+        {
+            opcionesDebugMenu.AbrirOpciones();
+            Debug.Log("Menú de Opciones abierto desde el menú de pausa.");
+        }
+        {
     }
 
     public void ExitToMenu()
