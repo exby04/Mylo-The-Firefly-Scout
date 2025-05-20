@@ -8,8 +8,8 @@ using UnityEditor;
 public class PauseMenu : MonoBehaviour
 {
     [Header("UI References")]
-    public GameObject pauseMenuUI;      // MUST BE ASSIGNED
-    public GameObject exitWarningUI;    // Optional, unless used
+    public GameObject pauseMenuUI;
+    public GameObject exitWarningUI;
 
     [Header("Scene Settings")]
 #if UNITY_EDITOR
@@ -43,7 +43,7 @@ public class PauseMenu : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))   // GOOD: Triggers on Esc
+        if (Input.GetKeyDown(KeyCode.Escape)) 
         {
             Debug.Log("ESC key pressed");
             if (isPaused)
@@ -56,8 +56,8 @@ public class PauseMenu : MonoBehaviour
     public void Resume()
     {
         Debug.Log("Resume() called");
-        pauseMenuUI.SetActive(false);   // Hides menu
-        exitWarningUI.SetActive(false); // Hides warning (if any)
+        pauseMenuUI.SetActive(false);
+        exitWarningUI.SetActive(false);
         Time.timeScale = 1f;
         isPaused = false;
     }
@@ -72,7 +72,7 @@ public class PauseMenu : MonoBehaviour
             return;
         }
 
-        pauseMenuUI.SetActive(true);    // <--- This is where it should show
+        pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
         isPaused = true;
     }

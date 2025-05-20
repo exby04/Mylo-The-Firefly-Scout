@@ -14,7 +14,6 @@ public class SpawnerInteractuables : MonoBehaviour
 
     void Start()
     {
-        // Encuentra todos los puntos marcados con la tag "UbicacionItem"
         GameObject[] puntosDeSpawn = GameObject.FindGameObjectsWithTag("UbicacionItem");
 
         if (puntosDeSpawn.Length < cantidadCofresNormales)
@@ -23,7 +22,7 @@ public class SpawnerInteractuables : MonoBehaviour
             return;
         }
 
-        // Mezclar las ubicaciones disponibles
+        // Mezclar las ubicaciones dispnibles
         List<GameObject> ubicacionesDisponibles = new List<GameObject>(puntosDeSpawn);
         Shuffle(ubicacionesDisponibles);
 
@@ -34,7 +33,7 @@ public class SpawnerInteractuables : MonoBehaviour
             Instantiate(cofreNormalPrefab, punto.position, punto.rotation);
         }
 
-        // Instanciar cofres trampa aleatorios (en las ubicaciones restantes)
+        // Instancia cofres trampa
         for (int i = cantidadCofresNormales; i < ubicacionesDisponibles.Count; i++)
         {
             if (Random.value < probabilidadTrampa)
@@ -45,7 +44,6 @@ public class SpawnerInteractuables : MonoBehaviour
         }
     }
 
-    // Mezclar lista (algoritmo Fisher-Yates)
     void Shuffle(List<GameObject> lista)
     {
         for (int i = 0; i < lista.Count; i++)

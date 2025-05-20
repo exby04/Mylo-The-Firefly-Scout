@@ -8,11 +8,11 @@ public class MakePersistent : MonoBehaviour
     {
         if (instance != null && instance != this)
         {
-            Destroy(gameObject); // Eliminar duplicados
+            Destroy(gameObject);
             return;
         }
 
         instance = this;
-        DontDestroyOnLoad(gameObject); // Hacer persistente
+        DontDestroyOnLoad(gameObject);
     }
 }

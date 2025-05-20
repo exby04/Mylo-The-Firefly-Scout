@@ -5,7 +5,7 @@ public class FadeInDelay : MonoBehaviour
 {
     public Animator animator;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
     void Start()
     {
         StartCoroutine(DelayedStart());
@@ -13,7 +13,7 @@ public class FadeInDelay : MonoBehaviour
 
     IEnumerator DelayedStart()
     {
-        yield return new WaitForSeconds(1f); // espera 2 segundos
+        yield return new WaitForSeconds(1f); 
         animator.SetTrigger("StartFade"); 
     }
 

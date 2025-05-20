@@ -33,14 +33,12 @@ public class ObjetoObtenidoUI : MonoBehaviour
     {
         panelObjeto.SetActive(true);
 
-        // Reset
         canvasGroup.alpha = 0f;
         panelRect.localScale = Vector3.zero;
 
         float t = 0f;
         float fadeDuration = 0.3f;
 
-        // Fade and scale in
         while (t < fadeDuration)
         {
             float eased = Mathf.SmoothStep(0, 1, t / fadeDuration);
@@ -53,10 +51,8 @@ public class ObjetoObtenidoUI : MonoBehaviour
         canvasGroup.alpha = 1f;
         panelRect.localScale = Vector3.one;
 
-        // Hold
         yield return new WaitForSecondsRealtime(duracion);
 
-        // Fade and scale out
         t = 0f;
         while (t < fadeDuration)
         {

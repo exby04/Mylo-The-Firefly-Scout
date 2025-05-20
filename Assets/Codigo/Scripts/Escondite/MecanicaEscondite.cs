@@ -18,7 +18,6 @@ public class HideSpot : MonoBehaviour, IInteractable
     [Header("Salida manual opcional")]
     [SerializeField] private bool permitirSalidaManual = false;
 
-// LIGHTTT
 [Header("Luz del tronco")]
 [SerializeField] private Light troncoLight;
 
@@ -50,11 +49,9 @@ public class HideSpot : MonoBehaviour, IInteractable
         if (animator != null)
             animator.speed = animationSpeed;
 
-        // 🔹 ADDED: Ensure tronco light starts off
         if (troncoLight != null)
             troncoLight.enabled = false;
-
-        // 🔹 ADDED: Ensure salir tag starts off
+     
         if (salirTagUI != null)
             salirTagUI.SetActive(false);
     }
@@ -77,7 +74,6 @@ public class HideSpot : MonoBehaviour, IInteractable
 
 if (isHiding && permitirSalidaManual)
 {
-    // Allow calling OnInteract() to exit while hiding, e.g. from SALIR tag
     StopCoroutine(hidingCoroutine);
     ExitHiding();
     return;
@@ -96,11 +92,9 @@ hidingCoroutine = StartCoroutine(HideRoutine());
         isHiding = true;
         isUsed = true;
 
-         // 🔹 ADDED: Turn on the tronco light
         if (troncoLight != null)
             troncoLight.enabled = true;
 
-        // 🔹 ADDED: Show the Salir tag UI
         if (salirTagUI != null)
             salirTagUI.SetActive(true);
 
@@ -120,11 +114,9 @@ hidingCoroutine = StartCoroutine(HideRoutine());
     private void ExitHiding()
     {
         isHiding = false;
-           // 🔹 ADDED: Turn off the tronco light
         if (troncoLight != null)
             troncoLight.enabled = false;
 
-        // 🔹 ADDED: Hide the Salir tag UI
         if (salirTagUI != null)
             salirTagUI.SetActive(false);
 

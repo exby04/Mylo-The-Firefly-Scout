@@ -7,12 +7,12 @@ public class AbrirCofreTrampa : MonoBehaviour
     private bool abierto = false;
 
     private Transform playerTransform;
-    private BatAttackTimer batAttackTimer; // Referencia al sistema de ataque de murciélagos
+    private BatAttackTimer batAttackTimer;
 
     private void Start()
     {
         playerTransform = GameObject.FindWithTag("Player")?.transform;
-        batAttackTimer = FindFirstObjectByType<BatAttackTimer>(); // O usa [SerializeField] y asígnalo en el inspector
+        batAttackTimer = FindFirstObjectByType<BatAttackTimer>();
     }
 
     void Update()

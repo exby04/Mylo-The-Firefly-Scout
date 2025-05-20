@@ -42,7 +42,7 @@ public class SpeedPowerUpController : MonoBehaviour
     public void GiveSpeedPowerUp()
     {
         ActivatePowerUp();
-        Debug.Log("✅ PowerUp de velocidad recibido.");
+        Debug.Log(" PowerUp de velocidad recibido.");
     }
 
     private void ActivatePowerUp()
@@ -52,7 +52,7 @@ public class SpeedPowerUpController : MonoBehaviour
         playerController.playerSpeed = originalSpeed * speedMultiplier;
 
         UpdateRunningState();
-        Debug.Log("🏃‍♂️ PowerUp activado");
+        Debug.Log(" PowerUp activado");
     }
 
     private void EndPowerUp()
@@ -60,7 +60,7 @@ public class SpeedPowerUpController : MonoBehaviour
         isActive = false;
         playerController.playerSpeed = originalSpeed;
         animator.SetBool("isRunning", false);
-        Debug.Log("🧘‍♂️ PowerUp finalizado");
+        Debug.Log(" PowerUp finalizado");
     }
 
     private void UpdateRunningState()

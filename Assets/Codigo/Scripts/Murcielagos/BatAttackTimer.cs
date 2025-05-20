@@ -31,7 +31,7 @@ public class BatAttackTimer : MonoBehaviour
 
     void Update()
     {
-        // Bloquear ataque si ya hay uno en curso
+        // Bloquea ataque cuando hay uno en curso
         if (isAttacking) return;
 
         timer += Time.deltaTime;
@@ -131,7 +131,6 @@ public class BatAttackTimer : MonoBehaviour
             Debug.LogWarning("Faltan datos: puntos de aparición, prefab de murciélago o referencia al jugador.");
         }
 
-        // Esperar un poco antes de permitir nuevos ataques
         yield return new WaitForSeconds(2f);
 
         isAttacking = false;
@@ -156,8 +155,6 @@ public class BatAttackTimer : MonoBehaviour
         yield return TriggerBatAttack(); 
     }
 
-
-    // Reiniciar el temporizador sin atacar
     public void ResetTimer()
     {
         timer = 0f;

@@ -83,7 +83,6 @@ public class BatMovement : MonoBehaviour
             currentSpeed = Mathf.Min(currentSpeed + acceleration * Time.deltaTime, maxSpeed);
             transform.position = Vector3.MoveTowards(transform.position, objetivoAtaque, currentSpeed * Time.deltaTime);
 
-            // Rotar solo en eje Y hacia el jugador
             Vector3 directionToPlayer = player.position - transform.position;
             directionToPlayer.y = 0f;
 
@@ -191,7 +190,7 @@ public class BatMovement : MonoBehaviour
         Vector3 escapeDirection = (awayDirection + Vector3.up).normalized;
         Vector3 exitPoint = transform.position + escapeDirection * 10f;
 
-        // Rotar horizontalmente en dirección de escape
+
         Vector3 lookDir = new Vector3(escapeDirection.x, 0f, escapeDirection.z);
         if (lookDir != Vector3.zero)
         {
