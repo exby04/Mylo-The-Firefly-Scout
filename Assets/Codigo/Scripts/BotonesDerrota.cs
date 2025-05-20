@@ -38,7 +38,7 @@ public class BotonesDerrota : MonoBehaviour
     {
         if (!string.IsNullOrEmpty(nombreEscenaNivel))
         {
-            SceneManager.LoadScene(nombreEscenaNivel);
+            CrossfadeManager.Instance.LoadScene(nombreEscenaNivel);
         }
         else
         {
@@ -50,7 +50,7 @@ public class BotonesDerrota : MonoBehaviour
     {
         if (!string.IsNullOrEmpty(nombreEscenaInicio))
         {
-            SceneManager.LoadScene(nombreEscenaInicio);
+            CrossfadeManager.Instance.LoadScene(nombreEscenaInicio);
         }
         else
         {
