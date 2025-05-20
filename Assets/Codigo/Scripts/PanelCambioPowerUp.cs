@@ -32,6 +32,7 @@ public class PanelCambioPowerUpUI : MonoBehaviour
         imagenNuevo.sprite = spriteNuevo;
 
         panel.SetActive(true);
+        Time.timeScale = 0f; // Pausar juego
     }
 
     public void SeleccionarActual()
@@ -41,8 +42,8 @@ public class PanelCambioPowerUpUI : MonoBehaviour
 
         Inventario.instance.RecogerPowerUp(powerUpActual);
         panel.SetActive(false);
+        Time.timeScale = 1f; // Reanudar juego
     }
-
 
     public void SeleccionarNuevo()
     {
@@ -51,5 +52,6 @@ public class PanelCambioPowerUpUI : MonoBehaviour
 
         Inventario.instance.RecogerPowerUp(powerUpNuevo);
         panel.SetActive(false);
+        Time.timeScale = 1f; // Reanudar juego
     }
 }
