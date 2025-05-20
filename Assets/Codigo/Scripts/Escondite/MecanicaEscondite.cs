@@ -58,15 +58,21 @@ public class HideSpot : MonoBehaviour, IInteractable
 
     private void Update()
     {
-        if (!permitirSalidaManual || !isHiding || !playerInZone)
+        if (!permitirSalidaManual || !isHiding)
             return;
 
         if (Input.GetKeyDown(KeyCode.E))
         {
-            StopCoroutine(hidingCoroutine);
+            if (hidingCoroutine != null)
+            {
+                StopCoroutine(hidingCoroutine);
+                hidingCoroutine = null;
+            }
+
             ExitHiding();
         }
     }
+
 
     public void OnInteract()
     {
