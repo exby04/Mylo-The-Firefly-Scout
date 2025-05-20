@@ -17088,6 +17088,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5047243799889670872, guid: 19adb3001d47c6549843a25e8af35ac8, type: 3}
   m_PrefabInstance: {fileID: 948553486}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &948566849 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1519233302254651777, guid: 962203b80b1ded8449ebeeafc452178e, type: 3}
+  m_PrefabInstance: {fileID: 1169519731}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77585d4869c870b4aa18875102a82644, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &949563635 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5047243799889670872, guid: 19adb3001d47c6549843a25e8af35ac8, type: 3}
@@ -20614,6 +20625,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 652695002732692918, guid: 71d604d6fd4049140a9d75a459d23331, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 948566849}
+    - target: {fileID: 652695002732692918, guid: 71d604d6fd4049140a9d75a459d23331, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: CerrarOpciones
+      objectReference: {fileID: 0}
     - target: {fileID: 959176203359001998, guid: 71d604d6fd4049140a9d75a459d23331, type: 3}
       propertyPath: m_SizeDelta.x
       value: 700
@@ -20686,6 +20705,14 @@ PrefabInstance:
       propertyPath: m_GlobalFontAsset
       value: 
       objectReference: {fileID: 11400000, guid: 80680066445383a45b8df1aee761a9ae, type: 2}
+    - target: {fileID: 3293815683572038832, guid: 71d604d6fd4049140a9d75a459d23331, type: 3}
+      propertyPath: m_OnEndEdit.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 948566849}
+    - target: {fileID: 3293815683572038832, guid: 71d604d6fd4049140a9d75a459d23331, type: 3}
+      propertyPath: m_OnEndEdit.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ActualizarTemporizadorLuz
+      objectReference: {fileID: 0}
     - target: {fileID: 3869014270791814758, guid: 71d604d6fd4049140a9d75a459d23331, type: 3}
       propertyPath: m_fontAsset
       value: 
@@ -20709,6 +20736,14 @@ PrefabInstance:
     - target: {fileID: 4479699115167386828, guid: 71d604d6fd4049140a9d75a459d23331, type: 3}
       propertyPath: m_hasFontAssetChanged
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4590420248272197110, guid: 71d604d6fd4049140a9d75a459d23331, type: 3}
+      propertyPath: m_OnEndEdit.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 948566849}
+    - target: {fileID: 4590420248272197110, guid: 71d604d6fd4049140a9d75a459d23331, type: 3}
+      propertyPath: m_OnEndEdit.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ActualizarTemporizadorMurcielagos
       objectReference: {fileID: 0}
     - target: {fileID: 4762712674999513993, guid: 71d604d6fd4049140a9d75a459d23331, type: 3}
       propertyPath: m_SizeDelta.x
@@ -20724,7 +20759,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5042824322119574002, guid: 71d604d6fd4049140a9d75a459d23331, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5277365753269974805, guid: 71d604d6fd4049140a9d75a459d23331, type: 3}
       propertyPath: m_SizeDelta.x
@@ -20737,6 +20772,22 @@ PrefabInstance:
     - target: {fileID: 5516308601441946365, guid: 71d604d6fd4049140a9d75a459d23331, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 234
+      objectReference: {fileID: 0}
+    - target: {fileID: 5671272916631217566, guid: 71d604d6fd4049140a9d75a459d23331, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 948566849}
+    - target: {fileID: 5671272916631217566, guid: 71d604d6fd4049140a9d75a459d23331, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ActivarPowerUpVelocidad
+      objectReference: {fileID: 0}
+    - target: {fileID: 5771826279519893878, guid: 71d604d6fd4049140a9d75a459d23331, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 948566849}
+    - target: {fileID: 5771826279519893878, guid: 71d604d6fd4049140a9d75a459d23331, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: DarLlave
       objectReference: {fileID: 0}
     - target: {fileID: 6251499463565269032, guid: 71d604d6fd4049140a9d75a459d23331, type: 3}
       propertyPath: m_SizeDelta.x
@@ -20797,6 +20848,14 @@ PrefabInstance:
     - target: {fileID: 8846536011065938972, guid: 71d604d6fd4049140a9d75a459d23331, type: 3}
       propertyPath: m_Name
       value: OPCIONES
+      objectReference: {fileID: 0}
+    - target: {fileID: 9218802361322442670, guid: 71d604d6fd4049140a9d75a459d23331, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 948566849}
+    - target: {fileID: 9218802361322442670, guid: 71d604d6fd4049140a9d75a459d23331, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ActivarPowerUpLuz
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -21789,6 +21848,10 @@ PrefabInstance:
     - target: {fileID: 8921476975603945271, guid: 962203b80b1ded8449ebeeafc452178e, type: 3}
       propertyPath: m_Name
       value: OpcionesManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 8921476975603945271, guid: 962203b80b1ded8449ebeeafc452178e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
