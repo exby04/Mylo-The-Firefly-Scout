@@ -13,7 +13,7 @@ public class MenuManejador : MonoBehaviour
     [SerializeField] private SceneAsset escenaEditor;
 #endif
 
-    [SerializeField] private string nombreEscena = "Level0";
+    [SerializeField] private string nombreEscena = "InicioAnimationScene";
 
     public void Jugar()
     {

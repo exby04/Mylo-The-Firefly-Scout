@@ -576,8 +576,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e53af2e0b5c9e7747a8633ba9ea7a898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  escenaEditor: {fileID: 102900000, guid: 99c9720ab356a0642a771bea13969a05, type: 3}
-  nombreEscena: Level0
+  escenaEditor: {fileID: 102900000, guid: acc5a569aaf87a141ab56b0de8b9fe0f, type: 3}
+  nombreEscena: InicioAnimationScene
 --- !u!1 &995801338
 GameObject:
   m_ObjectHideFlags: 0

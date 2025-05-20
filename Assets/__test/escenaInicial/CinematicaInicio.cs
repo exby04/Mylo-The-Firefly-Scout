@@ -1,8 +1,12 @@
 using UnityEngine;
 using UnityEngine.Playables;
+using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class CinematicaInicio : MonoBehaviour
 {
+    [SerializeField] private string nombreEscena = "Level0";
+
     public PlayableDirector timeline;
 
     void Start()
@@ -14,6 +18,7 @@ public class CinematicaInicio : MonoBehaviour
     void OnTimelineFinished(PlayableDirector pd)
     {
         Debug.Log("Timeline terminó, lanzando fade out");
-        FindObjectOfType<FadeManager>().StartFadeOut();
+
+        CrossfadeManager.Instance.LoadScene(nombreEscena);
     }
 }
