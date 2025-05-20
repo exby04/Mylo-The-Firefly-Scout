@@ -6164,7 +6164,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e23e568afb9248542a8d783d97249158, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hideDuration: 5
+  hideDuration: 15
   holdTimeToHide: 1.5
   animator: {fileID: 433459682177121253}
   animTriggerName: Salir
