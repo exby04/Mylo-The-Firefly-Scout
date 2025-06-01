@@ -10,7 +10,7 @@ public class CriaturaOscuridad : MonoBehaviour
     [SerializeField] private float tiempoEsperaAntesDeAtacar = 1f;
     private bool haComenzadoAtaque = false;
     private float temporizador = 0f;
-
+    public static bool CriaturaActiva = false;
     public void Configurar(AtenuacionLuz luz, Transform jugadorRef)
     {
         atenuacionLuz = luz;
@@ -19,6 +19,7 @@ public class CriaturaOscuridad : MonoBehaviour
 
     void Start()
     {
+        CriaturaActiva = true;
         agent = GetComponent<NavMeshAgent>();
         jugador = GameObject.FindWithTag("Player")?.transform;
     }
@@ -27,7 +28,7 @@ public class CriaturaOscuridad : MonoBehaviour
     {
         if (jugador == null) return;
 
-       
+
         if (!haComenzadoAtaque)
         {
             haComenzadoAtaque = true;
@@ -40,7 +41,7 @@ public class CriaturaOscuridad : MonoBehaviour
             return;
         }
 
-        
+
         agent.SetDestination(jugador.position);
 
         Vector3 direccion = jugador.position - transform.position;
@@ -62,4 +63,9 @@ public class CriaturaOscuridad : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    void OnDestroy()
+{
+    CriaturaActiva = false;
+}
+
 }
