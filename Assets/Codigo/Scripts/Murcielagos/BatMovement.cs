@@ -204,7 +204,12 @@ public class BatMovement : MonoBehaviour
             transform.position = Vector3.MoveTowards(transform.position, exitPoint, baseSpeed * Time.deltaTime);
             yield return null;
         }
-
         Destroy(gameObject);
     }
+    public float GetEstimatedFlightTime(Vector3 target)
+{
+    float distance = Vector3.Distance(transform.position, target + new Vector3(0, alturaImpacto, 0));
+    return distance / maxSpeed; // worst-case: assume max speed for simplicity
+}
+
 }

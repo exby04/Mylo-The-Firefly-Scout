@@ -7,12 +7,13 @@ public class BatAttackTimer : MonoBehaviour
     public float attackInterval = 40f;
 
     [Header("Spawn Settings")]
-    [SerializeField] private float distanceFromPlayer = 5f;
+    [Header("Puntos de Spawn de Murciélagos")]
+public Transform[] batSpawnPoints;
 
+
+    [SerializeField] private float distanceFromPlayer = 5f;
     [Tooltip("Altura desde la que aparecen los murciélagos sobre el jugador")]
     [SerializeField] private float spawnHeight = 5f;
-
-
 
     [SerializeField] private float timer = 0f;
     private bool hasShownWarning = false;
@@ -22,7 +23,6 @@ public class BatAttackTimer : MonoBehaviour
 
     [Header("Referencias")]
     public GameObject batPrefab;
-    public Transform[] batSpawnPoints;
     public GameObject warningText;
 
     [Header("Animacion de Ataque")]
@@ -30,6 +30,7 @@ public class BatAttackTimer : MonoBehaviour
     public float delayAnimacionAtaque;
 
     private GameObject cachedPlayer;
+
 
     void Start()
     {
@@ -41,7 +42,6 @@ public class BatAttackTimer : MonoBehaviour
     void Update()
     {
         if (CriaturaOscuridad.CriaturaActiva) return;
-        
         if (isAttacking) return;
 
         timer += Time.deltaTime;
@@ -66,14 +66,10 @@ public class BatAttackTimer : MonoBehaviour
             warningText.SetActive(true);
 
             if (warningText.GetComponent<LookAtPlayer>() == null)
-            {
                 warningText.AddComponent<LookAtPlayer>();
 
-            }
-            //StartCoroutine(TriggerAttackAnimation(delayAnimacionAtaque));
             Debug.Log("¡Murciélagos en camino!  " + warningText.name);
             StartCoroutine(ShakeWarningOverTime(5f));
-
         }
 
         hasShownWarning = true;
@@ -81,19 +77,15 @@ public class BatAttackTimer : MonoBehaviour
 
     IEnumerator DesactivarMovimiento(float delay)
     {
-        if (cachedPlayer == null)
-            yield break;
+        if (cachedPlayer == null) yield break;
 
         var controller = cachedPlayer.GetComponent<PlayerController>();
-        if (controller != null)
-            controller.enabled = false;
+        if (controller != null) controller.enabled = false;
 
         yield return new WaitForSeconds(delay);
 
-        if (controller != null)
-            controller.enabled = true;
+        if (controller != null) controller.enabled = true;
     }
-
 
     IEnumerator TriggerAttackAnimation(float retraso)
     {
@@ -102,72 +94,66 @@ public class BatAttackTimer : MonoBehaviour
         StartCoroutine(DesactivarMovimiento(1f));
     }
 
-    IEnumerator HideWarningAfterDelay(float delay)
-    {
-        yield return new WaitForSeconds(delay);
+    IEnumerator TriggerBatAttack()
+{
+    isAttacking = true;
 
-        if (warningText != null)
-        {
-            warningText.SetActive(false);
-            Debug.Log("Aviso de murciélagos ocultado automáticamente");
-        }
+    if (warningText != null)
+        warningText.SetActive(false);
+
+
+    if (CriaturaOscuridad.CriaturaActiva)
+    {
+        isAttacking = false;
+        yield break;
     }
 
+    Debug.Log("¡Ataque de murciélagos iniciado!");
 
-    IEnumerator TriggerBatAttack()
+    if (batPrefab != null && cachedPlayer != null)
     {
-        isAttacking = true;
+        Vector3 spawnPos;
 
-        if (warningText != null)
-            warningText.SetActive(false);
-
-        Debug.Log("¡Ataque de murciélagos iniciado!");
-
-        if (batPrefab != null && cachedPlayer != null)
+        if (batSpawnPoints != null && batSpawnPoints.Length > 0)
         {
-            float distanceFromPlayer = 5f;
-            Vector3[] offsets = new Vector3[]
-            {
-        Vector3.forward,
-        Vector3.back,
-        Vector3.left,
-        Vector3.right
-            };
-
-
-            Vector3 offset = offsets[Random.Range(0, offsets.Length)] * distanceFromPlayer;
-            Vector3 spawnPos = cachedPlayer.transform.position + offset + Vector3.up * spawnHeight;
-
-
-            GameObject bat = Instantiate(batPrefab, spawnPos, Quaternion.identity);
-
-            BatMovement batScript = bat.GetComponent<BatMovement>();
-            if (batScript != null)
-            {
-                batScript.FlyToAttack(cachedPlayer);
-            }
+            Transform spawnPoint = batSpawnPoints[Random.Range(0, batSpawnPoints.Length)];
+            spawnPos = spawnPoint.position;
         }
-
-
         else
         {
-            Debug.LogWarning("Faltan datos: puntos de aparición, prefab de murciélago o referencia al jugador.");
+            Debug.LogWarning("No hay puntos de spawn asignados. Usando posición por defecto.");
+            spawnPos = cachedPlayer.transform.position + Vector3.back * distanceFromPlayer + Vector3.up * spawnHeight;
         }
 
-        yield return new WaitForSeconds(2f);
+        GameObject bat = Instantiate(batPrefab, spawnPos, Quaternion.identity);
+        BatMovement batScript = bat.GetComponent<BatMovement>();
 
-        isAttacking = false;
+        if (batScript != null)
+        {
+            batScript.FlyToAttack(cachedPlayer);
 
-
+            if (!CriaturaOscuridad.CriaturaActiva)
+            {
+                float flightTime = batScript.GetEstimatedFlightTime(cachedPlayer.transform.position);
+                StartCoroutine(ShakeWarningOverTime(flightTime));
+            }
+        }
     }
+    else
+    {
+        Debug.LogWarning("Faltan datos: prefab de murciélago o referencia al jugador.");
+    }
+
+    yield return new WaitForSeconds(2f);
+    isAttacking = false;
+}
+
 
     public void ForceBatAttack()
     {
         StopAllCoroutines();
-
         ShowWarning();
         StartCoroutine(TriggerBatAttackConRetraso(2f));
-
         timer = 0f;
         hasShownWarning = false;
     }
@@ -184,58 +170,54 @@ public class BatAttackTimer : MonoBehaviour
         hasShownWarning = false;
         Debug.Log("Temporizador reiniciado manualmente desde otra fuente (ej. cofre trampa).");
     }
-    
-   IEnumerator ShakeWarningOverTime(float duration)
-{
-    if (warningText == null) yield break;
 
-    Transform warningTransform = warningText.transform;
-    Vector3 originalLocalPos = warningTransform.localPosition;
-
-    SpriteRenderer sr = warningText.GetComponent<SpriteRenderer>();
-    if (sr == null) yield break;
-
-    Color color1 = Color.white;
-    Color color2 = Color.yellow;
-    Color color3 = new Color(1f, 0.5f, 0f); // orange
-    Color color4 = Color.red;
-
-    float elapsed = 0f;
-    float shakeStartThreshold = 0.2f;
-
-    while (elapsed < duration)
+    IEnumerator ShakeWarningOverTime(float duration)
     {
-        elapsed += Time.deltaTime;
-        float progress = elapsed / duration;
+        if (warningText == null) yield break;
 
-        if (progress < 0.33f)
-            sr.color = Color.Lerp(color1, color2, progress / 0.33f);
-        else if (progress < 0.66f)
-            sr.color = Color.Lerp(color2, color3, (progress - 0.33f) / 0.33f);
-        else
-            sr.color = Color.Lerp(color3, color4, (progress - 0.66f) / 0.34f);
+        Transform warningTransform = warningText.transform;
+        Vector3 originalLocalPos = warningTransform.localPosition;
 
-        float intensity = 0f;
-        if (progress > shakeStartThreshold)
+        SpriteRenderer sr = warningText.GetComponent<SpriteRenderer>();
+        if (sr == null) yield break;
+
+        Color color1 = Color.white;
+        Color color2 = Color.yellow;
+        Color color3 = new Color(1f, 0.5f, 0f);
+        Color color4 = Color.red;
+
+        float elapsed = 0f;
+        float shakeStartThreshold = 0.2f;
+
+        while (elapsed < duration)
         {
-            float shakeProgress = (progress - shakeStartThreshold) / (1f - shakeStartThreshold);
-            intensity = Mathf.Lerp(0f, 0.3f, shakeProgress);
+            elapsed += Time.deltaTime;
+            float progress = elapsed / duration;
+
+            if (progress < 0.33f)
+                sr.color = Color.Lerp(color1, color2, progress / 0.33f);
+            else if (progress < 0.66f)
+                sr.color = Color.Lerp(color2, color3, (progress - 0.33f) / 0.33f);
+            else
+                sr.color = Color.Lerp(color3, color4, (progress - 0.66f) / 0.34f);
+
+            
+            float intensity = 0f;
+            if (progress > shakeStartThreshold)
+            {
+                float shakeProgress = (progress - shakeStartThreshold) / (1f - shakeStartThreshold);
+                intensity = Mathf.Lerp(0f, 0.3f, shakeProgress);
+            }
+
+            float offsetX = (Mathf.PerlinNoise(Time.time * 10f, 0f) - 0.5f) * intensity;
+            float offsetY = (Mathf.PerlinNoise(0f, Time.time * 10f) - 0.5f) * intensity;
+
+            warningTransform.localPosition = originalLocalPos + new Vector3(offsetX, offsetY, 0);
+            yield return null;
         }
 
-        float offsetX = (Mathf.PerlinNoise(Time.time * 10f, 0f) - 0.5f) * intensity;
-        float offsetY = (Mathf.PerlinNoise(0f, Time.time * 10f) - 0.5f) * intensity;
-
-        warningTransform.localPosition = originalLocalPos + new Vector3(offsetX, offsetY, 0);
-
-        yield return null;
+        warningTransform.localPosition = originalLocalPos;
+        sr.color = color1;
+        warningText.SetActive(false);
     }
-
-    
-    warningTransform.localPosition = originalLocalPos;
-    sr.color = color1; 
-    warningText.SetActive(false);
-}
-
-
-
 }
