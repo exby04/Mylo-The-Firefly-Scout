@@ -39875,6 +39875,17 @@ MonoBehaviour:
   m_Events:
     m_Signals: []
     m_Events: []
+--- !u!114 &902369134 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2083688632570570218, guid: 6ee3f862f83dc9548ab5f1af7ef0c4a9, type: 3}
+  m_PrefabInstance: {fileID: 1862347208}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 152439066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f0e907fdc422744fb4d33fb93dcf5d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &902957197
 GameObject:
   m_ObjectHideFlags: 0
@@ -93035,6 +93046,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nombreEscena: Level0
   timeline: {fileID: 2109302968}
+  playerController: {fileID: 902369134}
 --- !u!1001 &2111000699
 PrefabInstance:
   m_ObjectHideFlags: 0
