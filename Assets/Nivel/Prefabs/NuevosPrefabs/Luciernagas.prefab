@@ -5122,7 +5122,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4464567bc182e041b4a13d36af8656f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tiempoParaRecolectar: 1.5
+  tiempoParaRecolectar: 1
 --- !u!114 &477112483505861669
 MonoBehaviour:
   m_ObjectHideFlags: 0

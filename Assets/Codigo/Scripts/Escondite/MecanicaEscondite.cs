@@ -8,21 +8,28 @@ public class HideSpot : MonoBehaviour, IInteractable
     [SerializeField] private float holdTimeToHide = 2f;
 
     [Header("Animación y efectos")]
-    [SerializeField] private Animator animator;
-    [SerializeField] private string animTriggerName = "Salir";
+    [SerializeField] private Animator animator; // Animator del escondite
+    [SerializeField] private string animTriggerEsconderse = "Esconderse";
+    [SerializeField] private string animTriggerSalir = "Salir";
     [SerializeField] private float animationSpeed = 1f;
     [SerializeField] private float animationDuration = 2f;
     [SerializeField] private ParticleSystem particulasPolvo;
     [SerializeField] private float tiempoParticulas = 1f;
 
+    [Header("Animación del jugador")]
+    [SerializeField] private string playerHideTrigger = "Esconderse";
+
     [Header("Salida manual opcional")]
     [SerializeField] private bool permitirSalidaManual = false;
 
-[Header("Luz del tronco")]
-[SerializeField] private Light troncoLight;
+    [Header("Luz del tronco")]
+    [SerializeField] private Light troncoLightOverhead;
+    [SerializeField] private Light troncoLight;
 
-[Header("UI - Tag de Salir")]
-[SerializeField] private GameObject salirTagUI;
+
+
+    [Header("UI - Tag de Salir")]
+    [SerializeField] private GameObject salirTagUI;
 
     private bool isUsed = false;
     private bool isHiding = false;
@@ -32,6 +39,7 @@ public class HideSpot : MonoBehaviour, IInteractable
     private GameObject player;
     private PlayerController playerController;
     private PlayerHealth playerHealth;
+    private Animator playerAnimator;
 
     public float HoldDuration => holdTimeToHide;
 
@@ -42,6 +50,7 @@ public class HideSpot : MonoBehaviour, IInteractable
         {
             player = playerController.gameObject;
             playerHealth = player.GetComponent<PlayerHealth>();
+            playerAnimator = player.GetComponent<Animator>();
         }
 
         if (animator != null)
@@ -49,7 +58,10 @@ public class HideSpot : MonoBehaviour, IInteractable
 
         if (troncoLight != null)
             troncoLight.enabled = false;
-     
+
+        if (troncoLightOverhead != null)
+            troncoLightOverhead.enabled = false;
+
         if (salirTagUI != null)
             salirTagUI.SetActive(false);
     }
@@ -71,24 +83,20 @@ public class HideSpot : MonoBehaviour, IInteractable
         }
     }
 
-
     public void OnInteract()
     {
         if (player == null) return;
 
-if (isHiding && permitirSalidaManual)
-{
-    StopCoroutine(hidingCoroutine);
-    ExitHiding();
-    return;
-}
+        if (isHiding && permitirSalidaManual)
+        {
+            StopCoroutine(hidingCoroutine);
+            ExitHiding();
+            return;
+        }
 
-if (isUsed || isHiding) return;
+        if (isUsed || isHiding) return;
 
-hidingCoroutine = StartCoroutine(HideRoutine());
-
-
-     
+        hidingCoroutine = StartCoroutine(HideRoutine());
     }
 
     private IEnumerator HideRoutine()
@@ -99,8 +107,29 @@ hidingCoroutine = StartCoroutine(HideRoutine());
         if (troncoLight != null)
             troncoLight.enabled = true;
 
+        if (troncoLightOverhead != null)
+            troncoLightOverhead.enabled = true;
+
         if (salirTagUI != null)
             salirTagUI.SetActive(true);
+
+        // 🔁 Animación del escondite
+        if (animator != null && HasTrigger(animator, animTriggerEsconderse))
+        {
+            Debug.Log("[HideSpot] Activando trigger del escondite: " + animTriggerEsconderse);
+            animator.speed = animationSpeed;
+            animator.SetTrigger(animTriggerEsconderse);
+        }
+
+        // 🔁 Animación del jugador
+        if (playerAnimator != null && HasTrigger(playerAnimator, playerHideTrigger))
+        {
+            Debug.Log("[HideSpot] Activando trigger del jugador: " + playerHideTrigger);
+            playerAnimator.updateMode = AnimatorUpdateMode.UnscaledTime;
+            playerAnimator.SetTrigger(playerHideTrigger);
+        }
+
+        yield return new WaitForSeconds(1.5f);
 
         if (playerController != null)
             playerController.enabled = false;
@@ -110,7 +139,7 @@ hidingCoroutine = StartCoroutine(HideRoutine());
 
         player.SetActive(false);
 
-        yield return new WaitForSeconds(hideDuration);
+        yield return new WaitForSeconds(hideDuration - 1.5f);
 
         ExitHiding();
     }
@@ -118,21 +147,26 @@ hidingCoroutine = StartCoroutine(HideRoutine());
     private void ExitHiding()
     {
         isHiding = false;
+
         if (troncoLight != null)
             troncoLight.enabled = false;
+
+        if (troncoLightOverhead != null)
+            troncoLightOverhead.enabled = false;
 
         if (salirTagUI != null)
             salirTagUI.SetActive(false);
 
-        //Activar animación
-        if (animator != null && !string.IsNullOrEmpty(animTriggerName))
+        // 🎬 Animación de salida
+        if (animator != null && HasTrigger(animator, animTriggerSalir))
         {
+            Debug.Log("[HideSpot] Activando trigger de salida: " + animTriggerSalir);
             animator.speed = animationSpeed;
-            animator.SetTrigger(animTriggerName);
+            animator.SetTrigger(animTriggerSalir);
             StartCoroutine(DetenerAnimacionDespues(animationDuration));
         }
 
-        //Activar partículas
+        // ✨ Partículas
         if (particulasPolvo != null)
         {
             particulasPolvo.gameObject.SetActive(true);
@@ -140,7 +174,6 @@ hidingCoroutine = StartCoroutine(HideRoutine());
             StartCoroutine(DesactivarParticulasDespues(tiempoParticulas));
         }
 
-        //Volver a activar el jugador
         player.SetActive(true);
 
         if (playerController != null)
@@ -154,7 +187,7 @@ hidingCoroutine = StartCoroutine(HideRoutine());
     {
         yield return new WaitForSeconds(segundos);
         if (animator != null)
-            animator.speed = 0f; 
+            animator.speed = 0f;
     }
 
     private IEnumerator DesactivarParticulasDespues(float segundos)
@@ -162,6 +195,17 @@ hidingCoroutine = StartCoroutine(HideRoutine());
         yield return new WaitForSeconds(segundos);
         if (particulasPolvo != null)
             particulasPolvo.Stop();
+    }
+
+    private bool HasTrigger(Animator anim, string triggerName)
+    {
+        foreach (var param in anim.parameters)
+        {
+            if (param.name == triggerName && param.type == AnimatorControllerParameterType.Trigger)
+                return true;
+        }
+        Debug.LogWarning("[HideSpot] El Animator no tiene el trigger: " + triggerName);
+        return false;
     }
 
     private void OnTriggerEnter(Collider other)

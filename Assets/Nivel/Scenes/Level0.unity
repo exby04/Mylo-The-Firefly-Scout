@@ -14248,6 +14248,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tronco
       objectReference: {fileID: 0}
+    - target: {fileID: 8276903403443243632, guid: a8d372250b3d10146bb1bb3bcd964e1b, type: 3}
+      propertyPath: mostrarUIRadius
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8276903403443243632, guid: a8d372250b3d10146bb1bb3bcd964e1b, type: 3}
+      propertyPath: ocultarUIRadius
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -17795,6 +17803,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 1610884757310036567, guid: ff6b2f800b769e34aa37a0ff98ccfe5e, type: 3}
   m_PrefabInstance: {fileID: 967329067}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &971611832 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 253980167769979381, guid: 248c5a54a81f7884b9434666f46227ea, type: 3}
+  m_PrefabInstance: {fileID: 6048913429851730119}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &972238735
 PrefabInstance:
@@ -25384,6 +25397,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 9213458105033826611, guid: 3c7bf0e3b3c87b243a9d261c3b4c3c05, type: 3}
   m_PrefabInstance: {fileID: 1346428570}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &1351233446 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 2056315585236145206, guid: 248c5a54a81f7884b9434666f46227ea, type: 3}
+  m_PrefabInstance: {fileID: 6048913429851730119}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1355881381
 PrefabInstance:
@@ -35280,6 +35298,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!224 &1911752927 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 2469772610321406214, guid: 248c5a54a81f7884b9434666f46227ea, type: 3}
+  m_PrefabInstance: {fileID: 6048913429851730119}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1912588770
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -40968,6 +40991,38 @@ PrefabInstance:
     - target: {fileID: 26240980296844823, guid: 248c5a54a81f7884b9434666f46227ea, type: 3}
       propertyPath: m_hasFontAssetChanged
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1750470019619799823, guid: 248c5a54a81f7884b9434666f46227ea, type: 3}
+      propertyPath: slotLlave
+      value: 
+      objectReference: {fileID: 1911752927}
+    - target: {fileID: 1750470019619799823, guid: 248c5a54a81f7884b9434666f46227ea, type: 3}
+      propertyPath: slotPowerUp
+      value: 
+      objectReference: {fileID: 1351233446}
+    - target: {fileID: 1750470019619799823, guid: 248c5a54a81f7884b9434666f46227ea, type: 3}
+      propertyPath: brilloObjeto
+      value: 
+      objectReference: {fileID: 971611832}
+    - target: {fileID: 1750470019619799823, guid: 248c5a54a81f7884b9434666f46227ea, type: 3}
+      propertyPath: offsetFinalY
+      value: -93
+      objectReference: {fileID: 0}
+    - target: {fileID: 1750470019619799823, guid: 248c5a54a81f7884b9434666f46227ea, type: 3}
+      propertyPath: duracionFlotando
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1750470019619799823, guid: 248c5a54a81f7884b9434666f46227ea, type: 3}
+      propertyPath: escalaSlotFinal.x
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1750470019619799823, guid: 248c5a54a81f7884b9434666f46227ea, type: 3}
+      propertyPath: escalaSlotFinal.y
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1750470019619799823, guid: 248c5a54a81f7884b9434666f46227ea, type: 3}
+      propertyPath: escalaSlotFinal.z
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 2058618485840241772, guid: 248c5a54a81f7884b9434666f46227ea, type: 3}
       propertyPath: m_fontAsset
