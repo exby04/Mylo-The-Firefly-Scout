@@ -1168,7 +1168,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6260968378557714443, guid: f4d10210a9c8fc74ab48c1b4db5fbef7, type: 3}
       propertyPath: transitionTime
-      value: 1.5
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8253263288875227807, guid: f4d10210a9c8fc74ab48c1b4db5fbef7, type: 3}
       propertyPath: m_LocalPosition.x

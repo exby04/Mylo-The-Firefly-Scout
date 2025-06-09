@@ -329,6 +329,10 @@ MonoBehaviour:
   escenaVictoria: {fileID: 102900000, guid: 02a0f569b8b58b14bb0df2ab61b753fe, type: 3}
   nombreEscenaVictoria: DefeatScene
   tiempoParaAbrir: 1.5
+  sonidosPuertaBloqueada:
+  - {fileID: 8300000, guid: 838bbde481d56334ab3f06c1913d80a0, type: 3}
+  - {fileID: 8300000, guid: ed4d3eaf906e5eb48a016deb8f3333ef, type: 3}
+  - {fileID: 8300000, guid: e1a65f4b734098443a616a9f399558f4, type: 3}
 --- !u!4 &6498058972642935034 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: ee68de7d3c956b84e9d8354ac18817fa, type: 3}

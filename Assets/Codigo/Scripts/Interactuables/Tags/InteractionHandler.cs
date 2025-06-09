@@ -72,10 +72,10 @@ public class InteractionHandler : MonoBehaviour
                         progressCircle.fillAmount = 0f;
                 }
 
-                if (!(interactable is FireflyCollector))
-                {
-                    enabled = false;
-                }
+                //if (!(interactable is FireflyCollector))
+                // {
+                //    enabled = false;
+                //}
             }
         }
         else if (!Input.GetKey(interactionKey))

@@ -7,7 +7,7 @@ using UnityEditor;
 
 public class AbrirPuertasFinal : MonoBehaviour, IInteractable
 {
-    [Header("Puerta con animación combinada")]
+    [Header("Puerta con animaciÃ³n combinada")]
     public Animator animatorPuerta;
     public string nombreAnimacion = "AbrirPuertas";
 
@@ -20,10 +20,21 @@ public class AbrirPuertasFinal : MonoBehaviour, IInteractable
 #endif
     [SerializeField] private string nombreEscenaVictoria;
 
-    [Header("Interacción")]
+    [Header("InteracciÃ³n")]
     public float tiempoParaAbrir = 2f;
 
+    [Header("Sonidos intento fallido")]
+    public AudioClip[] sonidosPuertaBloqueada;
+
+    private AudioSource audioSource;
     private bool yaSeAbrio = false;
+
+    void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+            audioSource = gameObject.AddComponent<AudioSource>();
+    }
 
     void OnValidate()
     {
@@ -43,7 +54,7 @@ public class AbrirPuertasFinal : MonoBehaviour, IInteractable
         {
             yaSeAbrio = true;
 
-            // Ejecutar la animación
+            // Ejecutar la animaciÃ³n
             if (animatorPuerta != null)
                 animatorPuerta.Play(nombreAnimacion);
 
@@ -56,21 +67,28 @@ public class AbrirPuertasFinal : MonoBehaviour, IInteractable
         }
         else
         {
+            // Sonido aleatorio de intento fallido
+            if (sonidosPuertaBloqueada != null && sonidosPuertaBloqueada.Length > 0)
+            {
+                int index = Random.Range(0, sonidosPuertaBloqueada.Length);
+                audioSource.PlayOneShot(sonidosPuertaBloqueada[index]);
+            }
+
             Debug.Log("Necesitas una llave para abrir las puertas.");
         }
     }
 
     private void FinalizarJuego()
     {
-        Debug.Log("¡Juego finalizado!");
+        Debug.Log("Â¡Juego finalizado!");
 
         if (!string.IsNullOrEmpty(nombreEscenaVictoria))
         {
-            CrossfadeManager.Instance.FadeThroughScenes("VictoryDoorScene", 5f, "VictoryScene");
+            CrossfadeManager.Instance.FadeThroughScenes("VictoryDoorScene", 9f, "VictoryScene");
         }
         else
         {
-            Debug.LogWarning("No se asignó la escena de victoria.");
+            Debug.LogWarning("No se asignÃ³ la escena de victoria.");
         }
     }
 }
