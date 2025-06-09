@@ -24,6 +24,10 @@ public class Inventario : MonoBehaviour
     [Header("Referencias")]
     public PowerUpLuz powerUpLuz;
     public SpeedPowerUpController speedPowerUpController;
+    [Header("Sonido")]
+    public AudioClip sonidoRecogerObjeto;
+    public AudioSource audioSource;
+
 
     private void Awake()
     {
@@ -56,42 +60,44 @@ public class Inventario : MonoBehaviour
     }
 
     public void RecogerLlave()
-    {
-        
-        Transform jugador = FindFirstObjectByType<PlayerController>().transform;
-        Animator animador = jugador.GetComponent<Animator>();
-        CameraZoomController.instance?.ZoomAndPauseWithAnimation(jugador, animador);
+{
+    Transform jugador = FindFirstObjectByType<PlayerController>().transform;
+    Animator animador = jugador.GetComponent<Animator>();
+    CameraZoomController.instance?.ZoomAndPauseWithAnimation(jugador, animador);
 
-        
-        ObjetoObtenidoUI.instance?.Mostrar(llaveSprite, "llave", () =>
-        {
-            tieneLlave = true;
-            keyImage.sprite = llaveSprite;
-            keyImage.color = Color.white;
-        });
-    }
+    if (audioSource != null && sonidoRecogerObjeto != null)
+        audioSource.PlayOneShot(sonidoRecogerObjeto);
+
+    ObjetoObtenidoUI.instance?.Mostrar(llaveSprite, "llave", () =>
+    {
+        tieneLlave = true;
+        keyImage.sprite = llaveSprite;
+        keyImage.color = Color.white;
+    });
+}
 
 
     public void RecogerPowerUp(string powerUp)
+{
+    Sprite sprite = GetSpriteFromName(powerUp);
+
+    Transform jugador = FindFirstObjectByType<PlayerController>().transform;
+    Animator animador = jugador.GetComponent<Animator>();
+    CameraZoomController.instance?.ZoomAndPauseWithAnimation(jugador, animador);
+
+    if (audioSource != null && sonidoRecogerObjeto != null)
+        audioSource.PlayOneShot(sonidoRecogerObjeto);
+
+    ObjetoObtenidoUI.instance?.Mostrar(sprite, "powerup", () =>
     {
-        Sprite sprite = GetSpriteFromName(powerUp);
+        powerUpActual = powerUp;
+        powerUpImage.sprite = sprite;
+        powerUpImage.color = Color.white;
 
-        
-        Transform jugador = FindFirstObjectByType<PlayerController>().transform;
-        Animator animador = jugador.GetComponent<Animator>();
-        CameraZoomController.instance?.ZoomAndPauseWithAnimation(jugador, animador);
-
-        
-        ObjetoObtenidoUI.instance?.Mostrar(sprite, "powerup", () =>
-        {
-            powerUpActual = powerUp;
-            powerUpImage.sprite = sprite;
-            powerUpImage.color = Color.white;
-
-            if (textoSpacebar != null)
-                textoSpacebar.SetActive(true);
-        });
-    }
+        if (textoSpacebar != null)
+            textoSpacebar.SetActive(true);
+    });
+}
 
 
     public void ActivarPowerUp()
