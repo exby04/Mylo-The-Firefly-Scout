@@ -11,6 +11,8 @@ public class AbrirCofreTrampa : MonoBehaviour, IInteractable
     private bool abierto = false;
     private BatAttackTimer batAttackTimer;
 
+    [SerializeField] private AudioSource sonidoCofre;
+
     private void Start()
     {
         batAttackTimer = FindFirstObjectByType<BatAttackTimer>();
@@ -29,5 +31,10 @@ public class AbrirCofreTrampa : MonoBehaviour, IInteractable
 
         if (batAttackTimer != null)
             batAttackTimer.ForceBatAttack();
+
+        if (sonidoCofre != null)
+        {
+            sonidoCofre.Play();
+        }
     }
 }
