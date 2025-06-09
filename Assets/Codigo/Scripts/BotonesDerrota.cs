@@ -50,6 +50,7 @@ public class BotonesDerrota : MonoBehaviour
     {
         if (!string.IsNullOrEmpty(nombreEscenaInicio))
         {
+
             CrossfadeManager.Instance.LoadScene(nombreEscenaInicio);
         }
         else
