@@ -34,6 +34,9 @@ public class BatMovement : MonoBehaviour
     //---------
 
     private bool hasAlreadyTriggered = false;
+    [Header("Sonidos")]
+    [SerializeField] private AudioSource flyingAudioSource;
+    [SerializeField] private AudioSource attackAudioSource;
 
     void Start()
     {
@@ -57,6 +60,12 @@ public class BatMovement : MonoBehaviour
                 UnityEngine.Debug.LogWarning("No se encontró Animator en el jugador o sus hijos.");
 
             isAttacking = true;
+            if (flyingAudioSource != null)
+            {
+              flyingAudioSource.loop = true;
+              flyingAudioSource.Play();
+            }
+
             currentSpeed = baseSpeed;
 
             if (selfAnimator != null)
@@ -109,6 +118,12 @@ public class BatMovement : MonoBehaviour
                 if (ph != null)
                 {
                     ph.TakeDamage(1);
+                    if (flyingAudioSource != null)
+                     flyingAudioSource.Stop();
+
+                    if (attackAudioSource != null)
+                     attackAudioSource.Play();
+
                 }
 
                 //Instanciar la nubecita de impacto
@@ -181,6 +196,9 @@ public class BatMovement : MonoBehaviour
 
     IEnumerator FlyAway()
     {
+        if (flyingAudioSource != null && flyingAudioSource.isPlaying)
+        flyingAudioSource.Stop();
+
         yield return new WaitForSeconds(0.3f);
 
         Vector3 awayDirection = transform.position - player.position;

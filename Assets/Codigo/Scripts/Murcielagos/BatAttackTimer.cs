@@ -26,6 +26,8 @@ public class BatAttackTimer : MonoBehaviour
     private GameObject cachedPlayer;
     private Coroutine flashingCoroutine;
 
+    [SerializeField] private AudioSource warningAudioSource;
+
 
     void Start()
     {
@@ -54,18 +56,23 @@ public class BatAttackTimer : MonoBehaviour
     }
 
     void ShowWarning()
-{
-    if (warningText == null) return;
+    {
+        if (warningText == null) return;
 
-    warningText.SetActive(true);
+        warningText.SetActive(true);
 
-    if (flashingCoroutine != null)
-        StopCoroutine(flashingCoroutine);
+        if (flashingCoroutine != null)
+            StopCoroutine(flashingCoroutine);
 
-    flashingCoroutine = StartCoroutine(FlashWarningOverTime(5f));
-    hasShownWarning = true;
+        flashingCoroutine = StartCoroutine(FlashWarningOverTime(5f));
+        hasShownWarning = true;
 
-    Debug.Log("¡Murciélagos en camino! " + warningText.name);
+        Debug.Log("¡Murciélagos en camino! " + warningText.name);
+        if (warningAudioSource != null && !warningAudioSource.isPlaying)
+          {
+            warningAudioSource.Play();
+          }
+
 }
 
 
