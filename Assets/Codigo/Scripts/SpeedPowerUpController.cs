@@ -12,6 +12,9 @@ public class SpeedPowerUpController : MonoBehaviour
     private float timer = 0f;
     private float originalSpeed;
 
+    private MyloAudio myloAudio;
+
+
     void Start()
     {
         if (playerController == null)
@@ -21,6 +24,8 @@ public class SpeedPowerUpController : MonoBehaviour
             animator = GetComponent<Animator>();
 
         originalSpeed = playerController.playerSpeed;
+        myloAudio = GetComponent<MyloAudio>();
+
     }
 
     void Update()
@@ -60,6 +65,10 @@ public class SpeedPowerUpController : MonoBehaviour
         isActive = false;
         playerController.playerSpeed = originalSpeed;
         animator.SetBool("isRunning", false);
+        if (myloAudio != null)
+        {
+            myloAudio.SonidoCansancioConDuracion(3f); 
+        }
         Debug.Log(" PowerUp finalizado");
     }
 

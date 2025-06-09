@@ -19,6 +19,7 @@ public class PlayerHealth : MonoBehaviour
 
     private Animator animator;
     private PlayerController controller;
+    private MyloAudio myloAudio; 
 
     void Start()
     {
@@ -27,6 +28,7 @@ public class PlayerHealth : MonoBehaviour
 
         animator = GetComponent<Animator>();
         controller = GetComponent<PlayerController>();
+        myloAudio = GetComponent<MyloAudio>();
     }
 
     public void TakeDamage(int damage)
@@ -36,6 +38,9 @@ public class PlayerHealth : MonoBehaviour
 
         currentLives -= damage;
         if (currentLives < 0) currentLives = 0;
+
+        if (myloAudio != null)
+            myloAudio.SonidoDañoAleatorio();
 
 
         UpdateHUD();
