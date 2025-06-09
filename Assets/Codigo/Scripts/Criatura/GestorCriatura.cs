@@ -28,6 +28,8 @@ public class GestorCriatura : MonoBehaviour
             atenuacionLuz.OnAdvertenciaLuz += IniciarAdvertencia;
             atenuacionLuz.OnLuzApagada += AparecerCriatura;
         }
+
+        atenuacionLuz.OnLuzReiniciada += CancelarAdvertencia;
     }
 
     private void IniciarAdvertencia()
@@ -99,4 +101,8 @@ public class GestorCriatura : MonoBehaviour
         return posicion;
     }
 
+    private void CancelarAdvertencia()
+    {
+        advertenciaUI?.CancelarAdvertencia();
+    }
 }
