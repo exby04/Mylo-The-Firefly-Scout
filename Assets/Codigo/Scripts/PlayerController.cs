@@ -16,6 +16,11 @@ public class PlayerController : MonoBehaviour
 
     private Animator animator;
 
+    private MyloAudio myloAudio;
+    private float pasoTimer = 0f;
+    public float pasoIntervaloCaminar = 0.4f;
+    public float pasoIntervaloCorrer = 0.3f;
+
     [HideInInspector] public bool puedeMover = true;
 
     void Start()
@@ -23,6 +28,8 @@ public class PlayerController : MonoBehaviour
         player = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
         puedeMover = true;
+        myloAudio = GetComponent<MyloAudio>();
+
     }
 
     void Update()
@@ -56,9 +63,28 @@ public class PlayerController : MonoBehaviour
         player.Move(movePlayer * playerSpeed * Time.deltaTime);
 
         // solo activa caminar si no está corriendo
+        bool puedeSonarPaso = movePlayer.magnitude > 0.01f;
         bool isRunning = animator.GetBool("isRunning");
         bool isWalking = movePlayer.magnitude > 0.01f && !isRunning;
         animator.SetBool("isWalking", isWalking);
+        float pasoIntervaloActual = isRunning ? pasoIntervaloCorrer : pasoIntervaloCaminar;
+
+        if (puedeSonarPaso)
+        {
+            pasoTimer -= Time.deltaTime;
+            if (pasoTimer <= 0f)
+            {
+                myloAudio?.SonidoPasoAleatorio();
+                pasoTimer = pasoIntervaloActual;
+            }
+        }
+        else
+        {
+            pasoTimer = 0f;
+        }
+
+
+
     }
 
     void camDirection()

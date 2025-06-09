@@ -1179,6 +1179,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: 1383bf8b096fb3542997e21a45d00052, type: 3}
+      propertyPath: m_WarningMessage
+      value: "\nBinding warning: Some generic clip(s) animate transforms that are
+        already bound by a Humanoid avatar. These transforms can only be changed
+        by Humanoid clips.\n\tTransform 'mixamorig:Hips'\n\tTransform 'mixamorig:LeftFoot'\n\tTransform
+        'mixamorig:Spine1'\n\tTransform 'mixamorig:LeftToeBase'\n\tTransform 'mixamorig:RightArm'\n\tTransform
+        'mixamorig:LeftLeg'\n\tTransform 'mixamorig:LeftShoulder'\n\tTransform 'mixamorig:RightFoot'\n\tTransform
+        'mixamorig:Head'\n\tTransform 'mixamorig:LeftUpLeg'\n\tand more ...\n\tFrom
+        animation clip 'mixamo.com'"
+      objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 1383bf8b096fb3542997e21a45d00052, type: 3}
       propertyPath: m_ApplyRootMotion
       value: 0
       objectReference: {fileID: 0}
@@ -1231,6 +1241,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 1383bf8b096fb3542997e21a45d00052, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1323003332496993160}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 1383bf8b096fb3542997e21a45d00052, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4591947629544466092}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 1383bf8b096fb3542997e21a45d00052, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5539519364268422005}
     - targetCorrespondingSourceObject: {fileID: 118866551711537115, guid: 1383bf8b096fb3542997e21a45d00052, type: 3}
       insertIndex: -1
       addedObject: {fileID: 209233291466118383}
@@ -1349,6 +1365,7 @@ MonoBehaviour:
   player: {fileID: 1725232627102467879}
   playerSpeed: 4.5
   mainCamera: {fileID: 0}
+  pasoIntervalo: 0.4
   puedeMover: 1
 --- !u!143 &1725232627102467879
 CharacterController:
@@ -1436,6 +1453,127 @@ MonoBehaviour:
   speedMultiplier: 2
   powerUpDuration: 10
   animator: {fileID: 4969981352705235002}
+--- !u!114 &4591947629544466092
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1824828444651952378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70a5cbbfdc9601d44928c88000ba436b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pasosClips:
+  - {fileID: 8300000, guid: fada910b10aa0b941a2f04f24eb82fa2, type: 3}
+  - {fileID: 8300000, guid: 230f450e65b869f41a26c805eabefc7c, type: 3}
+  - {fileID: 8300000, guid: 3bbdba11d793d2542a2440cfff258761, type: 3}
+  - {fileID: 8300000, guid: ed99850c7a884804396eb49725bb0afb, type: 3}
+  - {fileID: 8300000, guid: 4a4a0e77310eabc4586cd56e3a4fa0b3, type: 3}
+  - {fileID: 8300000, guid: 6a6b1a110b07dae4c85d781923439dc0, type: 3}
+  quejidos:
+  - {fileID: 8300000, guid: 90ddff7608819f446a656f3d64b37a92, type: 3}
+  - {fileID: 8300000, guid: 96b78a87fb3844a4eaa4679c0c6dae3f, type: 3}
+  - {fileID: 8300000, guid: dcfbed9491a5cb94783193b44e603975, type: 3}
+  respiracionCansado: {fileID: 8300000, guid: 59ce12329b2c855419adfe7f35646664, type: 3}
+--- !u!82 &5539519364268422005
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1824828444651952378}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!95 &4969981352705235002 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 1383bf8b096fb3542997e21a45d00052, type: 3}
