@@ -23,6 +23,10 @@ public class Inventario : MonoBehaviour
     [Header("Referencias")]
     public PowerUpLuz powerUpLuz;
     public SpeedPowerUpController speedPowerUpController;
+    [Header("Sonido")]
+    public AudioClip sonidoRecogerObjeto;
+    public AudioSource audioSource;
+
 
     private void Awake()
     {
@@ -66,6 +70,9 @@ public class Inventario : MonoBehaviour
         Animator animador = jugador.GetComponent<Animator>();
 
         CameraZoomController.instance?.ZoomAndPauseWithAnimation(jugador, animador);
+        if (audioSource != null && sonidoRecogerObjeto != null)
+        audioSource.PlayOneShot(sonidoRecogerObjeto);
+
     }
 
     public void RecogerPowerUp(string powerUp)
@@ -90,6 +97,9 @@ public class Inventario : MonoBehaviour
         Animator animador = jugador.GetComponent<Animator>();
 
         CameraZoomController.instance?.ZoomAndPauseWithAnimation(jugador, animador);
+        if (audioSource != null && sonidoRecogerObjeto != null)
+        audioSource.PlayOneShot(sonidoRecogerObjeto);
+
     }
 
     public void ActivarPowerUp()
