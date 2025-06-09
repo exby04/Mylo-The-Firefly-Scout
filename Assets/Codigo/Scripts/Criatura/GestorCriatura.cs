@@ -7,8 +7,11 @@ public class GestorCriatura : MonoBehaviour
     [SerializeField] private GameObject prefabCriatura;
     [SerializeField] private Transform jugador;
     [SerializeField] private Camera camara;
-    [SerializeField] private GameObject simboloExclamacionUI;
+
     [SerializeField] private AdvertenciaCriaturaUI advertenciaUI;
+
+    [SerializeField] private AudioSource sonidoAparicion;
+    [SerializeField] private AudioSource sonidoLatidos;
 
     [SerializeField] private float distanciaDesdeJugador = 6f;
     [SerializeField] private float alturaCriatura = 0f;
@@ -18,7 +21,7 @@ public class GestorCriatura : MonoBehaviour
 
     private void Start()
     {
-        UnityEngine.Debug.Log("📢 GestorCriatura activo");
+        UnityEngine.Debug.Log("GestorCriatura activo");
 
         if (atenuacionLuz != null)
         {
@@ -51,14 +54,17 @@ public class GestorCriatura : MonoBehaviour
             script.Configurar(atenuacionLuz, jugador);
         }
 
-        if (simboloExclamacionUI != null)
+        //Sonido
+
+        if (sonidoAparicion != null)
         {
-            simboloExclamacionUI.SetActive(true);
-            if (simboloExclamacionUI.GetComponent<LookAtPlayer>() == null)
-            {
-                simboloExclamacionUI.AddComponent<LookAtPlayer>();
-            }
-            Invoke(nameof(DesactivarSimbolo), 1f);
+            sonidoAparicion.Play();
+        }
+
+        if(sonidoLatidos != null && !sonidoLatidos.isPlaying)
+{
+            sonidoLatidos.loop = true;
+            sonidoLatidos.Play();
         }
     }
 
@@ -74,14 +80,10 @@ public class GestorCriatura : MonoBehaviour
             }
 
             advertenciaUI?.CancelarAdvertencia();
-        }
-    }
 
-    private void DesactivarSimbolo()
-    {
-        if (simboloExclamacionUI != null)
-        {
-            simboloExclamacionUI.SetActive(false);
+            if (sonidoLatidos != null && sonidoLatidos.isPlaying)
+                sonidoLatidos.Stop();
+
         }
     }
 
@@ -96,4 +98,5 @@ public class GestorCriatura : MonoBehaviour
 
         return posicion;
     }
+
 }
