@@ -7,6 +7,8 @@ public class AbrirCofre : MonoBehaviour, IInteractable
     private static bool llaveObtenida = false;
     private static int cofresAbiertos = 0;
 
+    [SerializeField] private AudioSource sonidoCofre;
+
     public float tiempoParaAbrir = 2f;
 
     public float HoldDuration => tiempoParaAbrir;
@@ -31,6 +33,11 @@ public class AbrirCofre : MonoBehaviour, IInteractable
 
         animator.updateMode = AnimatorUpdateMode.UnscaledTime;
         animator.SetTrigger("AbrirCofre");
+
+        if (sonidoCofre != null)
+        {
+            sonidoCofre.Play();
+        }
 
         cofresAbiertos++;
 

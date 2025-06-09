@@ -10,6 +10,7 @@ public class GestorCriatura : MonoBehaviour
 
     [SerializeField] private AdvertenciaCriaturaUI advertenciaUI;
 
+    [Header("Sonidos")]
     [SerializeField] private AudioSource sonidoAparicion;
     [SerializeField] private AudioSource sonidoLatidos;
 
@@ -28,6 +29,8 @@ public class GestorCriatura : MonoBehaviour
             atenuacionLuz.OnAdvertenciaLuz += IniciarAdvertencia;
             atenuacionLuz.OnLuzApagada += AparecerCriatura;
         }
+
+        atenuacionLuz.OnLuzReiniciada += CancelarAdvertencia;
     }
 
     private void IniciarAdvertencia()
@@ -42,7 +45,7 @@ public class GestorCriatura : MonoBehaviour
 
         Vector3 posicion = BuscarPosicionDelanteDeCamara(jugador.position, distanciaDesdeJugador, alturaCriatura);
 
-        UnityEngine.Debug.Log($"🐾 Criatura aparecerá en: {posicion}, jugador en: {jugador.position}");
+        UnityEngine.Debug.Log($"Criatura aparecerá en: {posicion}, jugador en: {jugador.position}");
         UnityEngine.Debug.DrawLine(jugador.position, posicion, Color.green, 5f);
 
         criaturaActual = Instantiate(prefabCriatura, posicion, Quaternion.identity);
@@ -54,15 +57,14 @@ public class GestorCriatura : MonoBehaviour
             script.Configurar(atenuacionLuz, jugador);
         }
 
-        //Sonido
-
-        if (sonidoAparicion != null)
+        //sonido
+        if (sonidoAparicion != null && !sonidoAparicion.isPlaying)
         {
             sonidoAparicion.Play();
         }
 
-        if(sonidoLatidos != null && !sonidoLatidos.isPlaying)
-{
+        if (sonidoLatidos != null && !sonidoLatidos.isPlaying)
+        {
             sonidoLatidos.loop = true;
             sonidoLatidos.Play();
         }
@@ -83,7 +85,6 @@ public class GestorCriatura : MonoBehaviour
 
             if (sonidoLatidos != null && sonidoLatidos.isPlaying)
                 sonidoLatidos.Stop();
-
         }
     }
 
@@ -97,6 +98,11 @@ public class GestorCriatura : MonoBehaviour
         posicion.y = origen.y + altura;
 
         return posicion;
+    }
+
+    private void CancelarAdvertencia()
+    {
+        advertenciaUI?.CancelarAdvertencia();
     }
 
 }
