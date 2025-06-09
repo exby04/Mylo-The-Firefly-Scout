@@ -27,6 +27,10 @@ public class AtenuacionLuz : MonoBehaviour
 
     private bool advertenciaLanzada = false;
 
+    public delegate void LuzReiniciadaEvent();
+    public event LuzReiniciadaEvent OnLuzReiniciada;
+
+
     void Start()
     {
         if (luz == null)
@@ -72,6 +76,6 @@ public class AtenuacionLuz : MonoBehaviour
         advertenciaLanzada = false;
 
         UnityEngine.Debug.Log("La luz se ha reiniciado.");
-
+        OnLuzReiniciada?.Invoke();
     }
 }
