@@ -4078,6 +4078,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tronco2
       objectReference: {fileID: 0}
+    - target: {fileID: 7504844183520401864, guid: a8d372250b3d10146bb1bb3bcd964e1b, type: 3}
+      propertyPath: sonidoRomper
+      value: 
+      objectReference: {fileID: 8300000, guid: 8d6d43443ed6de245bace637dba06aad, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7376,6 +7380,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tronco3
       objectReference: {fileID: 0}
+    - target: {fileID: 7504844183520401864, guid: a8d372250b3d10146bb1bb3bcd964e1b, type: 3}
+      propertyPath: sonidoRomper
+      value: 
+      objectReference: {fileID: 8300000, guid: 8d6d43443ed6de245bace637dba06aad, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -8914,6 +8922,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tronco6
       objectReference: {fileID: 0}
+    - target: {fileID: 7504844183520401864, guid: a8d372250b3d10146bb1bb3bcd964e1b, type: 3}
+      propertyPath: sonidoRomper
+      value: 
+      objectReference: {fileID: 8300000, guid: 8d6d43443ed6de245bace637dba06aad, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -13411,6 +13423,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tronco4
       objectReference: {fileID: 0}
+    - target: {fileID: 7504844183520401864, guid: a8d372250b3d10146bb1bb3bcd964e1b, type: 3}
+      propertyPath: sonidoRomper
+      value: 
+      objectReference: {fileID: 8300000, guid: 8d6d43443ed6de245bace637dba06aad, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -14248,6 +14264,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tronco
       objectReference: {fileID: 0}
+    - target: {fileID: 7504844183520401864, guid: a8d372250b3d10146bb1bb3bcd964e1b, type: 3}
+      propertyPath: sonidoRomper
+      value: 
+      objectReference: {fileID: 8300000, guid: 8d6d43443ed6de245bace637dba06aad, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -21109,6 +21129,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tronco7
       objectReference: {fileID: 0}
+    - target: {fileID: 7504844183520401864, guid: a8d372250b3d10146bb1bb3bcd964e1b, type: 3}
+      propertyPath: sonidoRomper
+      value: 
+      objectReference: {fileID: 8300000, guid: 8d6d43443ed6de245bace637dba06aad, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -21662,6 +21686,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tronco8
       objectReference: {fileID: 0}
+    - target: {fileID: 7504844183520401864, guid: a8d372250b3d10146bb1bb3bcd964e1b, type: 3}
+      propertyPath: sonidoRomper
+      value: 
+      objectReference: {fileID: 8300000, guid: 8d6d43443ed6de245bace637dba06aad, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -29343,6 +29371,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tronco1
       objectReference: {fileID: 0}
+    - target: {fileID: 7504844183520401864, guid: a8d372250b3d10146bb1bb3bcd964e1b, type: 3}
+      propertyPath: sonidoRomper
+      value: 
+      objectReference: {fileID: 8300000, guid: 8d6d43443ed6de245bace637dba06aad, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -32725,6 +32757,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tronco5
       objectReference: {fileID: 0}
+    - target: {fileID: 7504844183520401864, guid: a8d372250b3d10146bb1bb3bcd964e1b, type: 3}
+      propertyPath: sonidoRomper
+      value: 
+      objectReference: {fileID: 8300000, guid: 8d6d43443ed6de245bace637dba06aad, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -200,10 +200,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 698495714284874063, guid: 38c91bfba0d6ba749af2341862841346, type: 3}
+      propertyPath: m_Resource
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 698495714284874063, guid: 38c91bfba0d6ba749af2341862841346, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 1372726578995529032, guid: 38c91bfba0d6ba749af2341862841346, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 151834565}
+    - target: {fileID: 1452398348326910874, guid: 38c91bfba0d6ba749af2341862841346, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+    - target: {fileID: 1452398348326910874, guid: 38c91bfba0d6ba749af2341862841346, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
     - target: {fileID: 3155524941028584313, guid: 38c91bfba0d6ba749af2341862841346, type: 3}
       propertyPath: player
       value: 
@@ -257,9 +273,21 @@ PrefabInstance:
       value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 6542127404224055244, guid: 38c91bfba0d6ba749af2341862841346, type: 3}
+      propertyPath: sonidoRomper
+      value: 
+      objectReference: {fileID: 8300000, guid: 8d6d43443ed6de245bace637dba06aad, type: 3}
+    - target: {fileID: 6542127404224055244, guid: 38c91bfba0d6ba749af2341862841346, type: 3}
       propertyPath: holdTimeToHide
       value: 1.5
       objectReference: {fileID: 0}
+    - target: {fileID: 7164529309689624578, guid: 38c91bfba0d6ba749af2341862841346, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+    - target: {fileID: 7164529309689624578, guid: 38c91bfba0d6ba749af2341862841346, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
     - target: {fileID: 7164529309689624578, guid: 38c91bfba0d6ba749af2341862841346, type: 3}
       propertyPath: m_hasFontAssetChanged
       value: 0
@@ -655,6 +683,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e23e568afb9248542a8d783d97249158, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sonidoRomper: {fileID: 0}
   hideDuration: 5
   holdTimeToHide: 1.5
   animator: {fileID: 0}
@@ -1318,8 +1347,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: ESCONDERSE
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: b3fa94bd1439877409553e65f48b0965, type: 2}
-  m_sharedMaterial: {fileID: 2543359445840972327, guid: b3fa94bd1439877409553e65f48b0965, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1850,6 +1879,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1067158136841128740, guid: a8d372250b3d10146bb1bb3bcd964e1b, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+    - target: {fileID: 1067158136841128740, guid: a8d372250b3d10146bb1bb3bcd964e1b, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
     - target: {fileID: 5828741608025301407, guid: a8d372250b3d10146bb1bb3bcd964e1b, type: 3}
       propertyPath: m_LocalPosition.x
       value: -9.128069
@@ -1894,6 +1931,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tronco
       objectReference: {fileID: 0}
+    - target: {fileID: 6762604347953037679, guid: a8d372250b3d10146bb1bb3bcd964e1b, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+    - target: {fileID: 6762604347953037679, guid: a8d372250b3d10146bb1bb3bcd964e1b, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2170,6 +2215,14 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 151834565}
+    - target: {fileID: 1452398348326910874, guid: 38c91bfba0d6ba749af2341862841346, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+    - target: {fileID: 1452398348326910874, guid: 38c91bfba0d6ba749af2341862841346, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
     - target: {fileID: 4791554072564071939, guid: 38c91bfba0d6ba749af2341862841346, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.8333163
@@ -2214,6 +2267,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: TroncoNew
       objectReference: {fileID: 0}
+    - target: {fileID: 7164529309689624578, guid: 38c91bfba0d6ba749af2341862841346, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+    - target: {fileID: 7164529309689624578, guid: 38c91bfba0d6ba749af2341862841346, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
     - target: {fileID: 7164529309689624578, guid: 38c91bfba0d6ba749af2341862841346, type: 3}
       propertyPath: m_hasFontAssetChanged
       value: 0

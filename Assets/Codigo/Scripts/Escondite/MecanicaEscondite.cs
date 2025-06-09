@@ -3,6 +3,11 @@ using System.Collections;
 
 public class HideSpot : MonoBehaviour, IInteractable
 {
+    [Header("Sonido Tronco")]
+    [SerializeField] private AudioClip sonidoRomper;
+    private AudioSource audioSource;
+
+
     [Header("Configuración")]
     [SerializeField] private float hideDuration = 5f;
     [SerializeField] private float holdTimeToHide = 2f;
@@ -52,6 +57,9 @@ public class HideSpot : MonoBehaviour, IInteractable
      
         if (salirTagUI != null)
             salirTagUI.SetActive(false);
+
+        audioSource = GetComponent<AudioSource>();
+
     }
 
     private void Update()
@@ -123,6 +131,10 @@ hidingCoroutine = StartCoroutine(HideRoutine());
 
         if (salirTagUI != null)
             salirTagUI.SetActive(false);
+
+        if (audioSource != null && sonidoRomper != null)
+            audioSource.PlayOneShot(sonidoRomper);
+
 
         //Activar animación
         if (animator != null && !string.IsNullOrEmpty(animTriggerName))
