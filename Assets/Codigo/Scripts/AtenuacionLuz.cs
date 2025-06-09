@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using UnityEngine;
 
 public class AtenuacionLuz : MonoBehaviour
@@ -17,6 +18,14 @@ public class AtenuacionLuz : MonoBehaviour
 
     [SerializeField] private GameObject luzDelantera;
     [SerializeField] private GameObject luzTrasera;
+
+    public delegate void AdvertenciaLuzEvent();
+    public event AdvertenciaLuzEvent OnAdvertenciaLuz;
+
+    public delegate void LuzApagadaEvent();
+    public event LuzApagadaEvent OnLuzApagada;
+
+    private bool advertenciaLanzada = false;
 
     void Start()
     {
@@ -38,15 +47,19 @@ public class AtenuacionLuz : MonoBehaviour
 
             luz.range = Mathf.Lerp(rangoMaximo, rangoMinimo, t);
             luz.intensity = Mathf.Lerp(intensidadMaxima, intensidadMinima, t);
-        } 
+
+            if (!advertenciaLanzada && tiempoActual >= (tiempo - 10f))
+            {
+                advertenciaLanzada = true;
+                OnAdvertenciaLuz?.Invoke();
+            }
+        }
         else if (!luzApagada && luz.range <= rangoMinimo)
         {
             luzApagada = true;
             luz.range = rangoMinimo;
 
-            //if (luzDelantera != null) luzDelantera.SetActive(false);
-            //if (luzTrasera != null) luzTrasera.SetActive(false);
-
+            OnLuzApagada?.Invoke();
         }
     }
 
@@ -56,7 +69,9 @@ public class AtenuacionLuz : MonoBehaviour
         luz.range = rangoMaximo;
         luz.intensity = intensidadMaxima;
         luzApagada = false;
+        advertenciaLanzada = false;
 
-        Debug.Log("La luz se ha apagado completamente.");
+        UnityEngine.Debug.Log("La luz se ha reiniciado.");
+
     }
 }

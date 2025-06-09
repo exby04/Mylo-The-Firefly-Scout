@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Collections;
 using UnityEngine;
 
 public class GestorCriatura : MonoBehaviour
@@ -6,42 +6,70 @@ public class GestorCriatura : MonoBehaviour
     [SerializeField] private AtenuacionLuz atenuacionLuz;
     [SerializeField] private GameObject prefabCriatura;
     [SerializeField] private Transform jugador;
-    [SerializeField] private GameObject simboloExclamacionUI;
+    [SerializeField] private Camera camara;
 
-    [SerializeField] private float distanciaAlrededorJugador = 6f;
+    [SerializeField] private AdvertenciaCriaturaUI advertenciaUI;
+
+    [SerializeField] private AudioSource sonidoAparicion;
+    [SerializeField] private AudioSource sonidoLatidos;
+
+    [SerializeField] private float distanciaDesdeJugador = 6f;
     [SerializeField] private float alturaCriatura = 0f;
 
     private bool criaturaInstanciada = false;
     private GameObject criaturaActual;
 
-    void Update()
+    private void Start()
     {
-        if (!criaturaInstanciada && atenuacionLuz.luzApagada)
+        UnityEngine.Debug.Log("GestorCriatura activo");
+
+        if (atenuacionLuz != null)
         {
-            criaturaInstanciada = true;
+            atenuacionLuz.OnAdvertenciaLuz += IniciarAdvertencia;
+            atenuacionLuz.OnLuzApagada += AparecerCriatura;
+        }
+    }
 
-            Vector3 posicionValida = BuscarPosicionValidaCercaJugador(jugador.position, distanciaAlrededorJugador, alturaCriatura);
+    private void IniciarAdvertencia()
+    {
+        advertenciaUI?.IniciarAdvertencia();
+    }
 
-            criaturaActual = Instantiate(prefabCriatura, posicionValida, Quaternion.identity);
-            criaturaActual.transform.LookAt(jugador);
+    private void AparecerCriatura()
+    {
+        advertenciaUI?.CancelarAdvertencia();
+        criaturaInstanciada = true;
 
-            CriaturaOscuridad script = criaturaActual.GetComponent<CriaturaOscuridad>();
-            if (script != null)
-            {
-                script.Configurar(atenuacionLuz, jugador);
-            }
+        Vector3 posicion = BuscarPosicionDelanteDeCamara(jugador.position, distanciaDesdeJugador, alturaCriatura);
 
-            if (simboloExclamacionUI != null)
-            {
-                simboloExclamacionUI.SetActive(true);
-                if (simboloExclamacionUI.GetComponent<LookAtPlayer>() == null)
-                {
-                    simboloExclamacionUI.AddComponent<LookAtPlayer>();
-                }
-                Invoke(nameof(DesactivarSimbolo), 1f);
-            }
+        UnityEngine.Debug.Log($"🐾 Criatura aparecerá en: {posicion}, jugador en: {jugador.position}");
+        UnityEngine.Debug.DrawLine(jugador.position, posicion, Color.green, 5f);
+
+        criaturaActual = Instantiate(prefabCriatura, posicion, Quaternion.identity);
+        criaturaActual.transform.LookAt(jugador);
+
+        CriaturaOscuridad script = criaturaActual.GetComponent<CriaturaOscuridad>();
+        if (script != null)
+        {
+            script.Configurar(atenuacionLuz, jugador);
         }
 
+        //Sonido
+
+        if (sonidoAparicion != null)
+        {
+            sonidoAparicion.Play();
+        }
+
+        if(sonidoLatidos != null && !sonidoLatidos.isPlaying)
+{
+            sonidoLatidos.loop = true;
+            sonidoLatidos.Play();
+        }
+    }
+
+    private void Update()
+    {
         if (criaturaInstanciada && !atenuacionLuz.luzApagada)
         {
             criaturaInstanciada = false;
@@ -50,40 +78,25 @@ public class GestorCriatura : MonoBehaviour
             {
                 Destroy(criaturaActual);
             }
+
+            advertenciaUI?.CancelarAdvertencia();
+
+            if (sonidoLatidos != null && sonidoLatidos.isPlaying)
+                sonidoLatidos.Stop();
+
         }
     }
 
-    private void DesactivarSimbolo()
+    private Vector3 BuscarPosicionDelanteDeCamara(Vector3 origen, float distancia, float altura)
     {
-        if (simboloExclamacionUI != null)
-        {
-            simboloExclamacionUI.SetActive(false);
-        }
+        Vector3 direccion = camara.transform.forward;
+        direccion.y = 0;
+        direccion.Normalize();
+
+        Vector3 posicion = origen + direccion * distancia;
+        posicion.y = origen.y + altura;
+
+        return posicion;
     }
 
-    private Vector3 BuscarPosicionValidaCercaJugador(Vector3 origen, float radioMax, float altura)
-    {
-        int intentosMaximos = 20;
-        float distanciaMinima = 2f;
-
-        for (int i = 0; i < intentosMaximos; i++)
-        {
-            Vector2 randomCircle = UnityEngine.Random.insideUnitCircle * radioMax;
-            Vector3 puntoDesdeAire = new Vector3(origen.x + randomCircle.x, origen.y + 10f, origen.z + randomCircle.y);
-
-            if (Physics.Raycast(puntoDesdeAire, Vector3.down, out RaycastHit hit, 20f))
-            {
-                if ((hit.collider.CompareTag("Floor") || hit.collider.CompareTag("Camino")) &&
-                    Vector3.Distance(hit.point, origen) >= distanciaMinima)
-                {
-                    Vector3 puntoValido = hit.point;
-                    puntoValido.y = altura;
-                    return puntoValido;
-                }
-            }
-        }
-
-        UnityEngine.Debug.LogWarning("No se encontró suelo válido lejos del jugador. Se usará la posición del jugador.");
-        return new Vector3(origen.x, altura, origen.z);
-    }
 }
