@@ -36,7 +36,7 @@ public class BatAttackTimer : MonoBehaviour
 
     void Update()
     {
-        if (isAttacking) return;
+        if (isAttacking || CriaturaOscuridad.criaturaEstaAtacando) return;
 
         timer += Time.deltaTime;
 

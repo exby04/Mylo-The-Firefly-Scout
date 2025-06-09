@@ -5041,10 +5041,42 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -5572672603518502555, guid: f669342d944c61e488fbb54a1df2815f, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: e3f70f0fa8f3e5f4189a24c8a2696e9f, type: 2}
+    - target: {fileID: -4991094712793163605, guid: f669342d944c61e488fbb54a1df2815f, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: e3f70f0fa8f3e5f4189a24c8a2696e9f, type: 2}
+    - target: {fileID: -3321306186610037814, guid: f669342d944c61e488fbb54a1df2815f, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: e3f70f0fa8f3e5f4189a24c8a2696e9f, type: 2}
+    - target: {fileID: -736422600458546936, guid: f669342d944c61e488fbb54a1df2815f, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: e3f70f0fa8f3e5f4189a24c8a2696e9f, type: 2}
     - target: {fileID: 919132149155446097, guid: f669342d944c61e488fbb54a1df2815f, type: 3}
       propertyPath: m_Name
       value: MurcielagoAnimadoV3
       objectReference: {fileID: 0}
+    - target: {fileID: 2119269922298953605, guid: f669342d944c61e488fbb54a1df2815f, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: e3f70f0fa8f3e5f4189a24c8a2696e9f, type: 2}
+    - target: {fileID: 5338889926771812346, guid: f669342d944c61e488fbb54a1df2815f, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: e3f70f0fa8f3e5f4189a24c8a2696e9f, type: 2}
+    - target: {fileID: 7450423861198149375, guid: f669342d944c61e488fbb54a1df2815f, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: e3f70f0fa8f3e5f4189a24c8a2696e9f, type: 2}
+    - target: {fileID: 7480924663117224132, guid: f669342d944c61e488fbb54a1df2815f, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: e3f70f0fa8f3e5f4189a24c8a2696e9f, type: 2}
     m_RemovedComponents:
     - {fileID: 5866666021909216657, guid: f669342d944c61e488fbb54a1df2815f, type: 3}
     m_RemovedGameObjects: []
