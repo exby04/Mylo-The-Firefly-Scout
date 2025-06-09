@@ -87,7 +87,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 7309805197554879359}
-  tiempoParaAbrir: 1.5
+  tiempoParaAbrir: 1
 --- !u!95 &7309805197554879359 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 9166541292045148322, guid: 4c7ef1652bcad0b48a3555bf49caf305, type: 3}

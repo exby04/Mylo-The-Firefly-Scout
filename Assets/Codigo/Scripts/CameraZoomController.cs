@@ -29,7 +29,7 @@ public class CameraZoomController : MonoBehaviour
     public void ZoomOnPlayer()
     {
         StopAllCoroutines();
-        StartCoroutine(ZoomSequence());
+        StartCoroutine(ZoomSequence_Unscaled());
     }
 
     public void ZoomAndPauseWithAnimation(Transform player, Animator playerAnimator)
@@ -39,12 +39,24 @@ public class CameraZoomController : MonoBehaviour
 
     IEnumerator ZoomAndPauseRoutine(Transform player, Animator playerAnimator)
     {
+        // ✅ Configura la animación del jugador para que ignore timeScale
         if (playerAnimator != null)
+        {
+            playerAnimator.updateMode = AnimatorUpdateMode.UnscaledTime;
             playerAnimator.SetTrigger("RecogerObjeto");
+        }
 
+        // ✅ Congela el juego antes de iniciar animaciones
+        Time.timeScale = 0f;
+
+        // 🔒 Desactiva movimiento del jugador (si usa script)
+        var controller = player.GetComponent<PlayerController>();
+        if (controller != null)
+            controller.puedeMover = false;
+
+        // 🧭 Gira el jugador hacia la cámara
         Vector3 camPosition = cam.transform.position;
         Vector3 playerPosition = player.position;
-
         Vector3 directionToCamera = camPosition - playerPosition;
         directionToCamera.y = 0;
 
@@ -54,26 +66,19 @@ public class CameraZoomController : MonoBehaviour
             player.rotation = targetRotation;
         }
 
-        var controller = player.GetComponent<PlayerController>();
-        bool previousMoveState = true;
+        // 🔍 Ejecuta zoom con tiempo no escalado
+        yield return StartCoroutine(ZoomSequence_Unscaled());
 
-        if (controller != null)
-        {
-            previousMoveState = controller.puedeMover;
-            controller.puedeMover = false;
-        }
-
-        yield return StartCoroutine(ZoomSequence());
-
-        Time.timeScale = 0f;
+        // ⏱️ Espera un tiempo adicional congelado
         yield return new WaitForSecondsRealtime(pausaJuegoDuracion);
-        Time.timeScale = 1f;
 
+        // ✅ Restaura el juego
+        Time.timeScale = 1f;
         if (controller != null)
-            controller.puedeMover = previousMoveState;
+            controller.puedeMover = true;
     }
 
-    IEnumerator ZoomSequence()
+    IEnumerator ZoomSequence_Unscaled()
     {
         originalPosition = cam.transform.position;
         originalRotation = cam.transform.rotation;
@@ -86,6 +91,7 @@ public class CameraZoomController : MonoBehaviour
 
         float timer = 0f;
 
+        // 🔍 Zoom IN
         while (timer < zoomDuration)
         {
             float t = timer / zoomDuration;
@@ -94,17 +100,19 @@ public class CameraZoomController : MonoBehaviour
             cam.fieldOfView = Mathf.Lerp(normalFOV, zoomFOV, eased);
             cam.transform.rotation = Quaternion.Slerp(originalRotation, targetRotation, eased);
 
-            timer += Time.deltaTime;
+            timer += Time.unscaledDeltaTime;
             yield return null;
         }
 
         cam.fieldOfView = zoomFOV;
         cam.transform.rotation = targetRotation;
 
-        yield return new WaitForSeconds(holdTime);
+        // ⏸️ Mantiene zoom durante holdTime
+        yield return new WaitForSecondsRealtime(holdTime);
 
         timer = 0f;
 
+        // 🔙 Zoom OUT
         while (timer < zoomDuration)
         {
             float t = timer / zoomDuration;
@@ -113,7 +121,7 @@ public class CameraZoomController : MonoBehaviour
             cam.fieldOfView = Mathf.Lerp(zoomFOV, normalFOV, eased);
             cam.transform.rotation = Quaternion.Slerp(targetRotation, originalRotation, eased);
 
-            timer += Time.deltaTime;
+            timer += Time.unscaledDeltaTime;
             yield return null;
         }
 

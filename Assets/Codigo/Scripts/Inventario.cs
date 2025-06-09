@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class Inventario : MonoBehaviour
 {
@@ -56,41 +57,42 @@ public class Inventario : MonoBehaviour
 
     public void RecogerLlave()
     {
-        tieneLlave = true;
-        keyImage.sprite = llaveSprite;
-        keyImage.color = Color.white;
-
-        ObjetoObtenidoUI.instance?.Mostrar(llaveSprite);
-
+        
         Transform jugador = FindFirstObjectByType<PlayerController>().transform;
         Animator animador = jugador.GetComponent<Animator>();
-
         CameraZoomController.instance?.ZoomAndPauseWithAnimation(jugador, animador);
+
+        
+        ObjetoObtenidoUI.instance?.Mostrar(llaveSprite, "llave", () =>
+        {
+            tieneLlave = true;
+            keyImage.sprite = llaveSprite;
+            keyImage.color = Color.white;
+        });
     }
+
 
     public void RecogerPowerUp(string powerUp)
     {
-        powerUpActual = powerUp;
+        Sprite sprite = GetSpriteFromName(powerUp);
 
-        Sprite sprite = powerUpVacioSprite;
-        if (powerUp == "Vision")
-            sprite = powerUpLuzSprite;
-        else if (powerUp == "Velocidad")
-            sprite = powerUpRapidezSprite;
-
-        powerUpImage.sprite = sprite;
-        powerUpImage.color = Color.white;
-
-        ObjetoObtenidoUI.instance?.Mostrar(sprite);
-
-        if (textoSpacebar != null)
-            textoSpacebar.SetActive(true);
-
+        
         Transform jugador = FindFirstObjectByType<PlayerController>().transform;
         Animator animador = jugador.GetComponent<Animator>();
-
         CameraZoomController.instance?.ZoomAndPauseWithAnimation(jugador, animador);
+
+        
+        ObjetoObtenidoUI.instance?.Mostrar(sprite, "powerup", () =>
+        {
+            powerUpActual = powerUp;
+            powerUpImage.sprite = sprite;
+            powerUpImage.color = Color.white;
+
+            if (textoSpacebar != null)
+                textoSpacebar.SetActive(true);
+        });
     }
+
 
     public void ActivarPowerUp()
     {
@@ -138,5 +140,4 @@ public class Inventario : MonoBehaviour
             default: return powerUpVacioSprite;
         }
     }
-
 }

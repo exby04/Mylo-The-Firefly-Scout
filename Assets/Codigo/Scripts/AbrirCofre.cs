@@ -29,6 +29,7 @@ public class AbrirCofre : MonoBehaviour, IInteractable
     {
         abierto = true;
 
+        animator.updateMode = AnimatorUpdateMode.UnscaledTime;
         animator.SetTrigger("AbrirCofre");
 
         cofresAbiertos++;
