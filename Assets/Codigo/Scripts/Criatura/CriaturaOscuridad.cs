@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class CriaturaOscuridad : MonoBehaviour
 {
+    public static bool criaturaEstaAtacando = false;
     private AtenuacionLuz atenuacionLuz;
     private Transform jugador;
 
@@ -9,6 +10,7 @@ public class CriaturaOscuridad : MonoBehaviour
     [SerializeField] private float velocidad = 5f;
     private bool haComenzadoAtaque = false;
     private float temporizador = 0f;
+    
 
     public void Configurar(AtenuacionLuz luz, Transform jugadorRef)
     {
@@ -23,6 +25,7 @@ public class CriaturaOscuridad : MonoBehaviour
         if (!haComenzadoAtaque)
         {
             haComenzadoAtaque = true;
+            criaturaEstaAtacando = true;
             temporizador = 0f;
         }
 
@@ -49,6 +52,7 @@ public class CriaturaOscuridad : MonoBehaviour
         if (Vector2.Distance(posCriatura, posJugador) < 0.5f)
         {
             jugador.GetComponent<PlayerHealth>()?.TakeDamage(999);
+            criaturaEstaAtacando = false; 
             Destroy(gameObject);
         }
     }

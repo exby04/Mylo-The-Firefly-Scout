@@ -12,9 +12,11 @@ public class BatAttackTimer : MonoBehaviour
 
     [SerializeField] private Transform jugador;
 
+    [Header("Puntos de Spawn de Murciélagos")]
+    public Transform[] batSpawnPoints;
+
     [Header("Referencias")]
-    public GameObject batPrefab;         
-    public Transform[] batSpawnPoints;   
+    public GameObject batPrefab;
     public GameObject warningText;
 
     [Header("Animacion de Ataque")]
@@ -22,6 +24,8 @@ public class BatAttackTimer : MonoBehaviour
     public float delayAnimacionAtaque;
 
     private GameObject cachedPlayer;
+    private Coroutine flashingCoroutine;
+
 
     void Start()
     {
@@ -32,8 +36,7 @@ public class BatAttackTimer : MonoBehaviour
 
     void Update()
     {
-        // Bloquea ataque cuando hay uno en curso
-        if (isAttacking) return;
+        if (isAttacking || CriaturaOscuridad.criaturaEstaAtacando) return;
 
         timer += Time.deltaTime;
 
@@ -51,24 +54,54 @@ public class BatAttackTimer : MonoBehaviour
     }
 
     void ShowWarning()
+{
+    if (warningText == null) return;
+
+    warningText.SetActive(true);
+
+    if (flashingCoroutine != null)
+        StopCoroutine(flashingCoroutine);
+
+    flashingCoroutine = StartCoroutine(FlashWarningOverTime(5f));
+    hasShownWarning = true;
+
+    Debug.Log("¡Murciélagos en camino! " + warningText.name);
+}
+
+
+
+   IEnumerator FlashWarningOverTime(float duration)
+{
+    float elapsed = 0f;
+
+    while (elapsed < duration)
     {
+        elapsed += Time.deltaTime;
+        float progress = elapsed / duration;
+
+    
+        float curvedProgress = Mathf.Pow(progress, 2.5f); 
+
+        
+        float flashRate = Mathf.Lerp(0.6f, 0.02f, curvedProgress);
+
         if (warningText != null)
-        {
             warningText.SetActive(true);
 
-            if (warningText.GetComponent<LookAtPlayer>() == null)
-            {
-                warningText.AddComponent<LookAtPlayer>();
+        yield return new WaitForSeconds(flashRate / 2f);
 
-            }
-            //StartCoroutine(TriggerAttackAnimation(delayAnimacionAtaque));
-            Debug.Log("¡Murciélagos en camino!  " + warningText.name);
-            StartCoroutine(HideWarningAfterDelay(2f));
-           
-        }
+        if (warningText != null)
+            warningText.SetActive(false);
 
-        hasShownWarning = true;
+        yield return new WaitForSeconds(flashRate / 2f);
     }
+
+    if (warningText != null)
+        warningText.SetActive(false);
+}
+
+
+
 
     IEnumerator DesactivarMovimiento(float delay)
     {
@@ -85,7 +118,6 @@ public class BatAttackTimer : MonoBehaviour
             controller.enabled = true;
     }
 
-
     IEnumerator TriggerAttackAnimation(float retraso)
     {
         yield return new WaitForSeconds(retraso);
@@ -93,51 +125,49 @@ public class BatAttackTimer : MonoBehaviour
         StartCoroutine(DesactivarMovimiento(1f));
     }
 
-    IEnumerator HideWarningAfterDelay(float delay)
-    {
-        yield return new WaitForSeconds(delay);
+    IEnumerator TriggerBatAttack()
+{
+    isAttacking = true;
 
-        if (warningText != null)
-        {
-            warningText.SetActive(false);
-            Debug.Log("Aviso de murciélagos ocultado automáticamente");
-        }
+    
+    if (flashingCoroutine != null)
+    {
+        StopCoroutine(flashingCoroutine);
+        flashingCoroutine = null;
     }
 
+    
+    if (warningText != null)
+        warningText.SetActive(false);
 
-    IEnumerator TriggerBatAttack()
+    Debug.Log("¡Ataque de murciélagos iniciado!");
+
+    if (batSpawnPoints.Length > 0 && batPrefab != null && cachedPlayer != null)
     {
-        isAttacking = true;
+        Transform spawnPoint = batSpawnPoints[Random.Range(0, batSpawnPoints.Length)];
+        Vector3 spawnPos = spawnPoint.position;
 
-        if (warningText != null)
-            warningText.SetActive(false);
-
-        Debug.Log("¡Ataque de murciélagos iniciado!");
-
-        if (batSpawnPoints.Length > 0 && batPrefab != null && cachedPlayer != null)
+        GameObject bat = Instantiate(batPrefab, spawnPos, Quaternion.identity);
+        BatMovement batScript = bat.GetComponent<BatMovement>();
+        if (batScript != null)
         {
-            GameObject bat = Instantiate(batPrefab, batSpawnPoints[0].position, Quaternion.identity);
-            BatMovement batScript = bat.GetComponent<BatMovement>();
-            if (batScript != null)
-            {
-                batScript.FlyToAttack(cachedPlayer);
-            }
-            else
-            {
-                Debug.LogWarning("El prefab del murciélago no tiene el script BatMovement.");
-            }
+            batScript.FlyToAttack(cachedPlayer);
         }
         else
         {
-            Debug.LogWarning("Faltan datos: puntos de aparición, prefab de murciélago o referencia al jugador.");
+            Debug.LogWarning("El prefab del murciélago no tiene el script BatMovement.");
         }
-
-        yield return new WaitForSeconds(2f);
-
-        isAttacking = false;
-
-
     }
+    else
+    {
+        Debug.LogWarning("Faltan datos: puntos de aparición, prefab de murciélago o referencia al jugador.");
+    }
+
+    yield return new WaitForSeconds(2f);
+
+    isAttacking = false;
+}
+
 
     public void ForceBatAttack()
     {
@@ -153,7 +183,7 @@ public class BatAttackTimer : MonoBehaviour
     IEnumerator TriggerBatAttackConRetraso(float delay)
     {
         yield return new WaitForSeconds(delay);
-        yield return TriggerBatAttack(); 
+        yield return TriggerBatAttack();
     }
 
     public void ResetTimer()
