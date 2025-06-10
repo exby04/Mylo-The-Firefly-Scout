@@ -1365,7 +1365,8 @@ MonoBehaviour:
   player: {fileID: 1725232627102467879}
   playerSpeed: 4.5
   mainCamera: {fileID: 0}
-  pasoIntervalo: 0.4
+  pasoIntervaloCaminar: 0.4
+  pasoIntervaloCorrer: 0.3
   puedeMover: 1
 --- !u!143 &1725232627102467879
 CharacterController:
@@ -1486,7 +1487,7 @@ AudioSource:
   m_GameObject: {fileID: 1824828444651952378}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -7602868410409849521, guid: f0a08af5be6e9934db7da21bbf7301fa, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
