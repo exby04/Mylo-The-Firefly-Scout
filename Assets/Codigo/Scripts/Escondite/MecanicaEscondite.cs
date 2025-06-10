@@ -43,6 +43,10 @@ public class HideSpot : MonoBehaviour, IInteractable
 
     public float HoldDuration => holdTimeToHide;
 
+    [SerializeField] private AudioClip sonidoRomper;
+    private AudioSource audioSource;
+
+
     private void Start()
     {
         playerController = FindFirstObjectByType<PlayerController>();
@@ -64,6 +68,9 @@ public class HideSpot : MonoBehaviour, IInteractable
 
         if (salirTagUI != null)
             salirTagUI.SetActive(false);
+
+        audioSource = GetComponent<AudioSource>();
+
     }
 
     private void Update()
@@ -113,7 +120,7 @@ public class HideSpot : MonoBehaviour, IInteractable
         if (salirTagUI != null)
             salirTagUI.SetActive(true);
 
-        // 🔁 Animación del escondite
+        // Animación del escondite
         if (animator != null && HasTrigger(animator, animTriggerEsconderse))
         {
             Debug.Log("[HideSpot] Activando trigger del escondite: " + animTriggerEsconderse);
@@ -121,7 +128,7 @@ public class HideSpot : MonoBehaviour, IInteractable
             animator.SetTrigger(animTriggerEsconderse);
         }
 
-        // 🔁 Animación del jugador
+        // Animación del jugador
         if (playerAnimator != null && HasTrigger(playerAnimator, playerHideTrigger))
         {
             Debug.Log("[HideSpot] Activando trigger del jugador: " + playerHideTrigger);
@@ -157,7 +164,10 @@ public class HideSpot : MonoBehaviour, IInteractable
         if (salirTagUI != null)
             salirTagUI.SetActive(false);
 
-        // 🎬 Animación de salida
+        if (audioSource != null && sonidoRomper != null)
+            audioSource.PlayOneShot(sonidoRomper);
+
+        // Animación de salida
         if (animator != null && HasTrigger(animator, animTriggerSalir))
         {
             Debug.Log("[HideSpot] Activando trigger de salida: " + animTriggerSalir);
@@ -166,7 +176,7 @@ public class HideSpot : MonoBehaviour, IInteractable
             StartCoroutine(DetenerAnimacionDespues(animationDuration));
         }
 
-        // ✨ Partículas
+        // Partículas
         if (particulasPolvo != null)
         {
             particulasPolvo.gameObject.SetActive(true);
