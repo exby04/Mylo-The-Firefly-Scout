@@ -18,8 +18,8 @@ public class PlayerController : MonoBehaviour
 
     private MyloAudio myloAudio;
     private float pasoTimer = 0f;
-    public float pasoIntervaloCaminar = 0.4f;
-    public float pasoIntervaloCorrer = 0.3f;
+    public float pasoIntervaloCaminar = 0.3f;
+    public float pasoIntervaloCorrer = 0.2f;
 
     [HideInInspector] public bool puedeMover = true;
 
