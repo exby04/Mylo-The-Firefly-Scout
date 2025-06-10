@@ -16,6 +16,9 @@ public class GestorCriatura : MonoBehaviour
     [SerializeField] private float distanciaDesdeJugador = 6f;
     [SerializeField] private float alturaCriatura = 0f;
 
+    [SerializeField] private AudioSource sonidoAdvertenciaCriatura;
+
+
     private bool criaturaInstanciada = false;
     private GameObject criaturaActual;
 
@@ -34,8 +37,14 @@ public class GestorCriatura : MonoBehaviour
 
     private void IniciarAdvertencia()
     {
-        advertenciaUI?.IniciarAdvertencia();
+       advertenciaUI?.IniciarAdvertencia();
+
+       if (sonidoAdvertenciaCriatura != null)
+         {
+        sonidoAdvertenciaCriatura.Play();
+         }
     }
+
 
     private void AparecerCriatura()
     {
