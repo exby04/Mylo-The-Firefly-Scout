@@ -276,8 +276,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: ESCONDERSE
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: b3fa94bd1439877409553e65f48b0965, type: 2}
+  m_sharedMaterial: {fileID: 2543359445840972327, guid: b3fa94bd1439877409553e65f48b0965, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -678,14 +678,14 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4327937848688770802}
-  m_LocalRotation: {x: -0.7071067, y: 0.00046910392, z: 0.00046905974, w: -0.7071067}
+  m_LocalRotation: {x: -0.70710605, y: -0.0010555387, z: -0.0010556281, w: -0.707106}
   m_LocalPosition: {x: 0, y: 0, z: 1.1900002}
   m_LocalScale: {x: 0.00293, y: 0.0029299988, z: 0.0029299988}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4382195398513099478}
   m_Father: {fileID: 5828741608025301407}
-  m_LocalEulerAnglesHint: {x: -90.071, y: 180, z: -179.924}
+  m_LocalEulerAnglesHint: {x: -269.831, y: 270.001, z: -89.99899}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0.022506118, y: -0.10251486}
@@ -835,8 +835,8 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: b3fa94bd1439877409553e65f48b0965, type: 2}
+  m_sharedMaterial: {fileID: 2543359445840972327, guid: b3fa94bd1439877409553e65f48b0965, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -6323,8 +6323,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactionKey: 101
   player: {fileID: 0}
-  mostrarUIRadius: 2
-  ocultarUIRadius: 2.5
+  mostrarUIRadius: 1.5
+  ocultarUIRadius: 2
   uiCanvas: {fileID: 4327937848688770802}
   progressCircle: {fileID: 6773280319694987865}
 --- !u!114 &7504844183520401864
@@ -6353,6 +6353,7 @@ MonoBehaviour:
   troncoLightOverhead: {fileID: 729812407774289161}
   troncoLight: {fileID: 1140301281160575040}
   salirTagUI: {fileID: 152123029655669271}
+  EsconderseTagUI: {fileID: 4327937848688770802}
   sonidoRomper: {fileID: 8300000, guid: 8d6d43443ed6de245bace637dba06aad, type: 3}
 --- !u!82 &147634181750255864
 AudioSource:

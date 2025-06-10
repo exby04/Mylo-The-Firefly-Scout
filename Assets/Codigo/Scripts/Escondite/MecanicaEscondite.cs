@@ -31,6 +31,7 @@ public class HideSpot : MonoBehaviour, IInteractable
     [Header("UI - Tag de Salir")]
     [SerializeField] private GameObject salirTagUI;
 
+
     private bool isUsed = false;
     private bool isHiding = false;
     private bool playerInZone = false;
@@ -120,6 +121,9 @@ public class HideSpot : MonoBehaviour, IInteractable
         if (salirTagUI != null)
             salirTagUI.SetActive(true);
 
+        if (salirTagUI != null)
+            salirTagUI.SetActive(true);
+
         // Animación del escondite
         if (animator != null && HasTrigger(animator, animTriggerEsconderse))
         {
@@ -136,7 +140,7 @@ public class HideSpot : MonoBehaviour, IInteractable
             playerAnimator.SetTrigger(playerHideTrigger);
         }
 
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(0.5f);
 
         if (playerController != null)
             playerController.enabled = false;
@@ -146,7 +150,7 @@ public class HideSpot : MonoBehaviour, IInteractable
 
         player.SetActive(false);
 
-        yield return new WaitForSeconds(hideDuration - 1.5f);
+        yield return new WaitForSeconds(hideDuration - 0.5f);
 
         ExitHiding();
     }

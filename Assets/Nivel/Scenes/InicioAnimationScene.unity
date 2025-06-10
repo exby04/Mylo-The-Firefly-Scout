@@ -42374,6 +42374,8 @@ MonoBehaviour:
   textoSpacebar: {fileID: 0}
   powerUpLuz: {fileID: 0}
   speedPowerUpController: {fileID: 0}
+  sonidoRecogerObjeto: {fileID: 0}
+  audioSource: {fileID: 0}
 --- !u!4 &958819009
 Transform:
   m_ObjectHideFlags: 0
@@ -42550,8 +42552,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 930601cd17971b3429174f8015f7c896, type: 3}
-  m_Resource: {fileID: 8300000, guid: 930601cd17971b3429174f8015f7c896, type: 3}
+  m_audioClip: {fileID: 8300000, guid: d6297c845fe65ca43aa4c83bca044800, type: 3}
+  m_Resource: {fileID: 8300000, guid: d6297c845fe65ca43aa4c83bca044800, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -90099,8 +90101,11 @@ MonoBehaviour:
   atenuacionLuz: {fileID: 0}
   prefabCriatura: {fileID: 1756221102612828073, guid: 4d2a7da5452e42d46aacdf548017afb4, type: 3}
   jugador: {fileID: 0}
-  simboloExclamacionUI: {fileID: 0}
-  distanciaAlrededorJugador: 6
+  camara: {fileID: 0}
+  advertenciaUI: {fileID: 0}
+  sonidoAparicion: {fileID: 0}
+  sonidoLatidos: {fileID: 0}
+  distanciaDesdeJugador: 6
   alturaCriatura: 1
 --- !u!114 &2038617708
 MonoBehaviour:
@@ -90115,6 +90120,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tiempoEsperaAntesDeAtacar: 1
+  velocidad: 5
 --- !u!1001 &2041464601
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -14412,14 +14412,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tronco
       objectReference: {fileID: 0}
-    - target: {fileID: 8276903403443243632, guid: a8d372250b3d10146bb1bb3bcd964e1b, type: 3}
-      propertyPath: mostrarUIRadius
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8276903403443243632, guid: a8d372250b3d10146bb1bb3bcd964e1b, type: 3}
-      propertyPath: ocultarUIRadius
-      value: 2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
