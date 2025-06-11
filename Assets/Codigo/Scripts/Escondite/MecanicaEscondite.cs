@@ -30,7 +30,7 @@ public class HideSpot : MonoBehaviour, IInteractable
 
     [Header("UI - Tag de Salir")]
     [SerializeField] private GameObject salirTagUI;
-
+    [SerializeField] private GameObject esconderseTagUI;
 
     private bool isUsed = false;
     private bool isHiding = false;
@@ -69,6 +69,9 @@ public class HideSpot : MonoBehaviour, IInteractable
 
         if (salirTagUI != null)
             salirTagUI.SetActive(false);
+
+        if (esconderseTagUI != null)
+            esconderseTagUI.SetActive(false);
 
         audioSource = GetComponent<AudioSource>();
 
@@ -121,8 +124,9 @@ public class HideSpot : MonoBehaviour, IInteractable
         if (salirTagUI != null)
             salirTagUI.SetActive(true);
 
-        if (salirTagUI != null)
-            salirTagUI.SetActive(true);
+        if (esconderseTagUI != null)
+            esconderseTagUI.SetActive(false);
+
 
         // Animación del escondite
         if (animator != null && HasTrigger(animator, animTriggerEsconderse))
@@ -170,6 +174,10 @@ public class HideSpot : MonoBehaviour, IInteractable
 
         if (audioSource != null && sonidoRomper != null)
             audioSource.PlayOneShot(sonidoRomper);
+
+        if (esconderseTagUI != null && !isUsed)
+            esconderseTagUI.SetActive(true);
+
 
         // Animación de salida
         if (animator != null && HasTrigger(animator, animTriggerSalir))
@@ -233,4 +241,10 @@ public class HideSpot : MonoBehaviour, IInteractable
         if (other.gameObject == player)
             playerInZone = false;
     }
+
+    public bool EstaDisponibleParaInteractuar()
+    {
+        return !isUsed && !isHiding;
+    }
+
 }
