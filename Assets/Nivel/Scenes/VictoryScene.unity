@@ -1520,9 +1520,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58f89b2b28e641c4da56de7b75afa012, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  escenaNivel: {fileID: 102900000, guid: 99c9720ab356a0642a771bea13969a05, type: 3}
+  escenaNivel: {fileID: 102900000, guid: 30fc554c6a7fd254295557e2abb59387, type: 3}
   escenaInicio: {fileID: 102900000, guid: 33e0feb8815ff9a4dbd9b4931c1d086a, type: 3}
-  nombreEscenaNivel: Level0Broekn
+  nombreEscenaNivel: Level0
   nombreEscenaInicio: MenuInicio
 --- !u!114 &1610403373
 MonoBehaviour:
@@ -2538,12 +2538,6 @@ PrefabInstance:
       addedObject: {fileID: 219987738}
     - targetCorrespondingSourceObject: {fileID: 2635261870998822721, guid: 5987e2b995d5e7f47a067397ca288373, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 709541192}
-    - targetCorrespondingSourceObject: {fileID: 2635261870998822721, guid: 5987e2b995d5e7f47a067397ca288373, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1610403371}
-    - targetCorrespondingSourceObject: {fileID: 2635261870998822721, guid: 5987e2b995d5e7f47a067397ca288373, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 1806001200}
     - targetCorrespondingSourceObject: {fileID: 2635261870998822721, guid: 5987e2b995d5e7f47a067397ca288373, type: 3}
       insertIndex: -1
@@ -2551,6 +2545,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2635261870998822721, guid: 5987e2b995d5e7f47a067397ca288373, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1680479422}
+    - targetCorrespondingSourceObject: {fileID: 2635261870998822721, guid: 5987e2b995d5e7f47a067397ca288373, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 709541192}
+    - targetCorrespondingSourceObject: {fileID: 2635261870998822721, guid: 5987e2b995d5e7f47a067397ca288373, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1610403371}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 8642394541855621451, guid: 5987e2b995d5e7f47a067397ca288373, type: 3}
       insertIndex: -1
