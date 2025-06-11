@@ -36,7 +36,7 @@ public class AdvertenciaCriaturaUI : MonoBehaviour
             return;
         }
 
-        float frecuencia = Mathf.Lerp(0.8f, 0.3f, 1 - (tiempoRestante / tiempoTotalAdvertencia));
+        float frecuencia = Mathf.Lerp(1f, 0.6f, 1 - (tiempoRestante / tiempoTotalAdvertencia));
         float t = Mathf.PingPong(Time.time, frecuencia);
         uiIcono.enabled = t > frecuencia / 2f;
     }
