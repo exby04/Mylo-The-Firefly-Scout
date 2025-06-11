@@ -27993,6 +27993,10 @@ PrefabInstance:
       propertyPath: mainCamera
       value: 
       objectReference: {fileID: 1680291552}
+    - target: {fileID: 4969981352705235002, guid: 6ee3f862f83dc9548ab5f1af7ef0c4a9, type: 3}
+      propertyPath: m_WarningMessage
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 5514311254361973905, guid: 6ee3f862f83dc9548ab5f1af7ef0c4a9, type: 3}
       propertyPath: 'heartImages.Array.data[0]'
       value: 
@@ -37372,7 +37376,7 @@ PrefabInstance:
     - target: {fileID: 3941365490892983293, guid: 1ebbaf2efa88e3b448de9371133e3ca9, type: 3}
       propertyPath: m_NavMeshData
       value: 
-      objectReference: {fileID: 23800000, guid: 4eb0137470ec92a49b56e265aca58ca4, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 8830286281574757623, guid: 1ebbaf2efa88e3b448de9371133e3ca9, type: 3}
       propertyPath: m_LocalPosition.x
       value: 5

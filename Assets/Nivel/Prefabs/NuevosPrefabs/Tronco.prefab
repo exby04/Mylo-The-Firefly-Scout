@@ -6353,7 +6353,7 @@ MonoBehaviour:
   troncoLightOverhead: {fileID: 729812407774289161}
   troncoLight: {fileID: 1140301281160575040}
   salirTagUI: {fileID: 152123029655669271}
-  EsconderseTagUI: {fileID: 4327937848688770802}
+  esconderseTagUI: {fileID: 4327937848688770802}
   sonidoRomper: {fileID: 8300000, guid: 8d6d43443ed6de245bace637dba06aad, type: 3}
 --- !u!82 &147634181750255864
 AudioSource:

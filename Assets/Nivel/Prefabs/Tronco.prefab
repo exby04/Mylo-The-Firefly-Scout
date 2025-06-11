@@ -409,7 +409,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hideDuration: 5
   holdTimeToHide: 2
-  usedAssetPrefab: {fileID: 889320165722260036, guid: d389925e1c841b24b826504f85583d72, type: 3}
+  animator: {fileID: 0}
+  animTriggerEsconderse: Esconderse
+  animTriggerSalir: Salir
+  animationSpeed: 1
+  animationDuration: 2
+  particulasPolvo: {fileID: 0}
+  tiempoParticulas: 1
+  playerHideTrigger: Esconderse
+  permitirSalidaManual: 0
+  troncoLightOverhead: {fileID: 0}
+  troncoLight: {fileID: 0}
+  salirTagUI: {fileID: 0}
+  sonidoRomper: {fileID: 0}
 --- !u!65 &516315702990493172
 BoxCollider:
   m_ObjectHideFlags: 0

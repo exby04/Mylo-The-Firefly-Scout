@@ -48,8 +48,17 @@ public class InteractionHandler : MonoBehaviour
         else if (playerInRange && distance > ocultarUIRadius)
             playerInRange = false;
 
+        bool mostrarUI = playerInRange;
+
+        if (interactable is HideSpot hs)
+        {
+            if (!hs.EstaDisponibleParaInteractuar())
+                mostrarUI = false;
+        }
+
         if (uiCanvas != null)
-            uiCanvas.SetActive(playerInRange);
+            uiCanvas.SetActive(mostrarUI);
+
 
         // Mantener tecla para interactuar
         if (playerInRange && Input.GetKey(interactionKey))
