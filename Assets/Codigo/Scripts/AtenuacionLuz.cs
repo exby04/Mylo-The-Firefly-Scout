@@ -16,8 +16,7 @@ public class AtenuacionLuz : MonoBehaviour
 
     public bool luzApagada { get; private set; } = false;
 
-    [SerializeField] private GameObject luzDelantera;
-    [SerializeField] private GameObject luzTrasera;
+    [SerializeField] private float progresoInicial = 0.5f; 
 
     public delegate void AdvertenciaLuzEvent();
     public event AdvertenciaLuzEvent OnAdvertenciaLuz;
@@ -37,9 +36,12 @@ public class AtenuacionLuz : MonoBehaviour
         {
             luz = GetComponent<Light>();
         }
+        tiempoActual = Mathf.Clamp(tiempo * progresoInicial, 0f, tiempo);
 
-        luz.range = rangoMaximo;
-        luz.intensity = intensidadMaxima;
+        float t = tiempoActual / tiempo;
+
+        luz.range = Mathf.Lerp(rangoMaximo, rangoMinimo, t);
+        luz.intensity = Mathf.Lerp(intensidadMaxima, intensidadMinima, t);
     }
 
     void Update()
