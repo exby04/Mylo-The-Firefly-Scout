@@ -49,5 +49,7 @@ MonoBehaviour:
   sfxToggle: {fileID: 0}
   sfxSlider: {fileID: 0}
   fullscreenToggle: {fileID: 0}
+  generalToggle: {fileID: 0}
+  generalSlider: {fileID: 0}
   panelOpciones: {fileID: 0}
   isInGame: 0
