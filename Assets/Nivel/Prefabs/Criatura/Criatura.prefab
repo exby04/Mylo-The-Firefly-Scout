@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tiempoEsperaAntesDeAtacar: 1
-  velocidad: 4.5
+  velocidad: 5.5
 --- !u!1 &6545826290403205995
 GameObject:
   m_ObjectHideFlags: 0

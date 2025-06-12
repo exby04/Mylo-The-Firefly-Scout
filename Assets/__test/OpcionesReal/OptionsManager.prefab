@@ -52,4 +52,5 @@ MonoBehaviour:
   generalToggle: {fileID: 0}
   generalSlider: {fileID: 0}
   panelOpciones: {fileID: 0}
+  pauseMenuUI: {fileID: 0}
   isInGame: 0
