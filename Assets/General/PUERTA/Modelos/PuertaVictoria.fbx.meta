@@ -1,9 +1,34 @@
 fileFormatVersion: 2
-guid: c9bc509c4990a044c992e8db05a3f742
+guid: ee68de7d3c956b84e9d8354ac18817fa
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fondo luciernaga
+    second: {fileID: 2100000, guid: 8914bd6be1c144c4bb013c70c9a7ccb0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Madera Puerta
+    second: {fileID: 2100000, guid: fbff1e3ee00cf754d82077248fbcf73c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Metal Borde
+    second: {fileID: 2100000, guid: e0ac2925a68ce88489ec485b1875a7c0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Musgo
+    second: {fileID: 2100000, guid: 9840773ff1d50f34591a1a0fe0927a03, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Roca (clara)
+    second: {fileID: 2100000, guid: c568c51ba41db3a4d98d101375f4f8cb, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
