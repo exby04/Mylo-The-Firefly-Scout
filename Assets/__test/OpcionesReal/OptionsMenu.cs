@@ -19,6 +19,7 @@ public class OptionsMenu : MonoBehaviour
     private float lastMusicVolume = 1f;
     private float lastSFXVolume = 1f;
     private float lastGeneralVolume = 1f;
+    public GameObject pauseMenuUI; 
 
 
 
@@ -153,16 +154,13 @@ public class OptionsMenu : MonoBehaviour
     public void CerrarOpciones()
     {
         panelOpciones.SetActive(false);
-        PlayerPrefs.Save();
+        Time.timeScale = 1f;
 
-        if (isInGame)
+        if (pauseMenuUI != null)
         {
-            Time.timeScale = 1f;
-            Debug.Log("Panel de opciones cerrado y juego reanudado.");
+            pauseMenuUI.SetActive(true); 
         }
-        else
-        {
-            Debug.Log("Panel de opciones cerrado desde el menú de inicio.");
-        }
+
+        Debug.Log("Panel de opciones cerrado y juego reanudado.");
     }
 }

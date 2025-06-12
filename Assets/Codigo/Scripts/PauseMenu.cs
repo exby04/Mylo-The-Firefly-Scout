@@ -82,14 +82,16 @@ public class PauseMenu : MonoBehaviour
     {
         if (optionsMenu != null)
         {
+            pauseMenuUI.SetActive(false); 
             optionsMenu.AbrirOpciones();
             Debug.Log("Menú de Opciones abierto desde el menú de pausa.");
         }
         else
         {
-            Debug.LogWarning("OpcionesDebugMenu no está asignado en el PauseMenu.");
+            Debug.LogWarning("OptionsMenu no está asignado en el PauseMenu.");
         }
     }
+
 
     public void ExitToMenu()
     {
