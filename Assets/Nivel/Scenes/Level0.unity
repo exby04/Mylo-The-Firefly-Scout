@@ -31433,6 +31433,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c817857f9571b7b41bca28959675455f, type: 3}
+--- !u!114 &988242520 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5692693008162950721, guid: c817857f9571b7b41bca28959675455f, type: 3}
+  m_PrefabInstance: {fileID: 988242519}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e205152372de831439834ee247da7f85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &988404585
 GameObject:
   m_ObjectHideFlags: 0
@@ -55446,6 +55457,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8525162493928207119, guid: 465a93e96dc9dd648bb422d61010922d, type: 3}
+      propertyPath: optionsMenu
+      value: 
+      objectReference: {fileID: 988242520}
+    - target: {fileID: 8525162493928207119, guid: 465a93e96dc9dd648bb422d61010922d, type: 3}
       propertyPath: pauseMenuUI
       value: 
       objectReference: {fileID: 38888622}
@@ -55453,10 +55468,6 @@ PrefabInstance:
       propertyPath: exitWarningUI
       value: 
       objectReference: {fileID: 2628363789463596861}
-    - target: {fileID: 8525162493928207119, guid: 465a93e96dc9dd648bb422d61010922d, type: 3}
-      propertyPath: restartSceneAsset
-      value: 
-      objectReference: {fileID: 102900000, guid: 30fc554c6a7fd254295557e2abb59387, type: 3}
     - target: {fileID: 8819702884563582815, guid: 465a93e96dc9dd648bb422d61010922d, type: 3}
       propertyPath: m_Name
       value: PauseMenuManager
