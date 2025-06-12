@@ -9,16 +9,26 @@ public class OptionsMenu : MonoBehaviour
     public Toggle sfxToggle;
     public Slider sfxSlider;
     public Toggle fullscreenToggle;
+    public Toggle generalToggle;
+    public Slider generalSlider;
+
 
     [Header("Panel Control")]
     public GameObject panelOpciones;
     public bool isInGame = false; 
     private float lastMusicVolume = 1f;
     private float lastSFXVolume = 1f;
+    private float lastGeneralVolume = 1f;
+
 
 
     void Start()
     {
+        float generalVol = PlayerPrefs.GetFloat("GeneralVolume", 1f);
+        bool generalOn = PlayerPrefs.GetInt("GeneralOn", 1) == 1;
+        generalSlider.value = generalVol;
+        generalToggle.isOn = generalOn;
+
         
         float musicVol = PlayerPrefs.GetFloat("MusicVolume", 1f);
         float sfxVol = PlayerPrefs.GetFloat("SFXVolume", 1f);
@@ -96,16 +106,48 @@ public class OptionsMenu : MonoBehaviour
     {
         Screen.fullScreen = isFullscreen;
     }
+    public void OnGeneralVolumeChanged(float value)
+    {
+        PlayerPrefs.SetFloat("GeneralVolume", value);
+        generalToggle.isOn = value > 0.001f;
+        ApplyAudioSettings();
+    }
+
+    public void OnGeneralToggleChanged(bool isOn)
+    {
+        PlayerPrefs.SetInt("GeneralOn", isOn ? 1 : 0);
+
+        if (!isOn)
+        {
+            
+            if (generalSlider.value > 0.001f)
+                lastGeneralVolume = generalSlider.value;
+
+            generalSlider.value = 0f;
+        }
+        else
+        {
+            generalSlider.value = lastGeneralVolume > 0.001f ? lastGeneralVolume : 0.5f;
+        }
+
+        ApplyAudioSettings();
+    }
+
+
 
     void ApplyAudioSettings()
     {
         float musicVolume = PlayerPrefs.GetFloat("MusicVolume", 1f);
         float sfxVolume = PlayerPrefs.GetFloat("SFXVolume", 1f);
+        float generalVolume = PlayerPrefs.GetFloat("GeneralVolume", 1f);
+
         bool musicOn = PlayerPrefs.GetInt("MusicOn", 1) == 1;
         bool sfxOn = PlayerPrefs.GetInt("SFXOn", 1) == 1;
+        bool generalOn = PlayerPrefs.GetInt("GeneralOn", 1) == 1;
 
         AudioManager.Instance.SetMusicVolume(musicOn ? musicVolume : 0f);
         AudioManager.Instance.SetSFXVolume(sfxOn ? sfxVolume : 0f);
+        AudioManager.Instance.SetGeneralVolume(generalOn ? generalVolume : 0f);
     }
 
     public void CerrarOpciones()

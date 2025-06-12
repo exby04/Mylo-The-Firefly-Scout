@@ -6,14 +6,21 @@ public class AudioManager : MonoBehaviour
     public static AudioManager Instance;
 
     [Header("Mixer Reference")]
-    public AudioMixer mixer; 
+    public AudioMixer mixer;
 
     private void Awake()
     {
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject); 
+            DontDestroyOnLoad(gameObject);
+
+            if (!PlayerPrefs.HasKey("FirstTimeLaunched"))
+            {
+                ResetAudioSettingsToDefault();
+                PlayerPrefs.SetInt("FirstTimeLaunched", 1);
+                PlayerPrefs.Save();
+            }
         }
         else
         {
@@ -21,7 +28,7 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-   
+
     public void SetMusicVolume(float volume)
     {
         volume = Mathf.Clamp(volume, 0.0001f, 1f);
@@ -30,7 +37,7 @@ public class AudioManager : MonoBehaviour
         Debug.Log($"Set MusicVolume: {volume} → {dB} dB");
     }
 
-    
+
     public void SetSFXVolume(float volume)
     {
         volume = Mathf.Clamp(volume, 0.0001f, 1f);
@@ -39,7 +46,18 @@ public class AudioManager : MonoBehaviour
         Debug.Log($"Set SFXVolume: {volume} → {dB} dB");
     }
 
-    
+    public void SetGeneralVolume(float volume)
+    {
+
+        volume = Mathf.Clamp(volume, 0.0001f, 1f);
+        float dB = Mathf.Log10(volume) * 20;
+        mixer.SetFloat("GeneralVolume", dB);
+        Debug.Log($"Set GeneralVolume: {volume} → {dB} dB");
+
+    }
+
+
+
     public float GetMusicVolume()
     {
         if (mixer.GetFloat("MusicVolume", out float dB))
@@ -57,4 +75,17 @@ public class AudioManager : MonoBehaviour
         }
         return 1f;
     }
+    private void ResetAudioSettingsToDefault()
+    {
+        PlayerPrefs.SetFloat("GeneralVolume", 1f);
+        PlayerPrefs.SetFloat("MusicVolume", 1f);
+        PlayerPrefs.SetFloat("SFXVolume", 1f);
+
+        PlayerPrefs.SetInt("GeneralOn", 1);
+        PlayerPrefs.SetInt("MusicOn", 1);
+        PlayerPrefs.SetInt("SFXOn", 1);
+
+        Debug.Log("Audio settings reset to default on first launch.");
+    }
+
 }
