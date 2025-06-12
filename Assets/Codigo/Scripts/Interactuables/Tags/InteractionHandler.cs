@@ -80,8 +80,11 @@ public class InteractionHandler : MonoBehaviour
                     if (progressCircle != null)
                         progressCircle.fillAmount = 0f;
                 }
-
-                this.enabled = false;
+                
+                if (interactable is AbrirCofre c && c.EstaAbierto())
+                {
+                    this.enabled = false;
+                }
             }
         }
         else if (!Input.GetKey(interactionKey))
