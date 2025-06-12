@@ -12,7 +12,7 @@ public class PauseMenu : MonoBehaviour
     public GameObject exitWarningUI;
 
     [Header("Opciones")]
-    public OpcionesDebugMenu opcionesDebugMenu;
+    public OptionsMenu optionsMenu;
 
     [Header("Scene Settings")]
 #if UNITY_EDITOR
@@ -80,16 +80,18 @@ public class PauseMenu : MonoBehaviour
 
     public void OpenOptions()
     {
-        if (opcionesDebugMenu != null)
+        if (optionsMenu != null)
         {
-            opcionesDebugMenu.AbrirOpciones();
+            pauseMenuUI.SetActive(false); 
+            optionsMenu.AbrirOpciones();
             Debug.Log("Menú de Opciones abierto desde el menú de pausa.");
         }
         else
         {
-            Debug.LogWarning("OpcionesDebugMenu no está asignado en el PauseMenu.");
+            Debug.LogWarning("OptionsMenu no está asignado en el PauseMenu.");
         }
     }
+
 
     public void ExitToMenu()
     {

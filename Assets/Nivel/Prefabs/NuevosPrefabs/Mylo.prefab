@@ -476,9 +476,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   luz: {fileID: 4881801671705534423}
-  tiempo: 70
+  tiempo: 60
   rangoMaximo: 8
-  rangoMinimo: 3.5
+  rangoMinimo: 3.8
   intensidadMaxima: 6
   intensidadMinima: 8
   luzDelantera: {fileID: 0}
@@ -1112,15 +1112,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 1383bf8b096fb3542997e21a45d00052, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.9562995
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1383bf8b096fb3542997e21a45d00052, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.009999752
+      value: 0.03
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1383bf8b096fb3542997e21a45d00052, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 4.030412
+      value: -5.3
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1383bf8b096fb3542997e21a45d00052, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1180,13 +1180,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: 1383bf8b096fb3542997e21a45d00052, type: 3}
       propertyPath: m_WarningMessage
-      value: "\nBinding warning: Some generic clip(s) animate transforms that are
-        already bound by a Humanoid avatar. These transforms can only be changed
-        by Humanoid clips.\n\tTransform 'mixamorig:Hips'\n\tTransform 'mixamorig:LeftFoot'\n\tTransform
-        'mixamorig:Spine1'\n\tTransform 'mixamorig:LeftToeBase'\n\tTransform 'mixamorig:RightArm'\n\tTransform
-        'mixamorig:LeftLeg'\n\tTransform 'mixamorig:LeftShoulder'\n\tTransform 'mixamorig:RightFoot'\n\tTransform
-        'mixamorig:Head'\n\tTransform 'mixamorig:LeftUpLeg'\n\tand more ...\n\tFrom
-        animation clip 'mixamo.com'"
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: 1383bf8b096fb3542997e21a45d00052, type: 3}
       propertyPath: m_ApplyRootMotion
@@ -1487,7 +1481,7 @@ AudioSource:
   m_GameObject: {fileID: 1824828444651952378}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: -7602868410409849521, guid: f0a08af5be6e9934db7da21bbf7301fa, type: 2}
+  OutputAudioMixerGroup: {fileID: -8915908541691316496, guid: f0a08af5be6e9934db7da21bbf7301fa, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
