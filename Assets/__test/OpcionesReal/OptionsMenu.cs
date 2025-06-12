@@ -12,11 +12,14 @@ public class OptionsMenu : MonoBehaviour
 
     [Header("Panel Control")]
     public GameObject panelOpciones;
-    public bool isInGame = false; // Set this to true when opened from Pause Menu
+    public bool isInGame = false; 
+    private float lastMusicVolume = 1f;
+    private float lastSFXVolume = 1f;
+
 
     void Start()
     {
-        // Load saved settings
+        
         float musicVol = PlayerPrefs.GetFloat("MusicVolume", 1f);
         float sfxVol = PlayerPrefs.GetFloat("SFXVolume", 1f);
         bool musicOn = PlayerPrefs.GetInt("MusicOn", 1) == 1;
@@ -30,30 +33,64 @@ public class OptionsMenu : MonoBehaviour
 
         ApplyAudioSettings();
     }
+    public void AbrirOpciones()
+    {
+     isInGame = true; 
+     panelOpciones.SetActive(true);
+     Time.timeScale = 0f;
+
+     Debug.Log("Panel de opciones abierto desde el menú de pausa.");
+    }
 
     public void OnMusicVolumeChanged(float value)
     {
-        PlayerPrefs.SetFloat("MusicVolume", value);
-        ApplyAudioSettings();
+     PlayerPrefs.SetFloat("MusicVolume", value);
+     musicToggle.isOn = value > 0.001f; 
+     ApplyAudioSettings();
     }
 
+    
     public void OnSFXVolumeChanged(float value)
     {
-        PlayerPrefs.SetFloat("SFXVolume", value);
-        ApplyAudioSettings();
+    PlayerPrefs.SetFloat("SFXVolume", value);
+    sfxToggle.isOn = value > 0.001f;
+    ApplyAudioSettings();
     }
 
-    public void OnMusicToggleChanged(bool isOn)
+   public void OnMusicToggleChanged(bool isOn)
     {
-        PlayerPrefs.SetInt("MusicOn", isOn ? 1 : 0);
-        ApplyAudioSettings();
+    PlayerPrefs.SetInt("MusicOn", isOn ? 1 : 0);
+
+    if (!isOn)
+    {
+        lastMusicVolume = musicSlider.value > 0 ? musicSlider.value : 0.5f;
+        musicSlider.value = 0f;
     }
+    else
+    {
+        musicSlider.value = lastMusicVolume;
+    }
+
+    ApplyAudioSettings();
+   }
 
     public void OnSFXToggleChanged(bool isOn)
     {
-        PlayerPrefs.SetInt("SFXOn", isOn ? 1 : 0);
-        ApplyAudioSettings();
+    PlayerPrefs.SetInt("SFXOn", isOn ? 1 : 0);
+
+    if (!isOn)
+    {
+        lastSFXVolume = sfxSlider.value > 0 ? sfxSlider.value : 0.5f;
+        sfxSlider.value = 0f;
     }
+    else
+    {
+        sfxSlider.value = lastSFXVolume;
+    }
+
+    ApplyAudioSettings();
+    }
+
 
     public void OnFullscreenToggleChanged(bool isFullscreen)
     {

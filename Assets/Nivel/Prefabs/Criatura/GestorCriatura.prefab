@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2149895089228819259}
   - component: {fileID: 6640340850751729701}
   - component: {fileID: 8140263969143422544}
+  - component: {fileID: 329072776745167144}
   m_Layer: 0
   m_Name: GestorCriatura
   m_TagString: Untagged
@@ -51,11 +52,12 @@ MonoBehaviour:
   prefabCriatura: {fileID: 1390395521208666951, guid: 869b3812c1d1ecc4abf07ba6983a845f, type: 3}
   jugador: {fileID: 0}
   camara: {fileID: 0}
-  advertenciaUI: {fileID: 0}
+  advertenciaUI: {fileID: 8140263969143422544}
   sonidoAparicion: {fileID: 2373624996368482106}
   sonidoLatidos: {fileID: 2895244861006255736}
   distanciaDesdeJugador: 6
   alturaCriatura: 2
+  sonidoAdvertenciaCriatura: {fileID: 329072776745167144}
 --- !u!114 &8140263969143422544
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -70,6 +72,103 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uiIconoObjeto: {fileID: 0}
   tiempoTotalAdvertencia: 10
+--- !u!82 &329072776745167144
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6452964519530581127}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: -8915908541691316496, guid: f0a08af5be6e9934db7da21bbf7301fa, type: 2}
+  m_audioClip: {fileID: 8300000, guid: 71708b499ba859d41a0deee2f81a2667, type: 3}
+  m_Resource: {fileID: 8300000, guid: 71708b499ba859d41a0deee2f81a2667, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1001 &677577992521505277
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -122,6 +221,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: sonidoAparicion
       objectReference: {fileID: 0}
+    - target: {fileID: 2997130999279265479, guid: 30c1a889212c6bf4eba84aa4897fb70c, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: -8915908541691316496, guid: f0a08af5be6e9934db7da21bbf7301fa, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -149,6 +252,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: sonidoLatidos
       objectReference: {fileID: 0}
+    - target: {fileID: 4849112251593180652, guid: dabb90d6a1687f04686ec64b8d307652, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: -8915908541691316496, guid: f0a08af5be6e9934db7da21bbf7301fa, type: 2}
     - target: {fileID: 7673005018903771516, guid: dabb90d6a1687f04686ec64b8d307652, type: 3}
       propertyPath: m_LocalPosition.x
       value: 17.016367

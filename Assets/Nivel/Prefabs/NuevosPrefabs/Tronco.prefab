@@ -276,8 +276,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: ESCONDERSE
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: b3fa94bd1439877409553e65f48b0965, type: 2}
-  m_sharedMaterial: {fileID: 2543359445840972327, guid: b3fa94bd1439877409553e65f48b0965, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -835,8 +835,8 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: b3fa94bd1439877409553e65f48b0965, type: 2}
-  m_sharedMaterial: {fileID: 2543359445840972327, guid: b3fa94bd1439877409553e65f48b0965, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -6122,7 +6122,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: de3626c4a25915d4aac5ec02bffd7713, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -33.7
+      value: 31.1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: de3626c4a25915d4aac5ec02bffd7713, type: 3}
       propertyPath: m_LocalPosition.y
@@ -6130,23 +6130,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: de3626c4a25915d4aac5ec02bffd7713, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 74.3
+      value: 90.1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: de3626c4a25915d4aac5ec02bffd7713, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.6068998
+      value: 0.39272463
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: de3626c4a25915d4aac5ec02bffd7713, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.60689974
+      value: -0.3927246
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: de3626c4a25915d4aac5ec02bffd7713, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.36286733
+      value: -0.58801997
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: de3626c4a25915d4aac5ec02bffd7713, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.3628672
+      value: -0.58801985
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: de3626c4a25915d4aac5ec02bffd7713, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -6158,7 +6158,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: de3626c4a25915d4aac5ec02bffd7713, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 61.751
+      value: -112.524
       objectReference: {fileID: 0}
     - target: {fileID: -5544609282668063086, guid: de3626c4a25915d4aac5ec02bffd7713, type: 3}
       propertyPath: m_LocalScale.x
@@ -6353,7 +6353,6 @@ MonoBehaviour:
   troncoLightOverhead: {fileID: 729812407774289161}
   troncoLight: {fileID: 1140301281160575040}
   salirTagUI: {fileID: 152123029655669271}
-  EsconderseTagUI: {fileID: 4327937848688770802}
   sonidoRomper: {fileID: 8300000, guid: 8d6d43443ed6de245bace637dba06aad, type: 3}
 --- !u!82 &147634181750255864
 AudioSource:
@@ -6364,9 +6363,9 @@ AudioSource:
   m_GameObject: {fileID: 6604538958847376165}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -8915908541691316496, guid: f0a08af5be6e9934db7da21bbf7301fa, type: 2}
+  m_audioClip: {fileID: 8300000, guid: 8d6d43443ed6de245bace637dba06aad, type: 3}
+  m_Resource: {fileID: 8300000, guid: 8d6d43443ed6de245bace637dba06aad, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1

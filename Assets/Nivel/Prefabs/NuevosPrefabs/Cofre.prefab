@@ -155,8 +155,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: ABRIR
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: b3fa94bd1439877409553e65f48b0965, type: 2}
-  m_sharedMaterial: {fileID: 2543359445840972327, guid: b3fa94bd1439877409553e65f48b0965, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -552,7 +552,7 @@ AudioSource:
   m_GameObject: {fileID: 4069905181236474777}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -8915908541691316496, guid: f0a08af5be6e9934db7da21bbf7301fa, type: 2}
   m_audioClip: {fileID: 8300000, guid: d3834e3fb44d8ad4b9a36e7e22fb0073, type: 3}
   m_Resource: {fileID: 8300000, guid: d3834e3fb44d8ad4b9a36e7e22fb0073, type: 3}
   m_PlayOnAwake: 0
