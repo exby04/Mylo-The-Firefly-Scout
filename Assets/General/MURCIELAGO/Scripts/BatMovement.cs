@@ -27,11 +27,11 @@ public class BatMovement : MonoBehaviour
     [SerializeField] private float duracionAnimacionGolpeado = 60f;
 
 
-    //---------
+    
     [Header("Efecto de nube al impactar")]
     [SerializeField] private GameObject efectoNubePrefab;
     [SerializeField] private Vector3 offsetImpacto = new Vector3(0, 1.2f, 0);
-    //---------
+    
 
     private bool hasAlreadyTriggered = false;
     [Header("Sonidos")]
@@ -132,7 +132,7 @@ public class BatMovement : MonoBehaviour
                     Vector3 posicionImpacto = player.position + offsetImpacto;
                     Instantiate(efectoNubePrefab, posicionImpacto, Quaternion.identity);
                 }
-                //--------------
+                
 
                 if (!hasAlreadyTriggered)
                 {

@@ -39,22 +39,22 @@ public class CameraZoomController : MonoBehaviour
 
     IEnumerator ZoomAndPauseRoutine(Transform player, Animator playerAnimator)
     {
-        // ✅ Configura la animación del jugador para que ignore timeScale
+        
         if (playerAnimator != null)
         {
             playerAnimator.updateMode = AnimatorUpdateMode.UnscaledTime;
             playerAnimator.SetTrigger("RecogerObjeto");
         }
 
-        // ✅ Congela el juego antes de iniciar animaciones
+        
         Time.timeScale = 0f;
 
-        // 🔒 Desactiva movimiento del jugador (si usa script)
+        
         var controller = player.GetComponent<PlayerController>();
         if (controller != null)
             controller.puedeMover = false;
 
-        // 🧭 Gira el jugador hacia la cámara
+        
         Vector3 camPosition = cam.transform.position;
         Vector3 playerPosition = player.position;
         Vector3 directionToCamera = camPosition - playerPosition;
@@ -66,13 +66,13 @@ public class CameraZoomController : MonoBehaviour
             player.rotation = targetRotation;
         }
 
-        // 🔍 Ejecuta zoom con tiempo no escalado
+        
         yield return StartCoroutine(ZoomSequence_Unscaled());
 
-        // ⏱️ Espera un tiempo adicional congelado
+        
         yield return new WaitForSecondsRealtime(pausaJuegoDuracion);
 
-        // ✅ Restaura el juego
+        
         Time.timeScale = 1f;
         if (controller != null)
             controller.puedeMover = true;
@@ -91,7 +91,7 @@ public class CameraZoomController : MonoBehaviour
 
         float timer = 0f;
 
-        // 🔍 Zoom IN
+        
         while (timer < zoomDuration)
         {
             float t = timer / zoomDuration;
@@ -107,12 +107,12 @@ public class CameraZoomController : MonoBehaviour
         cam.fieldOfView = zoomFOV;
         cam.transform.rotation = targetRotation;
 
-        // ⏸️ Mantiene zoom durante holdTime
+        
         yield return new WaitForSecondsRealtime(holdTime);
 
         timer = 0f;
 
-        // 🔙 Zoom OUT
+        
         while (timer < zoomDuration)
         {
             float t = timer / zoomDuration;

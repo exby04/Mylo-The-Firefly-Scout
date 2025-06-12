@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class OptionsMenu : MonoBehaviour
+public class ManejadorOpcionesUI : MonoBehaviour
 {
     [Header("UI Elements")]
     [SerializeField] private Toggle musicToggle;
@@ -70,7 +70,7 @@ public class OptionsMenu : MonoBehaviour
             panelOpciones.SetActive(true);
         Time.timeScale = 0f;
 
-        Debug.Log("Panel de opciones abierto desde el menÃº de pausa.");
+        Debug.Log("Panel de opciones abierto desde el menú de pausa.");
     }
 
     public void OnMusicVolumeChanged(float value)
@@ -196,7 +196,7 @@ public class OptionsMenu : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("AudioManager.Instance no estÃ¡ presente en la escena.");
+            Debug.LogWarning("AudioManager.Instance no está presente en la escena.");
         }
     }
 
@@ -225,5 +225,4 @@ public class OptionsMenu : MonoBehaviour
             Debug.LogWarning("pauseMenuUI es null");
         }
     }
-
 }

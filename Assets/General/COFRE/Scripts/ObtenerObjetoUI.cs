@@ -40,9 +40,9 @@ public class ObjetoObtenidoUI : MonoBehaviour
         panelRect = panelObjeto.GetComponent<RectTransform>();
     }
 
-    /// <summary>
-    /// Muestra el objeto, lo anima, y luego ejecuta el callback cuando llega al HUD.
-    /// </summary>
+    
+    // Muestra el objeto, lo anima, y luego ejecuta el callback cuando llega al HUD.
+    
     public void Mostrar(Sprite sprite, string tipo, System.Action callbackFinal)
     {
         bool esLlave = tipo.ToLower() == "llave";
@@ -99,12 +99,12 @@ public class ObjetoObtenidoUI : MonoBehaviour
         panelRect.position = endPos;
         panelRect.localScale = endScale;
 
-        // Final
+        
         canvasGroup.alpha = 0f;
         panelObjeto.SetActive(false);
         brilloObjeto.SetActive(false);
 
-        // ✅ Entrega el objeto al jugador
+        
         callbackFinal?.Invoke();
     }
 }
