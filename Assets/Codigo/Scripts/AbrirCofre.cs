@@ -80,4 +80,9 @@ public class AbrirCofre : MonoBehaviour, IInteractable
             }
         }
     }
+    public bool EstaAbierto()
+    {
+        return abierto;
+    }
+
 }
