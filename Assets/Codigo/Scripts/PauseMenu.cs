@@ -12,7 +12,7 @@ public class PauseMenu : MonoBehaviour
     public GameObject exitWarningUI;
 
     [Header("Opciones")]
-    public OptionsMenu optionsMenu;
+    public ManejadorOpcionesUI optionsMenu;
 
     [Header("Scene Settings")]
 #if UNITY_EDITOR
