@@ -11,9 +11,7 @@ public class PauseMenu : MonoBehaviour
     public GameObject pauseMenuUI;
     public GameObject exitWarningUI;
 
-    [Header("Opciones")]
-    public ManejadorOpcionesUI optionsMenu;
-
+    
     [Header("Scene Settings")]
 #if UNITY_EDITOR
     public SceneAsset menuSceneAsset;   
@@ -80,16 +78,7 @@ public class PauseMenu : MonoBehaviour
 
     public void OpenOptions()
     {
-        if (optionsMenu != null)
-        {
-            pauseMenuUI.SetActive(false); 
-            optionsMenu.AbrirOpciones();
-            Debug.Log("Menú de Opciones abierto desde el menú de pausa.");
-        }
-        else
-        {
-            Debug.LogWarning("OptionsMenu no está asignado en el PauseMenu.");
-        }
+        
     }
 
 

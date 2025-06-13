@@ -1,18 +1,21 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 
 public class MyloAudio : MonoBehaviour
 {
     [Header("Audio Clips")]
-    public AudioClip[] pasosClips;
-    public AudioClip[] quejidos; 
+    public AudioClip[] pasosClips;            // Varios sonidos sueltos
+    public AudioClip[] quejidos;
     public AudioClip respiracionCansado;
 
-    private AudioSource audioSource;
+    [Header("Fuentes de sonido")]
+    public AudioSource pasosSource;           // Un único AudioSource
+    public AudioSource efectosSource;
 
     void Start()
     {
-        audioSource = GetComponent<AudioSource>();
+        if (pasosSource == null || efectosSource == null)
+            Debug.LogError("Faltan AudioSources asignados");
     }
 
     public void SonidoPasoAleatorio()
@@ -20,14 +23,14 @@ public class MyloAudio : MonoBehaviour
         if (pasosClips != null && pasosClips.Length > 0)
         {
             int index = Random.Range(0, pasosClips.Length);
-            audioSource.PlayOneShot(pasosClips[index]);
+            pasosSource.PlayOneShot(pasosClips[index]); // 👈 aquí usas el array perfectamente
         }
     }
 
     public void SonidoCansancio()
     {
         if (respiracionCansado != null)
-            audioSource.PlayOneShot(respiracionCansado);
+            efectosSource.PlayOneShot(respiracionCansado);
     }
 
     public void SonidoCansancioConDuracion(float duracion)
@@ -38,22 +41,21 @@ public class MyloAudio : MonoBehaviour
 
     private IEnumerator ReproducirRespiracionPorTiempo(float duracion)
     {
-        audioSource.clip = respiracionCansado;
-        audioSource.Play();
+        efectosSource.clip = respiracionCansado;
+        efectosSource.Play();
 
         yield return new WaitForSeconds(duracion);
 
-        audioSource.Stop();
-        audioSource.clip = null;
+        efectosSource.Stop();
+        efectosSource.clip = null;
     }
 
-
-    public void SonidoDa�oAleatorio()
+    public void SonidoDañoAleatorio()
     {
         if (quejidos != null && quejidos.Length > 0)
         {
             int index = Random.Range(0, quejidos.Length);
-            audioSource.PlayOneShot(quejidos[index]);
+            efectosSource.PlayOneShot(quejidos[index]);
         }
     }
 }
