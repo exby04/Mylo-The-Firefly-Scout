@@ -6122,7 +6122,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: de3626c4a25915d4aac5ec02bffd7713, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -33.7
+      value: -19.3
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: de3626c4a25915d4aac5ec02bffd7713, type: 3}
       propertyPath: m_LocalPosition.y
@@ -6130,23 +6130,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: de3626c4a25915d4aac5ec02bffd7713, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 74.3
+      value: 50.4
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: de3626c4a25915d4aac5ec02bffd7713, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.6068998
+      value: 0.61746466
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: de3626c4a25915d4aac5ec02bffd7713, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.60689974
+      value: -0.6174646
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: de3626c4a25915d4aac5ec02bffd7713, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.36286733
+      value: 0.34458306
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: de3626c4a25915d4aac5ec02bffd7713, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.3628672
+      value: 0.34458297
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: de3626c4a25915d4aac5ec02bffd7713, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -6158,7 +6158,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: de3626c4a25915d4aac5ec02bffd7713, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 61.751
+      value: 58.328
       objectReference: {fileID: 0}
     - target: {fileID: -5544609282668063086, guid: de3626c4a25915d4aac5ec02bffd7713, type: 3}
       propertyPath: m_LocalScale.x

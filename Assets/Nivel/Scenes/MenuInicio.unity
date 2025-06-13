@@ -146,17 +146,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 25518304}
-  m_LocalRotation: {x: -0, y: -0, z: -0.005834786, w: 0.999983}
+  m_LocalRotation: {x: -0, y: -0, z: -0.015147106, w: 0.99988526}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.8136517, y: 0.8136517, z: 0.8136517}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1928935141}
   m_Father: {fileID: 455882539}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -0.669}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -1.736}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 7, y: -407}
+  m_AnchoredPosition: {x: -5, y: -273}
   m_SizeDelta: {x: 602.9733, y: 164.6637}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &25518306
@@ -2056,7 +2056,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1789534598}
   m_LocalRotation: {x: -0.00076443463, y: 0.00010946398, z: -0.0064702686, w: 0.9999788}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -0}
   m_LocalScale: {x: 0.87271, y: 0.87271, z: 0.87271}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2065,7 +2065,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: -0.088, y: 0.013, z: -0.741}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 2, y: -68}
+  m_AnchoredPosition: {x: 1, y: -99}
   m_SizeDelta: {x: 557.8154, y: 179.331}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1789534600
@@ -2552,7 +2552,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2079820939
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2570,7 +2570,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: -0.089, y: 0.912, z: 2.393}
   m_AnchorMin: {x: 0.5, y: 0.67}
   m_AnchorMax: {x: 0.5, y: 0.67}
-  m_AnchoredPosition: {x: 2, y: -248}
+  m_AnchoredPosition: {x: 2, y: -264}
   m_SizeDelta: {x: 542.84, y: 167.3936}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2079820940
