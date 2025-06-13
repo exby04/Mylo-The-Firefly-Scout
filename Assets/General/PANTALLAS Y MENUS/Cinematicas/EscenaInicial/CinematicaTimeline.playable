@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 030f85c3f73729f4f976f66ffb23b875, type: 3}
   m_Name: AnimationPlayableAsset
   m_EditorClassIdentifier: 
-  m_Clip: {fileID: -203655887218126122, guid: e3a50fd16650b6e45bbe472bd52cee11, type: 3}
+  m_Clip: {fileID: 7400000, guid: 7c607d4990e5f894586ceeddc56ae7ab, type: 2}
   m_Position: {x: -46.155815, y: 0, z: 25.001095}
   m_EulerAngles: {x: 0, y: 137.359, z: 0}
   m_UseTrackMatchFields: 1
