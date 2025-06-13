@@ -8,12 +8,12 @@ public class FadeManager : MonoBehaviour
 
     public void StartFadeOut()
     {
-        fadeAnimator.SetTrigger("FadeOut");
+       // fadeAnimator.SetTrigger("FadeOut");
     }
 
     // Llamado desde el evento de animación FadeOut
     public void OnFadeOutComplete()
     {
-        SceneManager.LoadScene(nextScene);
+        //SceneManager.LoadScene(nextScene);
     }
 }

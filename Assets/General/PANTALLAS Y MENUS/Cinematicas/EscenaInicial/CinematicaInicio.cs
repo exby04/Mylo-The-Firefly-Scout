@@ -19,6 +19,6 @@ public class CinematicaInicio : MonoBehaviour
     {
         Debug.Log("Timeline terminó, lanzando fade out");
 
-        CrossfadeManager.Instance.LoadScene(nombreEscena);
+        //CrossfadeManager.Instance.LoadScene(nombreEscena);
     }
 }

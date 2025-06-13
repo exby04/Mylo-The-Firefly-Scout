@@ -19,7 +19,7 @@ public class MenuManejador : MonoBehaviour
     {
         if (!string.IsNullOrEmpty(nombreEscena))
         {
-            CrossfadeManager.Instance.LoadScene(nombreEscena);
+            CrossfadeManager.Instance.FadeThroughScenes(nombreEscena, 8f, "Level0");
         }
         else
         {
